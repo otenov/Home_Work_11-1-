@@ -23,12 +23,15 @@ namespace Home_Work_11_1_
         public MainWindow()
         {
             InitializeComponent();
-            var consultant = new Consultant();
-            Client c = new Client("Отенов", "Сергей", "Александрович", "89859999999", 10, 12);
-            ListClients.Items.Add(c);
+            Consultant c = new Consultant("фамилия", "имя", "отчество", "телефон", 0, 1);
         }
 
         private void Button1_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void Button2_Click(object sender, RoutedEventArgs e)
         {
 
         }
