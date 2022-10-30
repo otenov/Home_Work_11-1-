@@ -15,5 +15,10 @@ namespace Home_Work_11_1_
 
         }
 
+        public void Conso()
+        {
+            Console.WriteLine("d");
+        }
+
     }
 }
