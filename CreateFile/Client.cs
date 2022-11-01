@@ -15,7 +15,7 @@ namespace CreateFile
         public string TelephoneNumber { get; set; }
         private string PSeries { get; set; }
         private string PNumber { get; set; }
-        public string Pasport { get; }
+        public string Pasport { get; set; }
         Random r;
 
         // Создает случайное имя длинной от 3 до 15 символов

@@ -25,10 +25,22 @@ namespace Home_Work_11_1_
     /// </summary>
     public partial class MainWindow : Window
     {
-        Consultant d = new Consultant();
+        // Парсинг данных из файла sd как observableCollection
+        // ObservableCollection < Client > clients1 = DeserializeObservableClient(
+        // @"C:\Users\oteno\Desktop\Skillbox\Дз\Home_Work_11\Home_Work_11(1)\sd"); 
+
+        //Парсинг данных из файла sd как List
+        static List<Client> c = DeserializeList(@"C:\Users\oteno\Desktop\Skillbox\Дз\Home_Work_11\Home_Work_11(1)\sd");
+
+        //Построение коллекции observableCollection на основе List
+        ObservableCollection<Client> clients = new ObservableCollection<Client>(c); //построение коллекции observableCollection на основе list
+
+        Consultant d;
 
         public MainWindow()
         {
+
+            InitializeComponent();
             #region Получение списка директорий в папке
             //DirectoryInfo dir = new DirectoryInfo(@"C:\Users\oteno\Desktop\Skillbox\Дз\Home_Work_11\CreateFile\bin\Debug");
             //foreach (var item in dir.GetFiles())          
@@ -36,29 +48,26 @@ namespace Home_Work_11_1_
             //    Debug.WriteLine($"{item.Name}");
             //}
             #endregion
+            #region Debug
+            //Проверка парсинга и отображения данных
+            //foreach (var item in clients)
+            //{
+            //    Debug.WriteLine(item.FName);
+            //    Debug.WriteLine(item.LName);
+            //    Debug.WriteLine(item.Surname);
+            //    Debug.WriteLine(item.TelephoneNumber);
+            //    Debug.WriteLine(item.Pasport);
+            //}
+            #endregion
+            d = new Consultant(this, "Сергей", clients);
 
-            //Парсинг данных из файла sd как List
-            List<Client> c = DeserializeList(@"C:\Users\oteno\Desktop\Skillbox\Дз\Home_Work_11\Home_Work_11(1)\sd");
 
-            // Парсинг данных из файла sd как observableCollection
-            // ObservableCollection < Client > clients1 = DeserializeObservableClient(
-            // @"C:\Users\oteno\Desktop\Skillbox\Дз\Home_Work_11\Home_Work_11(1)\sd"); 
 
-            //Построение коллекции observableCollection на основе List
-            ObservableCollection< Client > clients = new ObservableCollection<Client>(c); //построение коллекции observableCollection на основе list
-            foreach (var item in clients)
-            {
-                Debug.WriteLine(item.FName);
-                Debug.WriteLine(item.LName);
-                Debug.WriteLine(item.Pasport);
-                Debug.WriteLine(item.Surname);
-                Debug.WriteLine(item.TelephoneNumber);
-            }
 
         }
 
         // Метод для парсинга файла sd как list
-        List<Client> DeserializeList(string path)
+        static List<Client> DeserializeList(string path)
         {
             List<Client> tempclients = new List<Client>();
 
@@ -74,7 +83,7 @@ namespace Home_Work_11_1_
         }
 
         // Метод для парсинга файла sd как observableCollection
-        ObservableCollection<Client> DeserializeObservableClient(string path)
+        static ObservableCollection<Client> DeserializeObservableClient(string path)
         {
             ObservableCollection<Client> tempclients = new ObservableCollection<Client>();
 
@@ -89,5 +98,16 @@ namespace Home_Work_11_1_
             return tempclients;
         }
 
+        private void Button_Click1(object sender, RoutedEventArgs e)
+        {
+            d.View(this);
+            //lw.Visibility = Visibility.Visible;
+        }
+
+        private void Button_Click2(object sender, RoutedEventArgs e)
+        {
+            d.View(this);
+            //lw.Visibility = Visibility.Hidden;
+        }
     }
 }
