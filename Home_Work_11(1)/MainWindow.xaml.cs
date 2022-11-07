@@ -25,9 +25,10 @@ namespace Home_Work_11_1_
     /// </summary>
     public partial class MainWindow : Window
     {
-        // Парсинг данных из файла sd как observableCollection
+        #region Парсинг данных из файла sd как observableCollection
         // ObservableCollection < Client > clients1 = DeserializeObservableClient(
         // @"C:\Users\oteno\Desktop\Skillbox\Дз\Home_Work_11\Home_Work_11(1)\sd"); 
+        #endregion
 
         //Парсинг данных из файла sd как List
         static List<Client> c = DeserializeList(@"C:\Users\oteno\Desktop\Skillbox\Дз\Home_Work_11\Home_Work_11(1)\sd");
@@ -35,12 +36,12 @@ namespace Home_Work_11_1_
         //Построение коллекции observableCollection на основе List
         ObservableCollection<Client> clients = new ObservableCollection<Client>(c); //построение коллекции observableCollection на основе list
 
-        Consultant d;
+        Consultant consultant;
 
         public MainWindow()
         {
-
             InitializeComponent();
+
             #region Получение списка директорий в папке
             //DirectoryInfo dir = new DirectoryInfo(@"C:\Users\oteno\Desktop\Skillbox\Дз\Home_Work_11\CreateFile\bin\Debug");
             //foreach (var item in dir.GetFiles())          
@@ -59,14 +60,15 @@ namespace Home_Work_11_1_
             //    Debug.WriteLine(item.Pasport);
             //}
             #endregion
-            d = new Consultant(this, "Сергей", clients);
 
-
-
-
+            consultant = new Consultant(this, "Сергей", clients);
         }
 
-        // Метод для парсинга файла sd как list
+        /// <summary>
+        /// Метод для парсинга файла sd как list
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         static List<Client> DeserializeList(string path)
         {
             List<Client> tempclients = new List<Client>();
@@ -82,7 +84,11 @@ namespace Home_Work_11_1_
             return tempclients;
         }
 
-        // Метод для парсинга файла sd как observableCollection
+        /// <summary>
+        /// Метод для парсинга файла sd как observableCollection
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
         static ObservableCollection<Client> DeserializeObservableClient(string path)
         {
             ObservableCollection<Client> tempclients = new ObservableCollection<Client>();
@@ -98,16 +104,38 @@ namespace Home_Work_11_1_
             return tempclients;
         }
 
-        private void Button_Click1(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Обработчик для кнопок Просмотр и Скрыть
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button_View_Click(object sender, RoutedEventArgs e)
         {
-            d.View(this);
-            //lw.Visibility = Visibility.Visible;
+            consultant.ButtonsLookAndHide(this);
         }
 
-        private void Button_Click2(object sender, RoutedEventArgs e)
+        /// <summary>
+        /// Обработчик для изменения выбора элемента списка. Реализован для изменения данных
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void SelectionChangedMethod(object sender, SelectionChangedEventArgs e)
         {
-            d.View(this);
-            //lw.Visibility = Visibility.Hidden;
+            consultant.SelectionChangedMethod(this);
+        }
+
+        /// <summary>
+        /// Обработчик для кнопки Изменить
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnChange_Click(object sender, RoutedEventArgs e)
+        {
+            //int id = consultant.clients.IndexOf((Client)lw.SelectedItem);
+            //consultant.clients[id].TelephoneNumber = txt.Text;
+            //lw.UpdateLayout();
+
+            consultant.btnChanged(this);
         }
     }
 }

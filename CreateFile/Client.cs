@@ -8,7 +8,7 @@ namespace CreateFile
 {
     public class Client
     {
-        //Список неоходимых переменных
+        //Список необходимых свойств
         public string Surname { get; set; }
         public string FName { get; set; }
         public string LName { get; set; }
