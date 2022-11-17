@@ -12,10 +12,10 @@ namespace CreateFile
     public class Program
     {
 
-        //static void Main(string[] args)
-        //{
-        //    Repository clients = new Repository();
-        //}
+        static void Main(string[] args)
+        {
+            //Repository clients = new Repository();
+        }
 
         ////Создает на основе коллекции, созданной выше xml файл для удобного хранения и обмена данными
         //static public void SerializeClientsList(List<Client> clients) 
