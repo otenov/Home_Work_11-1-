@@ -3,20 +3,39 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace CreateFile
 {
-    public class Client
+    public class Client : INotifyPropertyChanged
     {
         //Список необходимых свойств
         public string Surname { get; set; }
         public string FName { get; set; }
         public string LName { get; set; }
-        public string TelephoneNumber { get; set; }
+        private string telephoneNumber;
+        public string TelephoneNumber
+        {
+            get { return telephoneNumber; }
+
+            set
+            {
+                telephoneNumber = value;
+                OnPropertyChanged("TelephoneNumber");
+            }
+        }
         private string PSeries { get; set; }
         private string PNumber { get; set; }
         public string Pasport { get; set; }
         Random r;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+        public void OnPropertyChanged([CallerMemberName] string prop = "")
+        {
+            if (PropertyChanged != null)
+                PropertyChanged(this, new PropertyChangedEventArgs(prop));
+        }
 
         // Создает случайное имя длинной от 3 до 15 символов
         private string CreateFIO()

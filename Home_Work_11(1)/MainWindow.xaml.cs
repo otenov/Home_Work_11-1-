@@ -25,21 +25,56 @@ namespace Home_Work_11_1_
     /// </summary>
     public partial class MainWindow : Window
     {
-        #region Парсинг данных из файла sd как observableCollection
-        // ObservableCollection < Client > clients1 = DeserializeObservableClient(
-        // @"C:\Users\oteno\Desktop\Skillbox\Дз\Home_Work_11\Home_Work_11(1)\sd"); 
-        #endregion
+        /// <summary>
+        /// Метод для парсинга файла sd как list
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        List<Client> DeserializeList(string path)
+        {
+            List<Client> tempclients = new List<Client>();
 
-        //Парсинг данных из файла sd как List
-        static List<Client> c = DeserializeList(@"C:\Users\oteno\Desktop\Skillbox\Дз\Home_Work_11\Home_Work_11(1)\sd");
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Client>));
 
-        //Построение коллекции observableCollection на основе List
-        ObservableCollection<Client> clients = new ObservableCollection<Client>(c); //построение коллекции observableCollection на основе list
+            FileStream fstream = new FileStream(path, FileMode.Open, FileAccess.Read);
+
+            tempclients = xmlSerializer.Deserialize(fstream) as List<Client>;
+
+            fstream.Close();
+
+            return tempclients;
+        }
+
+        /// <summary>
+        /// Метод для парсинга файла sd как observableCollection
+        /// </summary>
+        /// <param name="path"></param>
+        /// <returns></returns>
+        ObservableCollection<Client> DeserializeObservableClient(string path)
+        {
+            ObservableCollection<Client> tempclients = new ObservableCollection<Client>();
+
+            XmlSerializer xmlSerializer = new XmlSerializer(typeof(ObservableCollection<Client>));
+
+            FileStream fstream = new FileStream(path, FileMode.Open, FileAccess.Read);
+
+            tempclients = xmlSerializer.Deserialize(fstream) as ObservableCollection<Client>;
+
+            fstream.Close();
+
+            return tempclients;
+        }
 
         Consultant consultant;
 
+        ObservableCollection<Client> clients;
+
+        Repository repositoryClients;
+
         public MainWindow()
         {
+            repositoryClients = new Repository();
+
             InitializeComponent();
 
             #region Получение списка директорий в папке
@@ -60,48 +95,20 @@ namespace Home_Work_11_1_
             //    Debug.WriteLine(item.Pasport);
             //}
             #endregion
+            #region Парсинг данных из файла sd как List
+            //List<Client> c = DeserializeList(@"C:\Users\oteno\Desktop\Skillbox\Дз\Home_Work_11\Home_Work_11(1)\sd");
+            #endregion
+            #region Построение коллекции observableCollection на основе List
+            //ObservableCollection<Client> clients = new ObservableCollection<Client>(c); //построение коллекции observableCollection на основе list
+            #endregion
+
+            #region Парсинг данных из файла sd как observableCollection
+
+            clients = DeserializeObservableClient(repositoryClients.path);
+
+            #endregion
 
             consultant = new Consultant(this, "Сергей", clients);
-        }
-
-        /// <summary>
-        /// Метод для парсинга файла sd как list
-        /// </summary>
-        /// <param name="path"></param>
-        /// <returns></returns>
-        static List<Client> DeserializeList(string path)
-        {
-            List<Client> tempclients = new List<Client>();
-
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Client>));
-
-            FileStream fstream = new FileStream(path, FileMode.Open, FileAccess.Read);
-
-            tempclients = xmlSerializer.Deserialize(fstream) as List<Client>;
-
-            fstream.Close();
-
-            return tempclients;
-        }
-
-        /// <summary>
-        /// Метод для парсинга файла sd как observableCollection
-        /// </summary>
-        /// <param name="path"></param>
-        /// <returns></returns>
-        static ObservableCollection<Client> DeserializeObservableClient(string path)
-        {
-            ObservableCollection<Client> tempclients = new ObservableCollection<Client>();
-
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(ObservableCollection<Client>));
-
-            FileStream fstream = new FileStream(path, FileMode.Open, FileAccess.Read);
-
-            tempclients = xmlSerializer.Deserialize(fstream) as ObservableCollection<Client>;
-
-            fstream.Close();
-
-            return tempclients;
         }
 
         /// <summary>
