@@ -21,9 +21,9 @@ using System.Collections.ObjectModel;
 namespace Home_Work_11_1_
 {
     /// <summary>
-    /// Логика взаимодействия для MainWindow.xaml
+    /// Логика взаимодействия для ConsultantWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class ConsultantWindow : Window
     {
         /// <summary>
         /// Метод для парсинга файла sd как list
@@ -71,11 +71,8 @@ namespace Home_Work_11_1_
 
         Repository repositoryClients;
 
-        public MainWindow()
+        public ConsultantWindow() 
         {
-            repositoryClients = new Repository();
-
-            InitializeComponent();
 
             #region Получение списка директорий в папке
             //DirectoryInfo dir = new DirectoryInfo(@"C:\Users\oteno\Desktop\Skillbox\Дз\Home_Work_11\CreateFile\bin\Debug");
@@ -102,24 +99,38 @@ namespace Home_Work_11_1_
             //ObservableCollection<Client> clients = new ObservableCollection<Client>(c); //построение коллекции observableCollection на основе list
             #endregion
 
-            #region Парсинг данных из файла sd как observableCollection
+            repositoryClients = new Repository();
+
+            InitializeComponent();
 
             clients = DeserializeObservableClient(repositoryClients.path);
 
-            #endregion
+            Debug.Write(repositoryClients.path);
 
             consultant = new Consultant(this, "Сергей", clients);
+
         }
 
         /// <summary>
-        /// Обработчик для кнопок Просмотр и Скрыть
+        /// Обработчик для кнопки Просмотр
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void Button_View_Click(object sender, RoutedEventArgs e)
+        private void ButtonViewClick(object sender, RoutedEventArgs e)
         {
-            consultant.ButtonsLookAndHide(this);
+            consultant.View(this);
         }
+
+        /// <summary>
+        /// Обработчик для кнопки Скрыть
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonHideClick(object sender, RoutedEventArgs e)
+        {
+            consultant.Hide(this);
+        }
+
 
         /// <summary>
         /// Обработчик для изменения выбора элемента списка. Реализован для изменения данных
@@ -138,11 +149,17 @@ namespace Home_Work_11_1_
         /// <param name="e"></param>
         private void btnChange_Click(object sender, RoutedEventArgs e)
         {
-            //int id = consultant.clients.IndexOf((Client)lw.SelectedItem);
-            //consultant.clients[id].TelephoneNumber = txt.Text;
-            //lw.UpdateLayout();
+            consultant.Changed(this);
+        }
 
-            consultant.btnChanged(this);
+        /// <summary>
+        /// Обработчик для кнопки Назад
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void btnBackClick(object sender, RoutedEventArgs e)
+        {
+            consultant.Back(this);
         }
     }
 }

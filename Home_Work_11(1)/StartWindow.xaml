@@ -1,0 +1,30 @@
+﻿<Window x:Class="Home_Work_11_1_.StartWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Home_Work_11_1_"
+        mc:Ignorable="d"
+        Title="StartWindow" Height="300" Width="400">
+    <Grid>
+        <Border Margin="20" CornerRadius="30" Background="Beige">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="40"/>
+            </Border.Effect>
+            <Grid Margin="20">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="2*"/>
+                    <RowDefinition Height="5*"/>
+                </Grid.RowDefinitions>
+                <Border Margin="10" Grid.Row="0" CornerRadius="20" Background="Bisque" >
+                    <TextBlock Margin="5" Text="Выберите роль" HorizontalAlignment="Center" FontSize="16"/>
+                </Border>
+                <StackPanel Grid.Row="1" Margin="20 15" Orientation="Vertical">
+                    <RadioButton Checked="CheckedConsultant" Content="Консультант" HorizontalAlignment="Center" Margin="10" Style="{StaticResource MaterialDesignCalendarMeridiemRadioButtonDefault}"/>
+                    <RadioButton Checked="CheckedManager" Content="Менеджер" HorizontalAlignment="Center" Margin="10" Style="{StaticResource MaterialDesignCalendarMeridiemRadioButtonDefault}"/>
+                </StackPanel>
+            </Grid>
+        </Border>
+
+    </Grid>
+</Window>

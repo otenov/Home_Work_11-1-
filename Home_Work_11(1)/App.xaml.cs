@@ -13,6 +13,5 @@ namespace Home_Work_11_1_
     /// </summary>
     public partial class App : Application
     {
-        
     }
 }

@@ -79,6 +79,15 @@ namespace CreateFile
 
         }
 
+        public Client(string surname, string fName, string lName, string telephoneNumber, string passport)
+        {
+            this.Surname = surname;
+            this.FName = fName;
+            this.LName = lName;
+            this.TelephoneNumber= telephoneNumber;
+            this.Pasport = passport;
+        }
+
         //Конструктор с параметром. i - номер клиента, необходим для уникальности. Каждый раз создается новый экземпляр Random, не дублируя старый
         public Client(int i)
         {
