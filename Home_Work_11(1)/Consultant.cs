@@ -30,30 +30,16 @@ namespace Home_Work_11_1_
 
         }
 
-        #region Вопрос: Как правильно дублировать коллекцию?
-        //Вопрос. Почему при создании коллекции на основе другой коллекци, когда изменяешь данные в одной и в другой меняются?
-        //public Consultant(string name, ObservableCollection<Client> clients)
-        //{
-        //    ObservableCollection<Client> consultantClients = new ObservableCollection<Client>(clients); // Вот тут я не создаю разве новый экземпляр в новом месте на  основе коллекции?
-        //    this.Name = name;
-
-        //    //Обезличивание данных
-        //    this.clients = ConsultantCollection(consultantClients);
-        //}
-        #endregion
-
         /// <summary>
         /// Конструктор. Создаёт экземпляр с коллекцией, где сразу невидно паспорт.
         /// </summary>
         /// <param name="consultantWindow">Окно в котором работает консультант</param>
         /// <param name="name">Имя работника</param>
         /// <param name="clients">Коллекция с обезличенным паспортом</param>
-        public Consultant(ConsultantWindow consultantWindow,string name, ObservableCollection<Client> clients)
+        public Consultant(ConsultantWindow consultantWindow,string name)
         {
             this.Name = name;
-            //Обезличивание данных
-            this.clients = ConsultantCollection(clients);
-            //Стартовые настройки окна (может потом вынести в отдельный метод?)
+            this.clients = ConsultantCollection();
             consultantWindow.lw.ItemsSource = this.clients;
             consultantWindow.lw.Visibility = Visibility.Hidden;
             consultantWindow.btnSave.IsEnabled = false;
@@ -66,8 +52,9 @@ namespace Home_Work_11_1_
         /// </summary>
         /// <param name="clients">Коллекция данных</param>
         /// <returns></returns>
-        protected ObservableCollection<Client> ConsultantCollection(ObservableCollection<Client> clients)
+        private ObservableCollection<Client> ConsultantCollection()
         {
+            var clients = DeserializeClientCollection();
             for (int i = 0; i < clients.Count; i++)
             {
                 if (!String.IsNullOrEmpty(clients[i].Pasport))
@@ -162,13 +149,26 @@ namespace Home_Work_11_1_
         {
             Save();
             StartWindow startWindow = new StartWindow();
-            startWindow.Show();
             window.Close();
+            startWindow.Show();
+
         }
 
-        public void Save()
+        /// <summary>
+        /// Метод сохранения данных. Записывает данные в файл
+        /// </summary>
+        protected virtual void Save()
         {
             App.repositoryClients.SerializeClientsList(clients);
+        }
+
+        /// <summary>
+        /// Считывает коллекцию с файла
+        /// </summary>
+        /// <returns></returns>
+        protected ObservableCollection<Client> DeserializeClientCollection()
+        {
+            return App.repositoryClients.DeserializeObservableClient(App.repositoryClients.path);
         }
 
     }

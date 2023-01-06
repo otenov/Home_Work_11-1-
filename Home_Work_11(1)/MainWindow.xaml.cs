@@ -25,32 +25,10 @@ namespace Home_Work_11_1_
     /// </summary>
     public partial class ConsultantWindow : Window
     {
-        /// <summary>
-        /// Метод для парсинга файла sd как list
-        /// </summary>
-        /// <param name="path"></param>
-        /// <returns></returns>
-        List<Client> DeserializeList(string path)
-        {
-            List<Client> tempclients = new List<Client>();
-
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Client>));
-
-            FileStream fstream = new FileStream(path, FileMode.Open, FileAccess.Read);
-
-            tempclients = xmlSerializer.Deserialize(fstream) as List<Client>;
-
-            fstream.Close();
-
-            return tempclients;
-        }
-
         Consultant consultant;
 
-
-        public ConsultantWindow(ObservableCollection<Client> clients)  
+        public ConsultantWindow()  
         {
-
             #region Получение списка директорий в папке
             //DirectoryInfo dir = new DirectoryInfo(@"C:\Users\oteno\Desktop\Skillbox\Дз\Home_Work_11\CreateFile\bin\Debug");
             //foreach (var item in dir.GetFiles())          
@@ -78,8 +56,7 @@ namespace Home_Work_11_1_
 
 
             InitializeComponent();
-
-            consultant = new Consultant(this, "Сергей", clients);
+            consultant = new Consultant(this, "Сергей");
 
         }
 

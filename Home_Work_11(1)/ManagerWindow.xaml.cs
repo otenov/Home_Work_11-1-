@@ -25,12 +25,11 @@ namespace Home_Work_11_1_
     {
         Manager manager;
 
-        public ManagerWindow(ObservableCollection<Client> clients)
+        public ManagerWindow()
         {
-
             InitializeComponent();
+            manager = new Manager(this, "Сергей");
 
-            manager = new Manager(this, "Сергей", clients);
         }
 
         /// <summary>
