@@ -102,7 +102,6 @@ namespace Home_Work_11_1_
             }
         }
 
-
         /// <summary>
         /// Метод для кнопки Добавить
         /// </summary>

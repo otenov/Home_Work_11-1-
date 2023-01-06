@@ -160,9 +160,15 @@ namespace Home_Work_11_1_
         /// <param name="window"></param>
         public void Back(Window window)
         {
+            Save();
             StartWindow startWindow = new StartWindow();
             startWindow.Show();
             window.Close();
+        }
+
+        public void Save()
+        {
+            App.repositoryClients.SerializeClientsList(clients);
         }
 
     }

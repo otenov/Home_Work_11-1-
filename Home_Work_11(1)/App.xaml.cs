@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CreateFile;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,12 @@ namespace Home_Work_11_1_
     /// </summary>
     public partial class App : Application
     {
+        static public Repository repositoryClients;
+
+        static App()
+        {
+            repositoryClients = new Repository();
+            
+        }
     }
 }

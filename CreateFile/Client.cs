@@ -76,7 +76,14 @@ namespace CreateFile
         // Конструктор без параметров
         public Client()
         {
-
+            this.r = new Random(Guid.NewGuid().ToByteArray().Sum(x => x));
+            this.Surname = CreateFIO();
+            this.FName = CreateFIO();
+            this.LName = CreateFIO();
+            this.TelephoneNumber = CreateTNumber();
+            this.Pasport = CreatePassport();
+            this.PSeries = this.Pasport.Substring(0, 4);
+            this.PNumber = this.Pasport.Substring(5, 6);
         }
 
         public Client(string surname, string fName, string lName, string telephoneNumber, string passport)
@@ -86,19 +93,6 @@ namespace CreateFile
             this.LName = lName;
             this.TelephoneNumber= telephoneNumber;
             this.Pasport = passport;
-        }
-
-        //Конструктор с параметром. i - номер клиента, необходим для уникальности. Каждый раз создается новый экземпляр Random, не дублируя старый
-        public Client(int i)
-        {
-            this.r = new Random(i);
-            this.Surname = CreateFIO();
-            this.FName = CreateFIO();
-            this.LName = CreateFIO();
-            this.TelephoneNumber = CreateTNumber();
-            this.Pasport = CreatePassport();
-            this.PSeries = this.Pasport.Substring(0, 4);
-            this.PNumber = this.Pasport.Substring(5, 6);
         }
 
         //Переопределённый метод ToString() для удобства, закрепления

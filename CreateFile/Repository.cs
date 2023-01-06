@@ -25,7 +25,7 @@ namespace CreateFile
             this.clients = new ObservableCollection<Client>();
             for (int i = 0; i < 50; i++)
             {
-                clients.Add(new Client(i));
+                clients.Add(new Client());
             }
             //Демонстрация созданных клиентов в отладчике
             foreach (var item in clients)
@@ -38,7 +38,7 @@ namespace CreateFile
         }
 
         //Создает на основе коллекции, созданной выше xml файл для удобного хранения и обмена данными
-        private void SerializeClientsList(ObservableCollection<Client> clients)
+        public void SerializeClientsList(ObservableCollection<Client> clients)
         {
             XmlSerializer xmls = new XmlSerializer(typeof(ObservableCollection<Client>));
 

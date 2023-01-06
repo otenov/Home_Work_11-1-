@@ -45,33 +45,10 @@ namespace Home_Work_11_1_
             return tempclients;
         }
 
-        /// <summary>
-        /// Метод для парсинга файла sd как observableCollection
-        /// </summary>
-        /// <param name="path"></param>
-        /// <returns></returns>
-        ObservableCollection<Client> DeserializeObservableClient(string path)
-        {
-            ObservableCollection<Client> tempclients = new ObservableCollection<Client>();
-
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(ObservableCollection<Client>));
-
-            FileStream fstream = new FileStream(path, FileMode.Open, FileAccess.Read);
-
-            tempclients = xmlSerializer.Deserialize(fstream) as ObservableCollection<Client>;
-
-            fstream.Close();
-
-            return tempclients;
-        }
-
         Consultant consultant;
 
-        ObservableCollection<Client> clients;
 
-        Repository repositoryClients;
-
-        public ConsultantWindow() 
+        public ConsultantWindow(ObservableCollection<Client> clients)  
         {
 
             #region Получение списка директорий в папке
@@ -99,13 +76,8 @@ namespace Home_Work_11_1_
             //ObservableCollection<Client> clients = new ObservableCollection<Client>(c); //построение коллекции observableCollection на основе list
             #endregion
 
-            repositoryClients = new Repository();
 
             InitializeComponent();
-
-            clients = DeserializeObservableClient(repositoryClients.path);
-
-            Debug.Write(repositoryClients.path);
 
             consultant = new Consultant(this, "Сергей", clients);
 

@@ -25,37 +25,10 @@ namespace Home_Work_11_1_
     {
         Manager manager;
 
-        ObservableCollection<Client> clients;
-
-        Repository repositoryClients;
-
-        /// <summary>
-        /// Метод для парсинга файла sd как observableCollection
-        /// </summary>
-        /// <param name="path"></param>
-        /// <returns></returns>
-        ObservableCollection<Client> DeserializeObservableClient(string path)
+        public ManagerWindow(ObservableCollection<Client> clients)
         {
-            ObservableCollection<Client> tempclients = new ObservableCollection<Client>();
 
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(ObservableCollection<Client>));
-
-            FileStream fstream = new FileStream(path, FileMode.Open, FileAccess.Read);
-
-            tempclients = xmlSerializer.Deserialize(fstream) as ObservableCollection<Client>;
-
-            fstream.Close();
-
-            return tempclients;
-        }
-
-        public ManagerWindow()
-        {
             InitializeComponent();
-
-            repositoryClients = new Repository();
-
-            clients = DeserializeObservableClient(repositoryClients.path);
 
             manager = new Manager(this, "Сергей", clients);
         }
