@@ -11,12 +11,15 @@ namespace Home_Work_11_1_
 {
     public class Manager : Consultant
     {
-        new ObservableCollection<Client> clients;
-
+        /// <summary>
+        /// Конструктор. Создаёт менеджера. Менеджер работает с исходной коллекцией
+        /// </summary>
+        /// <param name="managerWindow">Окно, в котором работает менеджер</param>
+        /// <param name="Name">Имя менеджера</param>
+        /// <param name="clients">Исходная коллекция</param>
         public Manager(ManagerWindow managerWindow, string Name, ObservableCollection<Client> clients) : base()
         {
             this.clients = clients;
-            //base.clients = ConsultantCollection(new ObservableCollection < Client > (clients)); Также относится к вопросу по том как создавать дубли коллекции?
             managerWindow.lw.ItemsSource = this.clients;
             managerWindow.lw.Visibility = Visibility.Hidden;
             managerWindow.btnSave.IsEnabled = false;
@@ -101,6 +104,14 @@ namespace Home_Work_11_1_
                 managerWindow.txt.IsEnabled = false;
             }
         }
+        
+        /// <summary>
+        /// Сохранение всех изменений в файл
+        /// </summary>
+        public override void Save()
+        {
+            App.repositoryClients.SerializeClientsList(clients);
+        }
 
         /// <summary>
         /// Метод для кнопки Добавить
@@ -127,7 +138,10 @@ namespace Home_Work_11_1_
             Client newClient = new Client(addNewClientwWindow.surnameBox.Text, addNewClientwWindow.fnameBox.Text, addNewClientwWindow.lnameBox.Text, addNewClientwWindow.numberBox.Text, addNewClientwWindow.passportBox.Text);
 
             clients.Add(newClient);
+
         }
+       
+
 
     }
 }

@@ -27,9 +27,7 @@ namespace Home_Work_11_1_
 
         public ManagerWindow(ObservableCollection<Client> clients)
         {
-
             InitializeComponent();
-
             manager = new Manager(this, "Сергей", clients);
         }
 

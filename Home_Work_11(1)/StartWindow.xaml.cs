@@ -24,47 +24,32 @@ namespace Home_Work_11_1_
     /// </summary>
     public partial class StartWindow : Window
     {
-
-        ObservableCollection<Client> clients;
-
-        /// <summary>
-        /// Метод для парсинга файла sd как observableCollection
-        /// </summary>
-        /// <param name="path"></param>
-        /// <returns></returns>
-        ObservableCollection<Client> DeserializeObservableClient(string path)
-        {
-            ObservableCollection<Client> tempclients = new ObservableCollection<Client>();
-
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(ObservableCollection<Client>));
-
-            FileStream fstream = new FileStream(path, FileMode.Open, FileAccess.Read);
-
-            tempclients = xmlSerializer.Deserialize(fstream) as ObservableCollection<Client>;
-
-            fstream.Close();
-
-            return tempclients;
-        }
-
         public StartWindow()
         {
             InitializeComponent();
-
-            clients = DeserializeObservableClient(App.repositoryClients.path);
         }
 
+        /// <summary>
+        /// Выбор Консультанта
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CheckedConsultant(object sender, RoutedEventArgs e)
         {
-            ConsultantWindow consultantWindow = new ConsultantWindow(clients);
+            ConsultantWindow consultantWindow = new ConsultantWindow(App.clients);
             consultantWindow.Show();
             this.Close();
 
         }
 
+        /// <summary>
+        /// Выбор Менеджера
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void CheckedManager(object sender, RoutedEventArgs e)
         {
-            ManagerWindow managerWindow = new ManagerWindow(clients);
+            ManagerWindow managerWindow = new ManagerWindow(App.clients);
             managerWindow.Show();
             this.Close();
         }

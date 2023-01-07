@@ -86,6 +86,23 @@ namespace CreateFile
             this.PNumber = this.Pasport.Substring(5, 6);
         }
 
+        /// <summary>
+        /// Конструктор для копирования
+        /// </summary>
+        /// <param name="item">Оригинал</param>
+        public Client(Client item)
+        {
+            this.r = item.r;
+            this.Surname = item.Surname;
+            this.FName = item.FName;
+            this.LName = item.LName;
+            this.TelephoneNumber = item.telephoneNumber;
+            this.Pasport = item.Pasport;
+            this.PSeries = item.PSeries;
+            this.PNumber = item.PNumber;
+        }
+
+
         public Client(string surname, string fName, string lName, string telephoneNumber, string passport)
         {
             this.Surname = surname;
