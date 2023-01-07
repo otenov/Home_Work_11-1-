@@ -13,31 +13,39 @@ namespace CreateFile
     
     public class Repository
     {
-        //Коллекция клиентов
+        /// <summary>
+        /// Коллекция клиентов
+        /// </summary>
         private ObservableCollection<Client> clients;
 
-        //Путь к файлу с клиентами
+        /// <summary>
+        /// Полный путь к файлу с данными о клиенте
+        /// </summary>
         public string path;
 
+        /// <summary>
+        /// Конструктор репозитория. Генерирует 50 клиентов и записывает их в файл
+        /// </summary>
         public Repository()
         {
-            //Добавление клиентов в коллекцию
             this.clients = new ObservableCollection<Client>();
             for (int i = 0; i < 50; i++)
             {
                 clients.Add(new Client());
             }
-            //Демонстрация созданных клиентов в отладчике
+
             foreach (var item in clients)
             {
                 Debug.WriteLine(item.ToString());
             }
             
-            //Представление клиентов в удобном формате xml
             SerializeClientsList(this.clients);
         }
 
-        //Создает на основе коллекции, созданной выше xml файл для удобного хранения и обмена данными
+        /// <summary>
+        /// Создает на основе коллекции, созданной выше xml файл для удобного хранения и обмена данными
+        /// </summary>
+        /// <param name="clients">Коллекция для сериализации</param>
         public void SerializeClientsList(ObservableCollection<Client> clients)
         {
             XmlSerializer xmls = new XmlSerializer(typeof(ObservableCollection<Client>));

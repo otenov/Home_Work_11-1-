@@ -25,28 +25,7 @@ namespace Home_Work_11_1_
     /// </summary>
     public partial class ConsultantWindow : Window
     {
-        /// <summary>
-        /// Метод для парсинга файла sd как list
-        /// </summary>
-        /// <param name="path"></param>
-        /// <returns></returns>
-        List<Client> DeserializeList(string path)
-        {
-            List<Client> tempclients = new List<Client>();
-
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(List<Client>));
-
-            FileStream fstream = new FileStream(path, FileMode.Open, FileAccess.Read);
-
-            tempclients = xmlSerializer.Deserialize(fstream) as List<Client>;
-
-            fstream.Close();
-
-            return tempclients;
-        }
-
         Consultant consultant;
-
 
         public ConsultantWindow(ObservableCollection<Client> clients)  
         {
@@ -76,11 +55,8 @@ namespace Home_Work_11_1_
             //ObservableCollection<Client> clients = new ObservableCollection<Client>(c); //построение коллекции observableCollection на основе list
             #endregion
 
-
             InitializeComponent();
-
             consultant = new Consultant(this, "Сергей", clients);
-
         }
 
         /// <summary>
@@ -102,7 +78,6 @@ namespace Home_Work_11_1_
         {
             consultant.Hide(this);
         }
-
 
         /// <summary>
         /// Обработчик для изменения выбора элемента списка. Реализован для изменения данных

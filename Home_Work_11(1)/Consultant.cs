@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace Home_Work_11_1_
 {
-    public class Consultant 
+    public class Consultant
     {
         /// <summary>
         /// Имя сотрудника
@@ -19,6 +19,11 @@ namespace Home_Work_11_1_
 
         /// <summary>
         /// Коллекция, с которой работает консультант
+        /// </summary>
+        protected ObservableCollection<Client> consultantCollection;
+
+        /// <summary>
+        /// Исходная коллекция
         /// </summary>
         protected ObservableCollection<Client> clients;
 
@@ -30,50 +35,32 @@ namespace Home_Work_11_1_
 
         }
 
-        #region Вопрос: Как правильно дублировать коллекцию?
-        //Вопрос. Почему при создании коллекции на основе другой коллекци, когда изменяешь данные в одной и в другой меняются?
-        //public Consultant(string name, ObservableCollection<Client> clients)
-        //{
-        //    ObservableCollection<Client> consultantClients = new ObservableCollection<Client>(clients); // Вот тут я не создаю разве новый экземпляр в новом месте на  основе коллекции?
-        //    this.Name = name;
-
-        //    //Обезличивание данных
-        //    this.clients = ConsultantCollection(consultantClients);
-        //}
-        #endregion
-
         /// <summary>
         /// Конструктор. Создаёт экземпляр с коллекцией, где сразу невидно паспорт.
         /// </summary>
         /// <param name="consultantWindow">Окно в котором работает консультант</param>
         /// <param name="name">Имя работника</param>
-        /// <param name="clients">Коллекция с обезличенным паспортом</param>
-        public Consultant(ConsultantWindow consultantWindow,string name, ObservableCollection<Client> clients)
+        /// <param name="clients">Исходная коллекция клиентов</param>
+        public Consultant(ConsultantWindow consultantWindow, string name, ObservableCollection<Client> clients)
         {
+            consultantCollection = new ObservableCollection<Client>();
+            foreach (Client item in clients)
+            {
+                consultantCollection.Add(new Client(item));
+            }
+
+            this.consultantCollection = ConsultantCollection(consultantCollection);
+
             this.Name = name;
-            //Обезличивание данных
-            this.clients = ConsultantCollection(clients);
-            //Стартовые настройки окна (может потом вынести в отдельный метод?)
-            consultantWindow.lw.ItemsSource = this.clients;
+            this.clients = clients;
+
+            //this.consultantCollection = ConsultantCollection(new ObservableCollection<Client>(clients));
+
+            consultantWindow.lw.ItemsSource = this.consultantCollection;
             consultantWindow.lw.Visibility = Visibility.Hidden;
             consultantWindow.btnSave.IsEnabled = false;
             consultantWindow.btnChange.IsEnabled = false;
             consultantWindow.txt.IsEnabled = false;
-        }
-
-        /// <summary>
-        /// Метод по подготовки коллекции для консультанта. Обезличивание
-        /// </summary>
-        /// <param name="clients">Коллекция данных</param>
-        /// <returns></returns>
-        protected ObservableCollection<Client> ConsultantCollection(ObservableCollection<Client> clients)
-        {
-            for (int i = 0; i < clients.Count; i++)
-            {
-                if (!String.IsNullOrEmpty(clients[i].Pasport))
-                    clients[i].Pasport = "**** ******";
-            }
-            return clients;
         }
 
         /// <summary>
@@ -119,7 +106,7 @@ namespace Home_Work_11_1_
         /// <param name="window"></param>
         public virtual void SelectionChangedMethod(Window window)
         {
-            if(window is ConsultantWindow)
+            if (window is ConsultantWindow)
             {
                 ConsultantWindow consultantWindow = window as ConsultantWindow;
                 consultantWindow.txt.IsEnabled = true;
@@ -166,8 +153,38 @@ namespace Home_Work_11_1_
             window.Close();
         }
 
-        public void Save()
+        /// <summary>
+        /// Метод по подготовки коллекции для консультанта. Обезличивание
+        /// </summary>
+        /// <param name="clients">Коллекция данных</param>
+        /// <returns></returns>
+        protected ObservableCollection<Client> ConsultantCollection(ObservableCollection<Client> clients)
         {
+            for (int i = 0; i < clients.Count; i++)
+            {
+                if (!String.IsNullOrEmpty(clients[i].Pasport))
+                    clients[i].Pasport = "**** ******";
+            }
+            return clients;
+        }
+
+        /// <summary>
+        /// Метод синхронизирующий работу Менеджера и Консультанта
+        /// </summary>
+        public void Sync()
+        {
+            for (int i = 0; i < consultantCollection.Count ; i++)
+            {
+                clients[i].TelephoneNumber = consultantCollection[i].TelephoneNumber;
+            }
+        }
+
+        /// <summary>
+        /// Сохранение всех изменений в файл
+        /// </summary>
+        public virtual void Save()
+        {
+            Sync();
             App.repositoryClients.SerializeClientsList(clients);
         }
 
