@@ -49,8 +49,15 @@ namespace Home_Work_11_1_
 
         static App()
         {
-            repositoryClients = new Repository();
-            clients = DeserializeObservableClient(repositoryClients.path);
+            if (!File.Exists("CollectionClients"))
+            {
+                repositoryClients = new Repository();
+            }
+            else
+            {
+                repositoryClients = new Repository("CollectionClients");
+                clients = DeserializeObservableClient(repositoryClients.path);
+            }
         }
     }
 }
