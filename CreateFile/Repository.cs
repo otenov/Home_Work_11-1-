@@ -42,6 +42,12 @@ namespace CreateFile
             SerializeClientsList(this.clients);
         }
 
+        public Repository(string path)
+        {
+            Stream fStream = new FileStream("CollectionClients", FileMode.OpenOrCreate, FileAccess.Read);
+            this.path = (fStream as FileStream).Name;
+        }
+
         /// <summary>
         /// Создает на основе коллекции, созданной выше xml файл для удобного хранения и обмена данными
         /// </summary>
