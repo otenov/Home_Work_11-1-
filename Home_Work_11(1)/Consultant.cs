@@ -10,30 +10,20 @@ using System.Windows;
 
 namespace Home_Work_11_1_
 {
-    public class Consultant
+    public class Consultant : Worker, IMyCollection
     {
-        /// <summary>
-        /// Имя сотрудника
-        /// </summary>
-        public string Name { get; set; }
-
         /// <summary>
         /// Коллекция, с которой работает консультант
         /// </summary>
-        protected ObservableCollection<Client> consultantCollection;
+        public ObservableCollection<Client> WorkerCollection { get; set; }
 
-        /// <summary>
-        /// Исходная коллекция
-        /// </summary>
-        protected ObservableCollection<Client> clients;
+        ///// <summary>
+        ///// Конструктор без параметров
+        ///// </summary>
+        //public Consultant()
+        //{
 
-        /// <summary>
-        /// Конструктор без параметров
-        /// </summary>
-        public Consultant()
-        {
-
-        }
+        //}
 
         /// <summary>
         /// Конструктор. Создаёт экземпляр с коллекцией, где сразу невидно паспорт.
@@ -41,22 +31,13 @@ namespace Home_Work_11_1_
         /// <param name="consultantWindow">Окно в котором работает консультант</param>
         /// <param name="name">Имя работника</param>
         /// <param name="clients">Исходная коллекция клиентов</param>
-        public Consultant(ConsultantWindow consultantWindow, string name, ObservableCollection<Client> clients)
+        public Consultant(ConsultantWindow consultantWindow, string name, ObservableCollection<Client> clients) :base(name, clients)
         {
-            consultantCollection = new ObservableCollection<Client>();
-            foreach (Client item in clients)
-            {
-                consultantCollection.Add(new Client(item));
-            }
+            WorkerCollection = CreateConsultantCollection(clients);
 
-            this.consultantCollection = ConsultantCollection(consultantCollection);
+            //this.consultantCollection = DepersonalizationCollection(new ObservableCollection<Client>(clients));
 
-            this.Name = name;
-            this.clients = clients;
-
-            //this.consultantCollection = ConsultantCollection(new ObservableCollection<Client>(clients));
-
-            consultantWindow.lw.ItemsSource = this.consultantCollection;
+            consultantWindow.lw.ItemsSource = WorkerCollection;
             consultantWindow.lw.Visibility = Visibility.Hidden;
             consultantWindow.btnSave.IsEnabled = false;
             consultantWindow.btnChange.IsEnabled = false;
@@ -64,10 +45,31 @@ namespace Home_Work_11_1_
         }
 
         /// <summary>
-        /// Метод для кнопки просмотр
+        /// Метод по подготовки коллекции для консультанта. Обезличивание
         /// </summary>
-        /// <param name="window"></param>
-        public virtual void View(Window window)
+        /// <param name="clients">Коллекция данных</param>
+        /// <returns></returns>
+        private ObservableCollection<Client> DepersonalizationCollection(ObservableCollection<Client> clients)
+        {
+            for (int i = 0; i < clients.Count; i++)
+            {
+                if (!String.IsNullOrEmpty(clients[i].Pasport))
+                    clients[i].Pasport = "**** ******";
+            }
+            return clients;
+        }
+
+        /// <summary>
+        /// Метод, который Консультанту подготавливает коллекцию для работы с данными клиентов
+        /// </summary>
+        /// <param name="clients">Исходная коллекция</param>
+        /// <returns>Коллекция для консультанта</returns>
+        private  ObservableCollection<Client> CreateConsultantCollection(ObservableCollection<Client> clients)
+        {
+            return DepersonalizationCollection(CopyCollection(clients));
+        }
+
+        public override void View(Window window)
         {
             if (window is ConsultantWindow)
             {
@@ -83,11 +85,7 @@ namespace Home_Work_11_1_
             }
         }
 
-        /// <summary>
-        /// Метод для кнопки Cкрыть
-        /// </summary>
-        /// <param name="windoww"></param>
-        public virtual void Hide(Window window)
+        public override void Hide(Window window)
         {
             if (window is ConsultantWindow)
             {
@@ -100,11 +98,7 @@ namespace Home_Work_11_1_
             }
         }
 
-        /// <summary>
-        /// Метод для подтаскивания данных в поля и отображения кнопок при выборе экземпляра списка
-        /// </summary>
-        /// <param name="window"></param>
-        public virtual void SelectionChangedMethod(Window window)
+        public override void SelectionChangedMethod(Window window)
         {
             if (window is ConsultantWindow)
             {
@@ -116,11 +110,7 @@ namespace Home_Work_11_1_
             }
         }
 
-        /// <summary>
-        /// Метод для кнопки изменить
-        /// </summary>
-        /// <param name="window"></param>
-        public virtual void Changed(Window window)
+        public override void Changed(Window window)
         {
             if (window is ConsultantWindow)
             {
@@ -141,51 +131,22 @@ namespace Home_Work_11_1_
             }
         }
 
-        /// <summary>
-        /// Метод для кнопки Назад
-        /// </summary>
-        /// <param name="window"></param>
-        public void Back(Window window)
+        public override void Back(Window window)
         {
-            Save();
+            Save(WorkerCollection);
             StartWindow startWindow = new StartWindow();
             startWindow.Show();
             window.Close();
         }
 
-        /// <summary>
-        /// Метод по подготовки коллекции для консультанта. Обезличивание
-        /// </summary>
-        /// <param name="clients">Коллекция данных</param>
-        /// <returns></returns>
-        protected ObservableCollection<Client> ConsultantCollection(ObservableCollection<Client> clients)
+        public override void Sync(ObservableCollection<Client> clients)
         {
-            for (int i = 0; i < clients.Count; i++)
             {
-                if (!String.IsNullOrEmpty(clients[i].Pasport))
-                    clients[i].Pasport = "**** ******";
+                for (int i = 0; i <= clients.Count - 1; i++)
+                {
+                    base.clients[i].TelephoneNumber = clients[i].TelephoneNumber;
+                }
             }
-            return clients;
-        }
-
-        /// <summary>
-        /// Метод синхронизирующий работу Менеджера и Консультанта
-        /// </summary>
-        public void Sync()
-        {
-            for (int i = 0; i < consultantCollection.Count ; i++)
-            {
-                clients[i].TelephoneNumber = consultantCollection[i].TelephoneNumber;
-            }
-        }
-
-        /// <summary>
-        /// Сохранение всех изменений в файл
-        /// </summary>
-        public virtual void Save()
-        {
-            Sync();
-            App.repositoryClients.SerializeClientsList(clients);
         }
 
     }
