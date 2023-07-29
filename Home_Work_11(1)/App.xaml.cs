@@ -50,14 +50,14 @@ namespace Home_Work_11_1_
         static App()
         {
 
-            if (!File.Exists("CollectionClients"))
+            if (File.Exists("CollectionClients"))
             {
-                repositoryClients = new Repository();
+                repositoryClients = new Repository("CollectionClients");
                 clients = DeserializeObservableClient(repositoryClients.path);
             }
             else
             {
-                repositoryClients = new Repository("CollectionClients");
+                repositoryClients = new Repository();
                 clients = DeserializeObservableClient(repositoryClients.path);
             }
         }
