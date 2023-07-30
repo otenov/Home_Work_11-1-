@@ -23,7 +23,7 @@ namespace Home_Work_11_1_
     /// </summary>
     public partial class ManagerWindow : Window
     {
-        Manager manager;
+        IManager manager;
 
         public ManagerWindow(ObservableCollection<Client> clients)
         {
@@ -78,7 +78,7 @@ namespace Home_Work_11_1_
         /// <param name="e"></param>
         private void btnChange_Click(object sender, RoutedEventArgs e)
         {
-            manager.Changed(this);
+            manager.ChangedNumber(this);
         }
 
         /// <summary>

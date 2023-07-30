@@ -9,9 +9,8 @@ using CreateFile;
 
 namespace Home_Work_11_1_
 {
-    public class Manager : Worker, IMyCollection
+    public class Manager : Worker, IManager
     {
-        public ObservableCollection<Client> WorkerCollection { get; set; }
 
         /// <summary>
         /// Конструктор. Создаёт менеджера. Менеджер работает с исходной коллекцией
@@ -21,18 +20,13 @@ namespace Home_Work_11_1_
         /// <param name="clients">Исходная коллекция</param>
         public Manager(ManagerWindow managerWindow, string name, ObservableCollection<Client> clients) : base(name, clients)
         {
-            WorkerCollection = CopyCollection(clients);
-            managerWindow.lw.ItemsSource = WorkerCollection;
+            managerWindow.lw.ItemsSource = base.clients;
             managerWindow.lw.Visibility = Visibility.Hidden;
             managerWindow.btnSave.IsEnabled = false;
             managerWindow.btnChange.IsEnabled = false;
             managerWindow.txt.IsEnabled = false;
         }
 
-        /// <summary>
-        /// Метод для кнопки Добавить
-        /// </summary>
-        /// <param name="window"></param>
         public void Add(Window window)
         {
             window.Hide();
@@ -45,20 +39,15 @@ namespace Home_Work_11_1_
 
         }
 
-        /// <summary>
-        /// Метод для добавление нового клиента в коллекцию менеджера
-        /// </summary>
-        /// <param name="addNewClientwWindow"></param>
         public void AddClient(AddNewClientWindow addNewClientwWindow)
         {
             Client newClient = new Client(addNewClientwWindow.surnameBox.Text, addNewClientwWindow.fnameBox.Text, addNewClientwWindow.lnameBox.Text, addNewClientwWindow.numberBox.Text, addNewClientwWindow.passportBox.Text);
 
-            WorkerCollection.Add(newClient);
+            clients.Add(newClient);
 
         }
 
-
-        public override void Changed(Window window)
+        public void ChangedNumber(Window window)
         {
             if (window is ManagerWindow)
             {
@@ -79,7 +68,7 @@ namespace Home_Work_11_1_
             }
         }
 
-        public override void SelectionChangedMethod(Window window)
+        public void SelectionChangedMethod(Window window)
         {
             if (window is ManagerWindow)
             {
@@ -91,7 +80,7 @@ namespace Home_Work_11_1_
             }
         }
 
-        public override void View(Window window)
+        public void View(Window window)
         {
             if (window is ManagerWindow)
             {
@@ -107,7 +96,7 @@ namespace Home_Work_11_1_
             }
         }
 
-        public override void Hide(Window window)
+        public void Hide(Window window)
         {
             if (window is ManagerWindow)
             {
@@ -120,25 +109,13 @@ namespace Home_Work_11_1_
             }
         }
 
-        public override void Back(Window window)
+        public void Back(Window window)
         {
-            Save(WorkerCollection);
+            Save(clients);
             StartWindow startWindow = new StartWindow();
             startWindow.Show();
             window.Close();
         }
 
-        public override void Sync(ObservableCollection<Client> clients)
-        {
-            for (int i = 0; i <= clients.Count - 1; i++)
-            {
-                
-                if (i > base.clients.Count-1 && i <= clients.Count-1)
-                {
-                    base.clients.Add(clients[i]);
-                }
-                else { base.clients[i] = clients[i]; }
-            }
-        }
     }
 }
