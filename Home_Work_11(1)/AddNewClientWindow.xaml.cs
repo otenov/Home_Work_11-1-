@@ -20,7 +20,7 @@ namespace Home_Work_11_1_
     /// </summary>
     public partial class AddNewClientWindow : Window
     {
-        Manager manager;
+        IManager manager;
 
         public AddNewClientWindow(Manager manager)
         {

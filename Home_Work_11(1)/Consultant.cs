@@ -10,7 +10,7 @@ using System.Windows;
 
 namespace Home_Work_11_1_
 {
-    public class Consultant : Worker, IMyCollection
+    public class Consultant : Worker, IConsultant
     {
         /// <summary>
         /// Коллекция, с которой работает консультант
@@ -69,7 +69,7 @@ namespace Home_Work_11_1_
             return DepersonalizationCollection(CopyCollection(clients));
         }
 
-        public override void View(Window window)
+        public void View(Window window)
         {
             if (window is ConsultantWindow)
             {
@@ -85,7 +85,7 @@ namespace Home_Work_11_1_
             }
         }
 
-        public override void Hide(Window window)
+        public void Hide(Window window)
         {
             if (window is ConsultantWindow)
             {
@@ -98,7 +98,7 @@ namespace Home_Work_11_1_
             }
         }
 
-        public override void SelectionChangedMethod(Window window)
+        public void SelectionChangedMethod(Window window)
         {
             if (window is ConsultantWindow)
             {
@@ -110,7 +110,7 @@ namespace Home_Work_11_1_
             }
         }
 
-        public override void Changed(Window window)
+        public void ChangedNumber(Window window)
         {
             if (window is ConsultantWindow)
             {
@@ -131,7 +131,7 @@ namespace Home_Work_11_1_
             }
         }
 
-        public override void Back(Window window)
+        public void Back(Window window)
         {
             Save(WorkerCollection);
             StartWindow startWindow = new StartWindow();
@@ -139,7 +139,7 @@ namespace Home_Work_11_1_
             window.Close();
         }
 
-        public override void Sync(ObservableCollection<Client> clients)
+        public void Sync(ObservableCollection<Client> clients)
         {
             {
                 for (int i = 0; i <= clients.Count - 1; i++)
@@ -147,6 +147,12 @@ namespace Home_Work_11_1_
                     base.clients[i].TelephoneNumber = clients[i].TelephoneNumber;
                 }
             }
+        }
+
+        protected override void Save(ObservableCollection<Client> clients)
+        {
+            Sync(clients);
+            base.Save(clients);
         }
 
     }

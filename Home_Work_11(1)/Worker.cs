@@ -33,9 +33,6 @@ namespace Home_Work_11_1_
 
         protected ObservableCollection<Client> clients;
 
-        public abstract void Sync(ObservableCollection<Client> clients);
-
-
         public Worker(string name, ObservableCollection<Client> clients)
         {
             Name = name;
@@ -43,44 +40,13 @@ namespace Home_Work_11_1_
         }
 
         /// <summary>
-        /// Метод для кнопки просмотр
-        /// </summary>
-        /// <param name="window"></param>
-        public abstract void View(Window window);
-
-        /// <summary>
-        /// Метод для кнопки Cкрыть
-        /// </summary>
-        /// <param name="windoww"></param>
-        public abstract void Hide(Window window);
-
-        /// <summary>
-        /// Метод для подтаскивания данных в поля и отображения кнопок при выборе экземпляра списка
-        /// </summary>
-        /// <param name="window"></param>
-        public abstract void SelectionChangedMethod(Window window);
-
-        /// <summary>
-        /// Метод для кнопки изменить
-        /// </summary>
-        /// <param name="window"></param>
-        public abstract void Changed(Window window);
-
-
-        /// <summary>
         /// Сохранение всех изменений в файл
         /// </summary>
-        protected void Save(ObservableCollection<Client> clients)
+        protected virtual void Save(ObservableCollection<Client> clients)
         {
-            Sync(clients);
             App.repositoryClients.SerializeClientsList(this.clients);
         }
 
-        /// <summary>
-        /// Метод для кнопки Назад
-        /// </summary>
-        /// <param name="window"></param>
-        public abstract void Back(Window window);
 
     }
 }
