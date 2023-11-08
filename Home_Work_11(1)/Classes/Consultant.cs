@@ -52,8 +52,8 @@ namespace Home_Work_11_1_
         {
             for (int i = 0; i < clients.Count; i++)
             {
-                if (!String.IsNullOrEmpty(clients[i].Pasport))
-                    clients[i].Pasport = "**** ******";
+                if (!String.IsNullOrEmpty(clients[i].Passport))
+                    clients[i].Passport = "**** ******";
             }
             return clients;
         }

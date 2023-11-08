@@ -44,7 +44,7 @@ namespace Home_Work_11_1_
             //    Debug.WriteLine(item.LName);
             //    Debug.WriteLine(item.Surname);
             //    Debug.WriteLine(item.TelephoneNumber);
-            //    Debug.WriteLine(item.Pasport);
+            //    Debug.WriteLine(item.Passport);
             //}
             #endregion
             #region Парсинг данных из файла sd как List
