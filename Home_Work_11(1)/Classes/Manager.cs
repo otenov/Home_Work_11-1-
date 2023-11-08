@@ -23,7 +23,7 @@ namespace Home_Work_11_1_
             managerWindow.lw.Visibility = Visibility.Hidden;
             managerWindow.btnSave.IsEnabled = false;
             managerWindow.btnChange.IsEnabled = false;
-            managerWindow.txt.IsEnabled = false;
+            managerWindow.TelephoneNumber.IsEnabled = false;
         }
 
         public void Add(Window window)
@@ -51,17 +51,17 @@ namespace Home_Work_11_1_
             if (window is ManagerWindow)
             {
                 ManagerWindow managerWindow = window as ManagerWindow;
-                string number = managerWindow.txt.Text;
+                string number = managerWindow.TelephoneNumber.Text;
                 if (String.IsNullOrEmpty(number) || number.Length != 11)
                 {
                     MessageBox.Show("Вы ввели неверный номер телефона\nПопробуйте еще раз", "", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    managerWindow.txt.Text = default;
-                    managerWindow.txt.Focus();
-                    managerWindow.txt.ToolTip = "Был введён некорректный номер";
+                    managerWindow.TelephoneNumber.Text = default;
+                    managerWindow.TelephoneNumber.Focus();
+                    managerWindow.TelephoneNumber.ToolTip = "Был введён некорректный номер";
                 }
                 else
                 {
-                    ((Client)managerWindow.lw.SelectedItem).TelephoneNumber = managerWindow.txt.Text;
+                    ((Client)managerWindow.lw.SelectedItem).TelephoneNumber = managerWindow.TelephoneNumber.Text;
                     MessageBox.Show("Телефонный номер сохранён", "", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
@@ -72,8 +72,19 @@ namespace Home_Work_11_1_
             if (window is ManagerWindow)
             {
                 ManagerWindow managerWindow = window as ManagerWindow;
-                managerWindow.txt.IsEnabled = true;
-                managerWindow.txt.Text = ((Client)managerWindow.lw.SelectedItem).TelephoneNumber;
+                Client client = (Client)managerWindow.lw.SelectedItem;
+                managerWindow.Surname.IsEnabled = true;
+                managerWindow.Name.IsEnabled = true;
+                managerWindow.LName.IsEnabled = true;
+                managerWindow.PassportSeries.IsEnabled = true;
+                managerWindow.PassportNumber.IsEnabled = true;
+                managerWindow.TelephoneNumber.IsEnabled = true;
+                managerWindow.Surname.Text = client.Surname;
+                managerWindow.Name.Text = client.FName;
+                managerWindow.LName.Text = client.LName;
+                managerWindow.PassportSeries.Text = client.Passport.Substring(0,4);
+                managerWindow.PassportNumber.Text = client.Passport.Substring(5,4);
+                managerWindow.TelephoneNumber.Text = client.TelephoneNumber;
                 managerWindow.btnSave.IsEnabled = true;
                 managerWindow.btnChange.IsEnabled = true;
             }
@@ -88,7 +99,7 @@ namespace Home_Work_11_1_
                 managerWindow.lw.Visibility = Visibility.Visible;
                 if (!(managerWindow.lw.SelectedItem is null))
                 {
-                    managerWindow.txt.IsEnabled = true;
+                    managerWindow.TelephoneNumber.IsEnabled = true;
                     managerWindow.btnSave.IsEnabled = true;
                     managerWindow.btnChange.IsEnabled = true;
                 }
@@ -104,7 +115,7 @@ namespace Home_Work_11_1_
                 managerWindow.lw.Visibility = Visibility.Hidden;
                 managerWindow.btnSave.IsEnabled = false;
                 managerWindow.btnChange.IsEnabled = false;
-                managerWindow.txt.IsEnabled = false;
+                managerWindow.TelephoneNumber.IsEnabled = false;
             }
         }
 

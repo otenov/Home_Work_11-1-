@@ -161,7 +161,48 @@
                 <DropShadowEffect BlurRadius="30"  Color="Gray" />
             </Border.Effect>
             <Canvas Margin="10 10" >
-                <TextBox x:Name="txt" 
+
+                <TextBox x:Name="Surname" 
+                     Width="150" Height="36" HorizontalAlignment="Center" 
+                     Canvas.Bottom="420" Canvas.Left="30" 
+                     Cursor="IBeam"
+                     ToolTip="Введите новую фамилию"
+                     materialDesign:HintAssist.Hint="Введите фамилию"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+
+                <TextBox x:Name="Name" 
+                     Width="150" Height="36" HorizontalAlignment="Center" 
+                     Canvas.Bottom="380" Canvas.Left="30" 
+                     Cursor="IBeam"
+                     ToolTip="Введите новое имя"
+                     materialDesign:HintAssist.Hint="Введите имя"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+
+                <TextBox x:Name="LName" 
+                     Width="150" Height="36" HorizontalAlignment="Center" 
+                     Canvas.Bottom="340" Canvas.Left="30" 
+                     Cursor="IBeam"
+                     ToolTip="Введите новое отчество"
+                     materialDesign:HintAssist.Hint="Введите отчество"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+
+                <TextBox x:Name="PassportSeries" 
+                     Width="150" Height="36" HorizontalAlignment="Center" 
+                     Canvas.Bottom="300" Canvas.Left="30" 
+                     Cursor="IBeam"
+                     ToolTip="Введите новую серию паспорта"
+                     materialDesign:HintAssist.Hint="Введите серию паспорта"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+
+                <TextBox x:Name="PassportNumber" 
+                     Width="150" Height="36" HorizontalAlignment="Center" 
+                     Canvas.Bottom="260" Canvas.Left="30" 
+                     Cursor="IBeam"
+                     ToolTip="Введите новый номер паспорта"
+                     materialDesign:HintAssist.Hint="Введите номер паспорта"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                
+                <TextBox x:Name="TelephoneNumber" 
                      Width="150" Height="36" HorizontalAlignment="Center" 
                      Canvas.Bottom="220" Canvas.Left="30" 
                      Cursor="IBeam"
