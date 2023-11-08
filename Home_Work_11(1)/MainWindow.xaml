@@ -164,7 +164,7 @@
                 <DropShadowEffect BlurRadius="30"  Color="Gray" />
             </Border.Effect>
             <Canvas Margin="10 10" >
-                <TextBox x:Name="txt" 
+                <TextBox x:Name="TelephoneNumber" 
                      Width="150" Height="36" HorizontalAlignment="Center" 
                      Canvas.Bottom="180" Canvas.Left="30" 
                      Cursor="IBeam"

@@ -40,7 +40,7 @@ namespace Home_Work_11_1_
             consultantWindow.lw.Visibility = Visibility.Hidden;
             consultantWindow.btnSave.IsEnabled = false;
             consultantWindow.btnChange.IsEnabled = false;
-            consultantWindow.txt.IsEnabled = false;
+            consultantWindow.TelephoneNumber.IsEnabled = false;
         }
 
         /// <summary>
@@ -77,7 +77,7 @@ namespace Home_Work_11_1_
                 consultantWindow.lw.Visibility = Visibility.Visible;
                 if (!(consultantWindow.lw.SelectedItem is null))
                 {
-                    consultantWindow.txt.IsEnabled = true;
+                    consultantWindow.TelephoneNumber.IsEnabled = true;
                     consultantWindow.btnSave.IsEnabled = true;
                     consultantWindow.btnChange.IsEnabled = true;
                 }
@@ -93,7 +93,7 @@ namespace Home_Work_11_1_
                 consultantWindow.lw.Visibility = Visibility.Hidden;
                 consultantWindow.btnSave.IsEnabled = false;
                 consultantWindow.btnChange.IsEnabled = false;
-                consultantWindow.txt.IsEnabled = false;
+                consultantWindow.TelephoneNumber.IsEnabled = false;
             }
         }
 
@@ -102,8 +102,9 @@ namespace Home_Work_11_1_
             if (window is ConsultantWindow)
             {
                 ConsultantWindow consultantWindow = window as ConsultantWindow;
-                consultantWindow.txt.IsEnabled = true;
-                consultantWindow.txt.Text = ((Client)consultantWindow.lw.SelectedItem).TelephoneNumber;
+                Client client = (Client)consultantWindow.lw.SelectedItem;
+                consultantWindow.TelephoneNumber.IsEnabled = true;
+                consultantWindow.TelephoneNumber.Text = client.TelephoneNumber;
                 consultantWindow.btnSave.IsEnabled = true;
                 consultantWindow.btnChange.IsEnabled = true;
             }
@@ -114,17 +115,17 @@ namespace Home_Work_11_1_
             if (window is ConsultantWindow)
             {
                 ConsultantWindow consultantWindow = window as ConsultantWindow;
-                string number = consultantWindow.txt.Text;
+                string number = consultantWindow.TelephoneNumber.Text;
                 if (String.IsNullOrEmpty(number) || number.Length != 11)
                 {
                     MessageBox.Show("Вы ввели неверный номер телефона\nПопробуйте еще раз", "", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    consultantWindow.txt.Text = default;
-                    consultantWindow.txt.Focus();
-                    consultantWindow.txt.ToolTip = "Был введён некорректный номер";
+                    consultantWindow.TelephoneNumber.Text = default;
+                    consultantWindow.TelephoneNumber.Focus();
+                    consultantWindow.TelephoneNumber.ToolTip = "Был введён некорректный номер";
                 }
                 else
                 {
-                    ((Client)consultantWindow.lw.SelectedItem).TelephoneNumber = consultantWindow.txt.Text;
+                    ((Client)consultantWindow.lw.SelectedItem).TelephoneNumber = consultantWindow.TelephoneNumber.Text;
                     MessageBox.Show("Телефонный номер сохранён", "", MessageBoxButton.OK, MessageBoxImage.Information);
                 }
             }
