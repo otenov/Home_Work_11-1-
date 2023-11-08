@@ -27,7 +27,7 @@ namespace Home_Work_11_1_
         }
         private string PSeries { get; set; }
         private string PNumber { get; set; }
-        public string Pasport { get; set; }
+        public string Passport { get; set; }
         Random r;
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -81,9 +81,9 @@ namespace Home_Work_11_1_
             this.FName = CreateFIO();
             this.LName = CreateFIO();
             this.TelephoneNumber = CreateTNumber();
-            this.Pasport = CreatePassport();
-            this.PSeries = this.Pasport.Substring(0, 4);
-            this.PNumber = this.Pasport.Substring(5, 6);
+            this.Passport = CreatePassport();
+            this.PSeries = this.Passport.Substring(0, 4);
+            this.PNumber = this.Passport.Substring(5, 6);
         }
 
         /// <summary>
@@ -97,7 +97,7 @@ namespace Home_Work_11_1_
             this.FName = item.FName;
             this.LName = item.LName;
             this.TelephoneNumber = item.telephoneNumber;
-            this.Pasport = item.Pasport;
+            this.Passport = item.Passport;
             this.PSeries = item.PSeries;
             this.PNumber = item.PNumber;
         }
@@ -109,13 +109,13 @@ namespace Home_Work_11_1_
             this.FName = fName;
             this.LName = lName;
             this.TelephoneNumber= telephoneNumber;
-            this.Pasport = passport;
+            this.Passport = passport;
         }
 
         //Переопределённый метод ToString() для удобства, закрепления
         public override string ToString()
         {
-            string s = $"{Surname,20} {LName,20} {FName,20} {TelephoneNumber,13} {Pasport,13}";
+            string s = $"{Surname,20} {LName,20} {FName,20} {TelephoneNumber,13} {Passport,13}";
             return s;
         }
 
