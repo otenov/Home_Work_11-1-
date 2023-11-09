@@ -152,7 +152,7 @@
                             <GridViewColumn Header="Имя" Width="130" DisplayMemberBinding ="{Binding FName}"/>
                             <GridViewColumn Header="Отчество" Width="150" DisplayMemberBinding ="{Binding LName}"/>
                             <GridViewColumn Header="Телефон" Width="150" DisplayMemberBinding ="{Binding TelephoneNumber}"/>
-                            <GridViewColumn Header="Паспорт" Width="150" DisplayMemberBinding ="{Binding Pasport}"/>
+                            <GridViewColumn Header="Паспорт" Width="150" DisplayMemberBinding ="{Binding Passport}"/>
                         </GridView.Columns>
                     </GridView>
                 </ListView.View>
@@ -185,7 +185,7 @@
                     Canvas.Bottom="140" Canvas.Left="110" 
                     Width="85" Height="30"
                     FontSize="10"
-                    
+                    Click="btnSaveClick"
                     />
 
                 <Button x:Name="btnLook"

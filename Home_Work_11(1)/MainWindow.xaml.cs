@@ -107,5 +107,10 @@ namespace Home_Work_11_1_
         {
             consultant.Back(this);
         }
+
+        private void btnSaveClick(object sender, RoutedEventArgs e)
+        {
+            consultant.SaveData();
+        }
     }
 }

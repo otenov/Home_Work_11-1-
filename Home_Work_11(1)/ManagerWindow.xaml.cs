@@ -77,7 +77,7 @@ namespace Home_Work_11_1_
         /// <param name="e"></param>
         private void btnChange_Click(object sender, RoutedEventArgs e)
         {
-            manager.ChangedNumber(this);
+            manager.ChangeClient(this);
         }
 
         /// <summary>
@@ -88,6 +88,11 @@ namespace Home_Work_11_1_
         private void btnBackClick(object sender, RoutedEventArgs e)
         {
             manager.Back(this);
+        }
+
+        private void btnSaveClick(object sender, RoutedEventArgs e)
+        {
+            manager.SaveData();
         }
     }
 }

@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace Home_Work_11_1_
 {
-    interface IManager : IConsultant
+    interface IManager : IViewer
     {
         /// <summary>
         /// Метод для кнопки Добавить
@@ -20,5 +20,16 @@ namespace Home_Work_11_1_
         /// </summary>
         /// <param name="addNewClientwWindow"></param>
         void AddClient(AddNewClientWindow addNewClientwWindow);
+
+        /// <summary>
+        /// Метод для возможности изменения всех данных клиента
+        /// </summary>
+        /// <param name="window"></param>
+        void ChangeClient(Window window);
+        
+        /// <summary>
+        /// Метод для сохранения данных менеджером
+        /// </summary>
+        void SaveData();
     }
 }

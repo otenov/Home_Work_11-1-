@@ -10,7 +10,6 @@ namespace Home_Work_11_1_
 {
     public class Manager : Worker, IManager
     {
-
         /// <summary>
         /// Конструктор. Создаёт менеджера. Менеджер работает с исходной коллекцией
         /// </summary>
@@ -23,6 +22,11 @@ namespace Home_Work_11_1_
             managerWindow.lw.Visibility = Visibility.Hidden;
             managerWindow.btnSave.IsEnabled = false;
             managerWindow.btnChange.IsEnabled = false;
+            managerWindow.Surname.IsEnabled = false;
+            managerWindow.Name.IsEnabled = false;
+            managerWindow.LName.IsEnabled = false;
+            managerWindow.PassportSeries.IsEnabled = false;
+            managerWindow.PassportNumber.IsEnabled = false;
             managerWindow.TelephoneNumber.IsEnabled = false;
         }
 
@@ -38,31 +42,42 @@ namespace Home_Work_11_1_
 
         }
 
-        public void AddClient(AddNewClientWindow addNewClientwWindow)
+        public void AddClient(AddNewClientWindow addNewClientWindow)
         {
-            Client newClient = new Client(addNewClientwWindow.surnameBox.Text, addNewClientwWindow.fnameBox.Text, addNewClientwWindow.lnameBox.Text, addNewClientwWindow.numberBox.Text, addNewClientwWindow.passportBox.Text);
+            Client newClient = new Client(addNewClientWindow.surnameBox.Text, addNewClientWindow.fnameBox.Text, addNewClientWindow.lnameBox.Text, addNewClientWindow.numberBox.Text, addNewClientWindow.passportBox.Text);
 
             clients.Add(newClient);
 
         }
 
-        public void ChangedNumber(Window window)
+        private void RecordClient(Client client,
+            string surname, string name, string lName, string pSeries, string pNumber, string tNumber)
+        {
+            client.Surname = surname;
+            client.FName = name;
+            client.LName = lName;
+            client.Passport = pSeries + " " + pNumber;
+            client.TelephoneNumber = tNumber;
+        }
+
+        public void ChangeClient(Window window)
         {
             if (window is ManagerWindow)
             {
                 ManagerWindow managerWindow = window as ManagerWindow;
-                string number = managerWindow.TelephoneNumber.Text;
-                if (String.IsNullOrEmpty(number) || number.Length != 11)
+                string surname = managerWindow.Surname.Text;
+                string name = managerWindow.Name.Text;
+                string lname = managerWindow.LName.Text;
+                string pSeries = managerWindow.PassportSeries.Text;
+                string pNumber = managerWindow.PassportNumber.Text;
+                string tNumber = managerWindow.TelephoneNumber.Text;
+
+                if (Helper.Check(managerWindow, surname, name, lname, pSeries, pNumber, tNumber))
                 {
-                    MessageBox.Show("Вы ввели неверный номер телефона\nПопробуйте еще раз", "", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    managerWindow.TelephoneNumber.Text = default;
-                    managerWindow.TelephoneNumber.Focus();
-                    managerWindow.TelephoneNumber.ToolTip = "Был введён некорректный номер";
-                }
-                else
-                {
-                    ((Client)managerWindow.lw.SelectedItem).TelephoneNumber = managerWindow.TelephoneNumber.Text;
-                    MessageBox.Show("Телефонный номер сохранён", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                    Client client = (Client)managerWindow.lw.SelectedItem;
+                    RecordClient(client, surname, name, lname, pSeries, pNumber, tNumber);
+                    MessageBox.Show("Данные клиента обновлены", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                    managerWindow.btnSave.IsEnabled = true;
                 }
             }
         }
@@ -82,10 +97,9 @@ namespace Home_Work_11_1_
                 managerWindow.Surname.Text = client.Surname;
                 managerWindow.Name.Text = client.FName;
                 managerWindow.LName.Text = client.LName;
-                managerWindow.PassportSeries.Text = client.Passport.Substring(0,4);
-                managerWindow.PassportNumber.Text = client.Passport.Substring(5,4);
+                managerWindow.PassportSeries.Text = client.Passport.Substring(0, 4);
+                managerWindow.PassportNumber.Text = client.Passport.Substring(5, 6);
                 managerWindow.TelephoneNumber.Text = client.TelephoneNumber;
-                managerWindow.btnSave.IsEnabled = true;
                 managerWindow.btnChange.IsEnabled = true;
             }
         }
@@ -126,6 +140,5 @@ namespace Home_Work_11_1_
             startWindow.Show();
             window.Close();
         }
-
     }
 }
