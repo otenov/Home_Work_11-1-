@@ -11,9 +11,31 @@ namespace Home_Work_11_1_
     public class Client : INotifyPropertyChanged
     {
         //Список необходимых свойств
-        public string Surname { get; set; }
-        public string FName { get; set; }
-        public string LName { get; set; }
+        private string surname;
+        public string Surname 
+        {
+            get
+            {
+                return surname;
+            }
+            set
+            {
+                surname = value;
+                OnPropertyChanged("Surname");
+            }
+        }
+        private string fName;
+        public string FName
+        {
+            get { return fName; }
+            set { fName = value; OnPropertyChanged("FName"); }
+        }
+        private string lName;
+        public string LName
+        {
+            get { return lName; }
+            set {lName = value; OnPropertyChanged("LName"); }
+        }
         private string telephoneNumber;
         public string TelephoneNumber
         {
@@ -27,7 +49,13 @@ namespace Home_Work_11_1_
         }
         private string PSeries { get; set; }
         private string PNumber { get; set; }
-        public string Passport { get; set; }
+        private string passport;
+        public string Passport
+        {
+            get { return passport; }
+            set { passport = value; OnPropertyChanged("Passport"); }
+        }
+
         Random r;
 
         public event PropertyChangedEventHandler PropertyChanged;

@@ -46,6 +46,10 @@ namespace Home_Work_11_1_
             App.repositoryClients.SerializeClientsList(this.clients);
         }
 
-
+        public virtual void SaveData()
+        {
+            Save(clients);
+            MessageBox.Show("Данные клиента успешно сохранены", "Оповещение", MessageBoxButton.OK);
+        }
     }
 }

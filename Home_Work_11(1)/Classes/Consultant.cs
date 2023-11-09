@@ -105,7 +105,6 @@ namespace Home_Work_11_1_
                 Client client = (Client)consultantWindow.lw.SelectedItem;
                 consultantWindow.TelephoneNumber.IsEnabled = true;
                 consultantWindow.TelephoneNumber.Text = client.TelephoneNumber;
-                consultantWindow.btnSave.IsEnabled = true;
                 consultantWindow.btnChange.IsEnabled = true;
             }
         }
@@ -126,7 +125,8 @@ namespace Home_Work_11_1_
                 else
                 {
                     ((Client)consultantWindow.lw.SelectedItem).TelephoneNumber = consultantWindow.TelephoneNumber.Text;
-                    MessageBox.Show("Телефонный номер сохранён", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                    MessageBox.Show("Телефонный номер изменён", "", MessageBoxButton.OK, MessageBoxImage.Information);
+                    consultantWindow.btnSave.IsEnabled = true;
                 }
             }
         }
@@ -153,6 +153,12 @@ namespace Home_Work_11_1_
         {
             Sync(clients);
             base.Save(clients);
+        }
+
+        public override void SaveData()
+        {
+            Sync(WorkerCollection);
+            base.SaveData();
         }
 
     }
