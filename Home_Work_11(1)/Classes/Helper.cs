@@ -117,5 +117,31 @@ namespace Home_Work_11_1_
             else 
                 return false;
         }
+
+        static private bool CheckTelephoneNumber(ConsultantWindow consultantWindow, string tNumber, string realNumber)
+        {
+            bool flag = false;
+            if (String.IsNullOrEmpty(tNumber) || tNumber.Trim().Length != 11)
+            {
+                MessageBox.Show("Вы ввели неверный номер телефона\nПопробуйте еще раз", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+                consultantWindow.TelephoneNumber.Text = default;
+                consultantWindow.TelephoneNumber.Focus();
+                consultantWindow.TelephoneNumber.ToolTip = "Некорректные данные";
+            }
+            else if (realNumber == tNumber)
+            {
+                MessageBox.Show("Вы не изменили номер телефона\nПопробуйте еще раз", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+            }
+            else flag = true;
+            return flag;
+        }
+
+        static public bool Check(ConsultantWindow consultantWindow, string tNumber, string realNumber)
+        {
+            if(CheckTelephoneNumber(consultantWindow, tNumber, realNumber))
+                return true;
+            else
+                return false;
+        }
     }
 }

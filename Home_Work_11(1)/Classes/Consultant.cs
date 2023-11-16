@@ -106,6 +106,8 @@ namespace Home_Work_11_1_
                 consultantWindow.TelephoneNumber.IsEnabled = true;
                 consultantWindow.TelephoneNumber.Text = client.TelephoneNumber;
                 consultantWindow.btnChange.IsEnabled = true;
+
+                consultantWindow.HistoryChangePage.HistoryList.ItemsSource = client.history.historyChanges;
             }
         }
 
@@ -114,22 +116,18 @@ namespace Home_Work_11_1_
             if (window is ConsultantWindow)
             {
                 ConsultantWindow consultantWindow = window as ConsultantWindow;
+                Client client = (Client)consultantWindow.lw.SelectedItem;
                 string number = consultantWindow.TelephoneNumber.Text;
-                if (String.IsNullOrEmpty(number) || number.Length != 11)
+                if (Helper.Check(consultantWindow, number, client.TelephoneNumber))
                 {
-                    MessageBox.Show("Вы ввели неверный номер телефона\nПопробуйте еще раз", "", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    consultantWindow.TelephoneNumber.Text = default;
-                    consultantWindow.TelephoneNumber.Focus();
-                    consultantWindow.TelephoneNumber.ToolTip = "Был введён некорректный номер";
-                }
-                else
-                {
-                    ((Client)consultantWindow.lw.SelectedItem).TelephoneNumber = consultantWindow.TelephoneNumber.Text;
+                    client.history.Add(this, client, number);
+                    client.TelephoneNumber = number;
                     MessageBox.Show("Телефонный номер изменён", "", MessageBoxButton.OK, MessageBoxImage.Information);
                     consultantWindow.btnSave.IsEnabled = true;
                 }
             }
         }
+
 
         public void Back(Window window)
         {

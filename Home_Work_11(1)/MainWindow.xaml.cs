@@ -26,6 +26,8 @@ namespace Home_Work_11_1_
     {
         IConsultant consultant;
 
+        public HistoryChange HistoryChangePage;
+
         public ConsultantWindow(ObservableCollection<Client> clients)  
         {
 
@@ -55,6 +57,8 @@ namespace Home_Work_11_1_
             #endregion
 
             InitializeComponent();
+            HistoryChangePage = new HistoryChange();
+            HistoryFrame.Content = HistoryChangePage;
             consultant = new Consultant(this, "Сергей", clients);
         }
 
@@ -86,6 +90,8 @@ namespace Home_Work_11_1_
         private void SelectionChangedMethod(object sender, SelectionChangedEventArgs e)
         {
             consultant.SelectionChangedMethod(this);
+
+
         }
 
         /// <summary>

@@ -1,12 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Home_Work_11_1_
 {
-    public struct HistoryRecord
+    public class HistoryRecord
     {
         public DateTime DateOfHistory { get; set; }
 
@@ -21,24 +22,66 @@ namespace Home_Work_11_1_
             }
         }
 
-        public List<Record> Records;
+        public HistoryRecord()
+        {
+                
+        }
+
+        public ObservableCollection<Record> Records;
+
+        public HistoryRecord(Worker worker, Client client, string newNumber)
+        {
+            Author = WhoIsAuthor(worker);
+            DateOfHistory = DateTime.Now;
+            Records = ConsultantCreateRecords(client.TelephoneNumber, newNumber);
+        }
+
+        private string WhoIsAuthor(Worker w)
+        {
+            if (w is Consultant) return "Консультант";
+            if (w is Manager) return "Менеджер";
+            return "";
+        }
+
+        private ObservableCollection<Record> ConsultantCreateRecords(string previousNumber, string newNumber)
+        {
+            ObservableCollection<Record> records = new ObservableCollection<Record>();
+            records.Add(new Record("TelephoneNumber", previousNumber, newNumber));
+            return records;
+        }
 
     }
 
-    public struct Record
+    public class Record
     {
-        public enum TypeOfChange
+        //public enum TypeOfChange
+        //{
+        //    Change,
+        //    Add,
+        //    Delete
+        //}
+
+        public string Field { get; set; }
+
+        public string PreviousValue { get; set; }
+
+        public string NewValue { get; set; }
+
+
+
+        public Record(string field, string previousValue, string newValue)
         {
-            Change,
-            Add,
-            Delete
+            this.Field = field;
+
+            this.PreviousValue = previousValue;
+
+            this.NewValue = newValue;
         }
 
-        public string margin;
+        public Record()
+        {
 
-        public string previousValue;
-
-        public string newValue;
+        }
     }
 }
 

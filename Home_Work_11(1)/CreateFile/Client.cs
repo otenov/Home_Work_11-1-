@@ -56,6 +56,8 @@ namespace Home_Work_11_1_
             set { passport = value; OnPropertyChanged("Passport"); }
         }
 
+        public HistoryChanges history;
+
         Random r;
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -112,6 +114,7 @@ namespace Home_Work_11_1_
             this.Passport = CreatePassport();
             this.PSeries = this.Passport.Substring(0, 4);
             this.PNumber = this.Passport.Substring(5, 6);
+            history = new HistoryChanges();
         }
 
         /// <summary>
@@ -128,6 +131,7 @@ namespace Home_Work_11_1_
             this.Passport = item.Passport;
             this.PSeries = item.PSeries;
             this.PNumber = item.PNumber;
+            this.history = item.history;
         }
 
 

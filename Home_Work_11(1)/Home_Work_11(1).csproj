@@ -67,6 +67,9 @@
     <Compile Include="Classes\HistoryChanges.cs" />
     <Compile Include="Classes\HistoryRecord.cs" />
     <Compile Include="CreateFile\Client.cs" />
+    <Compile Include="HistoryChange.xaml.cs">
+      <DependentUpon>HistoryChange.xaml</DependentUpon>
+    </Compile>
     <Compile Include="IConsultant.cs" />
     <Compile Include="IManager.cs" />
     <Compile Include="CreateFile\Repository.cs" />
@@ -76,6 +79,10 @@
     </Compile>
     <Compile Include="Classes\Worker.cs" />
     <Page Include="AddNewClientWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="HistoryChange.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
