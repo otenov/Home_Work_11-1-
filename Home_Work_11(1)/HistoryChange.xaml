@@ -13,7 +13,9 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <StackPanel>
-                        <TextBlock Text="Изменение" />
+                        <TextBlock Text="Изменение " />
+                        <!--<TextBlock Text="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},
+                            Path=(ItemsControl.AlternationIndex)}"/>-->
                     </StackPanel>
                 </DataTemplate>
             </ListBox.ItemTemplate>
