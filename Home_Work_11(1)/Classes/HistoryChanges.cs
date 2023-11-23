@@ -11,14 +11,12 @@ namespace Home_Work_11_1_
     {
         public ObservableCollection<HistoryRecord> historyChanges;
 
-        public void Add(Worker worker, Client client, string newNumber)
-        {
-            historyChanges.Add(new HistoryRecord(worker, client, newNumber));
-        }
         public HistoryChanges()
         {
             historyChanges = new ObservableCollection<HistoryRecord>();
         }
+
+        HistoryRecord historyR;
     }
 }
 

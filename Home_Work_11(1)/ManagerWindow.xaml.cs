@@ -28,6 +28,16 @@ namespace Home_Work_11_1_
         {
             InitializeComponent();
             manager = new Manager(this, "Сергей", clients);
+            lw.ItemsSource = clients;
+            lw.Visibility = Visibility.Hidden;
+            btnSave.IsEnabled = false;
+            btnChange.IsEnabled = false;
+            Surname.IsEnabled = false;
+            Name.IsEnabled = false;
+            LName.IsEnabled = false;
+            PassportSeries.IsEnabled = false;
+            PassportNumber.IsEnabled = false;
+            TelephoneNumber.IsEnabled = false;
         }
 
         /// <summary>
@@ -47,7 +57,12 @@ namespace Home_Work_11_1_
         /// <param name="e"></param>
         private void ButtonViewClick(object sender, RoutedEventArgs e)
         {
-            manager.View(this);
+            lw.Visibility = Visibility.Visible;
+            if (!(lw.SelectedItem is null))
+            {
+                TelephoneNumber.IsEnabled = true;
+                btnChange.IsEnabled = true;
+            }
         }
 
         /// <summary>
@@ -57,7 +72,11 @@ namespace Home_Work_11_1_
         /// <param name="e"></param>
         private void ButtonHideClick(object sender, RoutedEventArgs e)
         {
-            manager.Hide(this);
+            if (lw.Visibility == Visibility.Hidden) return;
+            lw.Visibility = Visibility.Hidden;
+            btnSave.IsEnabled = false;
+            btnChange.IsEnabled = false;
+            TelephoneNumber.IsEnabled = false;
         }
 
         /// <summary>
@@ -67,7 +86,20 @@ namespace Home_Work_11_1_
         /// <param name="e"></param>
         private void SelectionChangedMethod(object sender, SelectionChangedEventArgs e)
         {
-            manager.SelectionChangedMethod(this);
+            Client client = (Client)lw.SelectedItem;
+            Surname.IsEnabled = true;
+            Name.IsEnabled = true;
+            LName.IsEnabled = true;
+            PassportSeries.IsEnabled = true;
+            PassportNumber.IsEnabled = true;
+            TelephoneNumber.IsEnabled = true;
+            Surname.Text = client.Surname;
+            Name.Text = client.FName;
+            LName.Text = client.LName;
+            PassportSeries.Text = client.Passport.Substring(0, 4);
+            PassportNumber.Text = client.Passport.Substring(5, 6);
+            TelephoneNumber.Text = client.TelephoneNumber;
+            btnChange.IsEnabled = true;
         }
 
         /// <summary>
@@ -87,12 +119,16 @@ namespace Home_Work_11_1_
         /// <param name="e"></param>
         private void btnBackClick(object sender, RoutedEventArgs e)
         {
-            manager.Back(this);
+            ((Manager)manager).Save((ObservableCollection<Client>)lw.ItemsSource); //Вопрос. Если метод будет protected, то я не смогу вызвать метод, когда обратно верну
+            StartWindow startWindow = new StartWindow();
+            startWindow.Show();
+            Close();
         }
 
         private void btnSaveClick(object sender, RoutedEventArgs e)
         {
-            manager.SaveData();
+            ((Manager)manager).Save((ObservableCollection<Client>)lw.ItemsSource); // Переделать интерфейсы
+            MessageBox.Show("Данные клиента успешно сохранены", "Оповещение", MessageBoxButton.OK);
         }
     }
 }

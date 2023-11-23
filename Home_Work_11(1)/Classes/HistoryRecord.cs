@@ -29,11 +29,16 @@ namespace Home_Work_11_1_
 
         public ObservableCollection<Record> Records;
 
-        public HistoryRecord(Worker worker, Client client, string newNumber)
+        public HistoryRecord(Worker worker)
         {
             Author = WhoIsAuthor(worker);
             DateOfHistory = DateTime.Now;
-            Records = ConsultantCreateRecords(client.TelephoneNumber, newNumber);
+            Records = new ObservableCollection<Record>();
+        }
+
+        public void Add(Record record)
+        {
+            Records.Add(record);
         }
 
         private string WhoIsAuthor(Worker w)

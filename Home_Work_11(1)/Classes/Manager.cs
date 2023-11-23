@@ -18,16 +18,7 @@ namespace Home_Work_11_1_
         /// <param name="clients">Исходная коллекция</param>
         public Manager(ManagerWindow managerWindow, string name, ObservableCollection<Client> clients) : base(name, clients)
         {
-            managerWindow.lw.ItemsSource = base.clients;
-            managerWindow.lw.Visibility = Visibility.Hidden;
-            managerWindow.btnSave.IsEnabled = false;
-            managerWindow.btnChange.IsEnabled = false;
-            managerWindow.Surname.IsEnabled = false;
-            managerWindow.Name.IsEnabled = false;
-            managerWindow.LName.IsEnabled = false;
-            managerWindow.PassportSeries.IsEnabled = false;
-            managerWindow.PassportNumber.IsEnabled = false;
-            managerWindow.TelephoneNumber.IsEnabled = false;
+
         }
 
         public void Add(Window window)
@@ -75,6 +66,51 @@ namespace Home_Work_11_1_
                 if (Helper.Check(managerWindow, surname, name, lname, pSeries, pNumber, tNumber))
                 {
                     Client client = (Client)managerWindow.lw.SelectedItem;
+                    //проверка
+                    //    и взависимости от измененных полей - какую-то коллекцию из измененных значений, дальше
+                    //    я создаю набор рекодов
+                    /*
+                     * ObservableCollection<Record> recordList = [];
+                     * if (c.surname !== f.surname) 
+                     * {
+                     * Record newRecord = new Record("surname", oldValue, newValue);
+                     
+                     * recordList.add(newRecord)
+                     * if (...)
+                     * 
+                     * HistoryRecord newHistoryRecord = new HistoryRecord(recordList, worker)
+                     * Client client.historyChanges.add(newHistoryRecord);
+                     */
+                    //    на основе этих рекордов создаю нову историю записи
+                    //и эту историю записи кладу в коллекцию клиента хистори рекорд
+
+
+                    if (client.Surname != surname)
+                    {
+                        Record record = new Record("surname", client.Surname, surname);
+                        //historyRecord.Add(new Record("surname", client.Surname, surname));
+                    }
+                    if (client.FName != name)
+                    {
+                       // historyRecord.Add(new Record("FName", client.FName, name));
+                    }
+                    if (client.LName != lname)
+                    {
+                        //historyRecord.Add(new Record("LName", client.LName, lname));
+                    }
+                    //if (client.FName != name)
+                    //{
+                    //    Record newRecord = new Record("FName", client., pSeries);
+                    //    records.Add(newRecord);
+                    //}
+                    if (client.TelephoneNumber != tNumber)
+                    {
+                        //historyRecord.Add(new Record("TelephoneNumber", client.TelephoneNumber, tNumber));
+                    }
+
+                   // HistoryRecord historyRecord = new HistoryRecord(this, records);
+                    //client.history.Add(historyRecord);
+
                     RecordClient(client, surname, name, lname, pSeries, pNumber, tNumber);
                     MessageBox.Show("Данные клиента обновлены", "", MessageBoxButton.OK, MessageBoxImage.Information);
                     managerWindow.btnSave.IsEnabled = true;
@@ -82,63 +118,5 @@ namespace Home_Work_11_1_
             }
         }
 
-        public void SelectionChangedMethod(Window window)
-        {
-            if (window is ManagerWindow)
-            {
-                ManagerWindow managerWindow = window as ManagerWindow;
-                Client client = (Client)managerWindow.lw.SelectedItem;
-                managerWindow.Surname.IsEnabled = true;
-                managerWindow.Name.IsEnabled = true;
-                managerWindow.LName.IsEnabled = true;
-                managerWindow.PassportSeries.IsEnabled = true;
-                managerWindow.PassportNumber.IsEnabled = true;
-                managerWindow.TelephoneNumber.IsEnabled = true;
-                managerWindow.Surname.Text = client.Surname;
-                managerWindow.Name.Text = client.FName;
-                managerWindow.LName.Text = client.LName;
-                managerWindow.PassportSeries.Text = client.Passport.Substring(0, 4);
-                managerWindow.PassportNumber.Text = client.Passport.Substring(5, 6);
-                managerWindow.TelephoneNumber.Text = client.TelephoneNumber;
-                managerWindow.btnChange.IsEnabled = true;
-            }
-        }
-
-        public void View(Window window)
-        {
-            if (window is ManagerWindow)
-            {
-                ManagerWindow managerWindow = window as ManagerWindow;
-                if (managerWindow.lw.Visibility == Visibility.Visible) return;
-                managerWindow.lw.Visibility = Visibility.Visible;
-                if (!(managerWindow.lw.SelectedItem is null))
-                {
-                    managerWindow.TelephoneNumber.IsEnabled = true;
-                    managerWindow.btnSave.IsEnabled = true;
-                    managerWindow.btnChange.IsEnabled = true;
-                }
-            }
-        }
-
-        public void Hide(Window window)
-        {
-            if (window is ManagerWindow)
-            {
-                ManagerWindow managerWindow = window as ManagerWindow;
-                if (managerWindow.lw.Visibility == Visibility.Hidden) return;
-                managerWindow.lw.Visibility = Visibility.Hidden;
-                managerWindow.btnSave.IsEnabled = false;
-                managerWindow.btnChange.IsEnabled = false;
-                managerWindow.TelephoneNumber.IsEnabled = false;
-            }
-        }
-
-        public void Back(Window window)
-        {
-            Save(clients);
-            StartWindow startWindow = new StartWindow();
-            startWindow.Show();
-            window.Close();
-        }
     }
 }

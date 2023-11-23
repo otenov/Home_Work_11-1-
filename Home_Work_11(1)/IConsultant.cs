@@ -7,7 +7,7 @@ using System.Windows;
 
 namespace Home_Work_11_1_
 {
-    interface IConsultant : IViewer
+    interface IConsultant
     {
         /// <summary>
         /// Метод для кнопки изменить (изменяем только номер телефона)
@@ -15,6 +15,6 @@ namespace Home_Work_11_1_
         /// <param name="window"></param>
         void ChangedNumber(Window window);
 
-        void SaveData();
+        //void SaveData();
     }
 }

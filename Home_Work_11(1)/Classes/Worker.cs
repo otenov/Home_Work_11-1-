@@ -41,15 +41,10 @@ namespace Home_Work_11_1_
         /// <summary>
         /// Сохранение всех изменений в файл
         /// </summary>
-        protected virtual void Save(ObservableCollection<Client> clients)
+        public virtual void Save(ObservableCollection<Client> clients)
         {
             App.repositoryClients.SerializeClientsList(this.clients);
         }
 
-        public virtual void SaveData()
-        {
-            Save(clients);
-            MessageBox.Show("Данные клиента успешно сохранены", "Оповещение", MessageBoxButton.OK);
-        }
     }
 }

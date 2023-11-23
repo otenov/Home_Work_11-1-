@@ -10,15 +10,7 @@
 
     <Grid Background="White" Margin="10">
         <ListBox x:Name="HistoryList">
-            <ListBox.ItemTemplate>
-                <DataTemplate>
-                    <StackPanel>
-                        <TextBlock Text="Изменение " />
-                        <!--<TextBlock Text="{Binding RelativeSource={RelativeSource Mode=TemplatedParent},
-                            Path=(ItemsControl.AlternationIndex)}"/>-->
-                    </StackPanel>
-                </DataTemplate>
-            </ListBox.ItemTemplate>
+           
         </ListBox>
     </Grid>
 </Page>

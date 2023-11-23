@@ -73,7 +73,6 @@
     <Compile Include="IConsultant.cs" />
     <Compile Include="IManager.cs" />
     <Compile Include="CreateFile\Repository.cs" />
-    <Compile Include="IViewer.cs" />
     <Compile Include="StartWindow.xaml.cs">
       <DependentUpon>StartWindow.xaml</DependentUpon>
     </Compile>

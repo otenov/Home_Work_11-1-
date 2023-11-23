@@ -120,7 +120,7 @@ namespace Home_Work_11_1_
                 string number = consultantWindow.TelephoneNumber.Text;
                 if (Helper.Check(consultantWindow, number, client.TelephoneNumber))
                 {
-                    client.history.Add(this, client, number);
+                    //client.history.Add(this, client, number);
                     client.TelephoneNumber = number;
                     MessageBox.Show("Телефонный номер изменён", "", MessageBoxButton.OK, MessageBoxImage.Information);
                     consultantWindow.btnSave.IsEnabled = true;
@@ -147,17 +147,18 @@ namespace Home_Work_11_1_
             }
         }
 
-        protected override void Save(ObservableCollection<Client> clients)
+        public override void Save(ObservableCollection<Client> clients)
         {
             Sync(clients);
             base.Save(clients);
         }
 
-        public override void SaveData()
-        {
-            Sync(WorkerCollection);
-            base.SaveData();
-        }
+        //public override void SaveData()
+        //{
+        //    Sync(WorkerCollection);
+        //    //base.SaveData();
+        //}
+
 
     }
 }

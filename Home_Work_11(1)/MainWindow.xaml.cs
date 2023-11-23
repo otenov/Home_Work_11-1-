@@ -69,7 +69,7 @@ namespace Home_Work_11_1_
         /// <param name="e"></param>
         private void ButtonViewClick(object sender, RoutedEventArgs e)
         {
-            consultant.View(this);
+            //consultant.View(this);
         }
 
         /// <summary>
@@ -79,7 +79,7 @@ namespace Home_Work_11_1_
         /// <param name="e"></param>
         private void ButtonHideClick(object sender, RoutedEventArgs e)
         {
-            consultant.Hide(this);
+            //consultant.Hide(this);
         }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace Home_Work_11_1_
         /// <param name="e"></param>
         private void SelectionChangedMethod(object sender, SelectionChangedEventArgs e)
         {
-            consultant.SelectionChangedMethod(this);
+            //consultant.SelectionChangedMethod(this);
 
 
         }
@@ -111,12 +111,12 @@ namespace Home_Work_11_1_
         /// <param name="e"></param>
         private void btnBackClick(object sender, RoutedEventArgs e)
         {
-            consultant.Back(this);
+            //consultant.Back(this);
         }
 
         private void btnSaveClick(object sender, RoutedEventArgs e)
         {
-            consultant.SaveData();
+            //consultant.SaveData();
         }
     }
 }
