@@ -35,7 +35,7 @@ namespace Home_Work_11_1_
         /// <param name="e"></param>
         public void btnOkClick(object sender, RoutedEventArgs e)
         {
-            manager.AddClient(this);
+            manager.AddClient(surnameBox.Text, fnameBox.Text, lnameBox.Text, passportBox.Text, numberBox.Text);
             this.Close();
         }
 

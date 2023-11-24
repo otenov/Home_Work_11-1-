@@ -9,12 +9,6 @@ namespace Home_Work_11_1_
 {
     interface IConsultant
     {
-        /// <summary>
-        /// Метод для кнопки изменить (изменяем только номер телефона)
-        /// </summary>
-        /// <param name="window"></param>
-        void ChangedNumber(Window window);
-
-        //void SaveData();
+        bool ChangedNumber(Client client, string newTNumber);
     }
 }

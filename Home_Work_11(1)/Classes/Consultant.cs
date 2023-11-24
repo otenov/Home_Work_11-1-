@@ -16,31 +16,20 @@ namespace Home_Work_11_1_
         /// </summary>
         public ObservableCollection<Client> WorkerCollection { get; set; }
 
-        ///// <summary>
-        ///// Конструктор без параметров
-        ///// </summary>
-        //public Consultant()
-        //{
 
-        //}
-
-        /// <summary>
-        /// Конструктор. Создаёт экземпляр с коллекцией, где сразу невидно паспорт.
-        /// </summary>
-        /// <param name="consultantWindow">Окно в котором работает консультант</param>
-        /// <param name="name">Имя работника</param>
-        /// <param name="clients">Исходная коллекция клиентов</param>
-        public Consultant(ConsultantWindow consultantWindow, string name, ObservableCollection<Client> clients) :base(name, clients)
+        public Consultant(string name, ObservableCollection<Client> clients) :base(name, clients)
         {
             WorkerCollection = CreateConsultantCollection(clients);
+        }
 
-            //this.consultantCollection = DepersonalizationCollection(new ObservableCollection<Client>(clients));
-
-            consultantWindow.lw.ItemsSource = WorkerCollection;
-            consultantWindow.lw.Visibility = Visibility.Hidden;
-            consultantWindow.btnSave.IsEnabled = false;
-            consultantWindow.btnChange.IsEnabled = false;
-            consultantWindow.TelephoneNumber.IsEnabled = false;
+        /// <summary>
+        /// Метод, который Консультанту подготавливает коллекцию для работы с данными клиентов
+        /// </summary>
+        /// <param name="clients">Исходная коллекция</param>
+        /// <returns>Коллекция для консультанта</returns>
+        private ObservableCollection<Client> CreateConsultantCollection(ObservableCollection<Client> clients)
+        {
+            return DepersonalizationCollection(CopyCollection(clients));
         }
 
         /// <summary>
@@ -58,83 +47,17 @@ namespace Home_Work_11_1_
             return clients;
         }
 
-        /// <summary>
-        /// Метод, который Консультанту подготавливает коллекцию для работы с данными клиентов
-        /// </summary>
-        /// <param name="clients">Исходная коллекция</param>
-        /// <returns>Коллекция для консультанта</returns>
-        private  ObservableCollection<Client> CreateConsultantCollection(ObservableCollection<Client> clients)
+        public bool ChangedNumber(Client client, string newTNumber)
         {
-            return DepersonalizationCollection(CopyCollection(clients));
-        }
-
-        public void View(Window window)
-        {
-            if (window is ConsultantWindow)
+            HistoryRecord historyRecord = new HistoryRecord(this);
+            if (client.TelephoneNumber != newTNumber)
             {
-                ConsultantWindow consultantWindow = window as ConsultantWindow;
-                if (consultantWindow.lw.Visibility == Visibility.Visible) return;
-                consultantWindow.lw.Visibility = Visibility.Visible;
-                if (!(consultantWindow.lw.SelectedItem is null))
-                {
-                    consultantWindow.TelephoneNumber.IsEnabled = true;
-                    consultantWindow.btnSave.IsEnabled = true;
-                    consultantWindow.btnChange.IsEnabled = true;
-                }
+                historyRecord.Add(new Record("TelephoneNumber", client.TelephoneNumber, newTNumber));
+                client.TelephoneNumber = newTNumber;
             }
-        }
-
-        public void Hide(Window window)
-        {
-            if (window is ConsultantWindow)
-            {
-                ConsultantWindow consultantWindow = window as ConsultantWindow;
-                if (consultantWindow.lw.Visibility == Visibility.Hidden) return;
-                consultantWindow.lw.Visibility = Visibility.Hidden;
-                consultantWindow.btnSave.IsEnabled = false;
-                consultantWindow.btnChange.IsEnabled = false;
-                consultantWindow.TelephoneNumber.IsEnabled = false;
-            }
-        }
-
-        public void SelectionChangedMethod(Window window)
-        {
-            if (window is ConsultantWindow)
-            {
-                ConsultantWindow consultantWindow = window as ConsultantWindow;
-                Client client = (Client)consultantWindow.lw.SelectedItem;
-                consultantWindow.TelephoneNumber.IsEnabled = true;
-                consultantWindow.TelephoneNumber.Text = client.TelephoneNumber;
-                consultantWindow.btnChange.IsEnabled = true;
-
-                consultantWindow.HistoryChangePage.HistoryList.ItemsSource = client.history.historyChanges;
-            }
-        }
-
-        public void ChangedNumber(Window window)
-        {
-            if (window is ConsultantWindow)
-            {
-                ConsultantWindow consultantWindow = window as ConsultantWindow;
-                Client client = (Client)consultantWindow.lw.SelectedItem;
-                string number = consultantWindow.TelephoneNumber.Text;
-                if (Helper.Check(consultantWindow, number, client.TelephoneNumber))
-                {
-                    //client.history.Add(this, client, number);
-                    client.TelephoneNumber = number;
-                    MessageBox.Show("Телефонный номер изменён", "", MessageBoxButton.OK, MessageBoxImage.Information);
-                    consultantWindow.btnSave.IsEnabled = true;
-                }
-            }
-        }
-
-
-        public void Back(Window window)
-        {
-            Save(WorkerCollection);
-            StartWindow startWindow = new StartWindow();
-            startWindow.Show();
-            window.Close();
+            if (historyRecord.Records.Count == 0) return true;
+            client.historyChanges.Add(historyRecord);
+            return false;
         }
 
         public void Sync(ObservableCollection<Client> clients)
@@ -150,15 +73,7 @@ namespace Home_Work_11_1_
         public override void Save(ObservableCollection<Client> clients)
         {
             Sync(clients);
-            base.Save(clients);
+            base.Save(base.clients);
         }
-
-        //public override void SaveData()
-        //{
-        //    Sync(WorkerCollection);
-        //    //base.SaveData();
-        //}
-
-
     }
 }

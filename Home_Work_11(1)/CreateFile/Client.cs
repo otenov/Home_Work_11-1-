@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Collections.ObjectModel;
 
 namespace Home_Work_11_1_
 {
@@ -56,7 +57,7 @@ namespace Home_Work_11_1_
             set { passport = value; OnPropertyChanged("Passport"); }
         }
 
-        public HistoryChanges history;
+        public ObservableCollection<HistoryRecord> historyChanges;
 
         Random r;
 
@@ -114,7 +115,7 @@ namespace Home_Work_11_1_
             this.Passport = CreatePassport();
             this.PSeries = this.Passport.Substring(0, 4);
             this.PNumber = this.Passport.Substring(5, 6);
-            history = new HistoryChanges();
+            historyChanges = new ObservableCollection<HistoryRecord>();
         }
 
         /// <summary>
@@ -131,7 +132,7 @@ namespace Home_Work_11_1_
             this.Passport = item.Passport;
             this.PSeries = item.PSeries;
             this.PNumber = item.PNumber;
-            this.history = item.history;
+            this.historyChanges = item.historyChanges;
         }
 
 

@@ -27,7 +27,7 @@ namespace Home_Work_11_1_
         public ManagerWindow(ObservableCollection<Client> clients)
         {
             InitializeComponent();
-            manager = new Manager(this, "Сергей", clients);
+            manager = new Manager("Сергей", clients);
             lw.ItemsSource = clients;
             lw.Visibility = Visibility.Hidden;
             btnSave.IsEnabled = false;
@@ -47,7 +47,10 @@ namespace Home_Work_11_1_
         /// <param name="e"></param>
         private void btnAddClick(object sender, RoutedEventArgs e)
         {
-            manager.Add(this);
+            Hide();
+            AddNewClientWindow addWindow = new AddNewClientWindow((Manager)manager);
+            addWindow.ShowDialog();
+            Show();
         }
 
         /// <summary>
@@ -57,9 +60,15 @@ namespace Home_Work_11_1_
         /// <param name="e"></param>
         private void ButtonViewClick(object sender, RoutedEventArgs e)
         {
+            if(lw.Visibility == Visibility.Visible) return;
             lw.Visibility = Visibility.Visible;
             if (!(lw.SelectedItem is null))
             {
+                Surname.IsEnabled = true;
+                Name.IsEnabled = true;
+                LName.IsEnabled = true;
+                PassportSeries.IsEnabled = true;
+                PassportNumber.IsEnabled = true;
                 TelephoneNumber.IsEnabled = true;
                 btnChange.IsEnabled = true;
             }
@@ -76,6 +85,11 @@ namespace Home_Work_11_1_
             lw.Visibility = Visibility.Hidden;
             btnSave.IsEnabled = false;
             btnChange.IsEnabled = false;
+            Surname.IsEnabled = false;
+            Name.IsEnabled = false;
+            LName.IsEnabled = false;
+            PassportSeries.IsEnabled = false;
+            PassportNumber.IsEnabled = false;
             TelephoneNumber.IsEnabled = false;
         }
 
@@ -109,7 +123,68 @@ namespace Home_Work_11_1_
         /// <param name="e"></param>
         private void btnChange_Click(object sender, RoutedEventArgs e)
         {
-            manager.ChangeClient(this);
+            if (Helper.CheckSurname(Surname.Text))
+            {
+                MessageBox.Show("Фамилия введена некорректно\nПопробуйте еще раз", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+                Surname.Text = default;
+                Surname.Focus();
+                Surname.ToolTip = "Некорректные данные";
+                return;
+            }
+            if (Helper.CheckName(Name.Text))
+            {
+                MessageBox.Show("Имя введено некорректно\nПопробуйте еще раз", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+                Name.Text = default;
+                Name.Focus();
+                Name.ToolTip = "Некорректные данные";
+                return;
+            }
+            if (Helper.CheckLName(LName.Text))
+            {
+                MessageBox.Show("Отчество введено некорректно\nПопробуйте еще раз", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+                LName.Text = default;
+                Name.Focus();
+                Name.ToolTip = "Некорректные данные";
+                return;
+            }
+            if (Helper.CheckPSeries(PassportSeries.Text))
+            {
+                MessageBox.Show("Серия паспорта введена некорректно\nПопробуйте еще раз", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+                PassportSeries.Text = default;
+                PassportSeries.Focus();
+                PassportSeries.ToolTip = "Некорректные данные";
+                return;
+            }
+            if (Helper.CheckPNumber(PassportNumber.Text))
+            {
+                MessageBox.Show("Номер паспорта введён некорректно\nПопробуйте еще раз", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+                PassportNumber.Text = default;
+                PassportNumber.Focus();
+                PassportNumber.ToolTip = "Некорректные данные";
+                return;
+            }
+            if (Helper.CheckTelephoneNumber(TelephoneNumber.Text))
+            {
+                MessageBox.Show("Вы ввели неверный номер телефона\nПопробуйте еще раз", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+                TelephoneNumber.Text = default;
+                TelephoneNumber.Focus();
+                TelephoneNumber.ToolTip = "Некорректные данные";
+                return;
+            }
+            if (manager.ChangeClient((Client)lw.SelectedItem,
+                Surname.Text,
+                Name.Text,
+                LName.Text,
+                PassportSeries + " " + PassportNumber,
+                TelephoneNumber.Text))
+            {
+                MessageBox.Show("Данные не обновлены\n" +
+                    "Вы не внесли никаких изменений", "Оповещение", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            MessageBox.Show("Данные клиента успешно обновлены.\n" +
+                "Сохраните изменения перед тем как закрыть приложение", "Оповещение", MessageBoxButton.OK);
+            btnSave.IsEnabled = true;
         }
 
         /// <summary>

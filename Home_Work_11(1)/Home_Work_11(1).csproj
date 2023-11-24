@@ -64,7 +64,6 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Classes\Helper.cs" />
-    <Compile Include="Classes\HistoryChanges.cs" />
     <Compile Include="Classes\HistoryRecord.cs" />
     <Compile Include="CreateFile\Client.cs" />
     <Compile Include="HistoryChange.xaml.cs">

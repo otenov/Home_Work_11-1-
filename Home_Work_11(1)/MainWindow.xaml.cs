@@ -59,7 +59,13 @@ namespace Home_Work_11_1_
             InitializeComponent();
             HistoryChangePage = new HistoryChange();
             HistoryFrame.Content = HistoryChangePage;
-            consultant = new Consultant(this, "Сергей", clients);
+            consultant = new Consultant("Сергей", clients);
+
+            lw.ItemsSource = ((Consultant)consultant).WorkerCollection;
+            lw.Visibility = Visibility.Hidden;
+            btnSave.IsEnabled = false;
+            btnChange.IsEnabled = false;
+            TelephoneNumber.IsEnabled = false;
         }
 
         /// <summary>
@@ -69,7 +75,13 @@ namespace Home_Work_11_1_
         /// <param name="e"></param>
         private void ButtonViewClick(object sender, RoutedEventArgs e)
         {
-            //consultant.View(this);
+            if (lw.Visibility == Visibility.Visible) return;
+            lw.Visibility = Visibility.Visible;
+            if (!(lw.SelectedItem is null))
+            {
+                TelephoneNumber.IsEnabled = true;
+                btnChange.IsEnabled = true;
+            }
         }
 
         /// <summary>
@@ -79,7 +91,11 @@ namespace Home_Work_11_1_
         /// <param name="e"></param>
         private void ButtonHideClick(object sender, RoutedEventArgs e)
         {
-            //consultant.Hide(this);
+            if (lw.Visibility == Visibility.Hidden) return;
+            lw.Visibility = Visibility.Hidden;
+            btnSave.IsEnabled = false;
+            btnChange.IsEnabled = false;
+            TelephoneNumber.IsEnabled = false;
         }
 
         /// <summary>
@@ -89,9 +105,12 @@ namespace Home_Work_11_1_
         /// <param name="e"></param>
         private void SelectionChangedMethod(object sender, SelectionChangedEventArgs e)
         {
-            //consultant.SelectionChangedMethod(this);
+            Client client = (Client)lw.SelectedItem;
+            TelephoneNumber.IsEnabled = true;
+            TelephoneNumber.Text = client.TelephoneNumber;
+            btnChange.IsEnabled = true;
 
-
+            HistoryChangePage.HistoryList.ItemsSource = client.historyChanges;
         }
 
         /// <summary>
@@ -101,7 +120,24 @@ namespace Home_Work_11_1_
         /// <param name="e"></param>
         private void btnChange_Click(object sender, RoutedEventArgs e)
         {
-            consultant.ChangedNumber(this);
+            Client client = (Client)lw.SelectedItem;
+            if (Helper.CheckTelephoneNumber(TelephoneNumber.Text))
+            {
+                MessageBox.Show("Вы ввели неверный номер телефона\nПопробуйте еще раз", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+                TelephoneNumber.Text = default;
+                TelephoneNumber.Focus();
+                TelephoneNumber.ToolTip = "Некорректные данные";
+                return;
+            }
+            if (consultant.ChangedNumber(client, TelephoneNumber.Text))
+            {
+                MessageBox.Show("Данные не обновлены\n" +
+                    "Вы не внесли никаких изменений", "Оповещение", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+            MessageBox.Show("Данные клиента успешно обновлены.\n" +
+                "Сохраните изменения перед тем как закрыть приложение", "Оповещение", MessageBoxButton.OK);
+            btnSave.IsEnabled = true;
         }
 
         /// <summary>
@@ -111,12 +147,16 @@ namespace Home_Work_11_1_
         /// <param name="e"></param>
         private void btnBackClick(object sender, RoutedEventArgs e)
         {
-            //consultant.Back(this);
+            ((Consultant)consultant).Save((ObservableCollection<Client>)lw.ItemsSource);
+            StartWindow startWindow = new StartWindow();
+            startWindow.Show();
+            Close();
         }
 
         private void btnSaveClick(object sender, RoutedEventArgs e)
         {
-            //consultant.SaveData();
+            ((Consultant)consultant).Save((ObservableCollection<Client>)lw.ItemsSource);
+            MessageBox.Show("Данные клиента успешно сохранены", "Оповещение", MessageBoxButton.OK);
         }
     }
 }
