@@ -171,7 +171,7 @@ namespace Home_Work_11_1_
                 TelephoneNumber.ToolTip = "Некорректные данные";
                 return;
             }
-            if (manager.ChangeClient((Client)lw.SelectedItem,
+            if (manager.EditClient((Client)lw.SelectedItem,
                 Surname.Text,
                 Name.Text,
                 LName.Text,

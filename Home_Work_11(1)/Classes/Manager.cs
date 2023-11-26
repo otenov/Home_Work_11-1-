@@ -18,13 +18,12 @@ namespace Home_Work_11_1_
 
         public void AddClient(string surname, string name, string lName, string passport, string tNumber)
         {
-            Client newClient = new Client(surname, name, lName, tNumber, passport);
+            Client newClient = new Client(surname, name, lName, tNumber, passport, this);
 
             clients.Add(newClient);
-
         }
 
-        public bool ChangeClient(Client client, string surname, string name, string lName, string passport, string tNumber)
+        public bool EditClient(Client client, string surname, string name, string lName, string passport, string tNumber)
         {
             HistoryRecord historyRecord = new HistoryRecord(this); 
             if (client.Surname != surname)

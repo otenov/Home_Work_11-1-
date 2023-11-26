@@ -10,7 +10,7 @@
 
     <Grid Background="White" Margin="10">
         <ListBox x:Name="HistoryList">
-           
+            
         </ListBox>
     </Grid>
 </Page>

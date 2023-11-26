@@ -11,7 +11,7 @@ namespace Home_Work_11_1_
     {
         void AddClient(string surname, string name, string lName, string passport, string tNumber);
 
-        bool ChangeClient(Client client, string surname, string name, string lName, string passport, string tNumber);
+        bool EditClient(Client client, string surname, string name, string lName, string passport, string tNumber);
 
         ///// <summary>
         ///// Метод для сохранения данных менеджером

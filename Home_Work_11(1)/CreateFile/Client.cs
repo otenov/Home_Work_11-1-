@@ -136,13 +136,16 @@ namespace Home_Work_11_1_
         }
 
 
-        public Client(string surname, string fName, string lName, string telephoneNumber, string passport)
+        public Client(string surname, string fName, string lName, string telephoneNumber, string passport, Manager manager)
         {
             this.Surname = surname;
             this.FName = fName;
             this.LName = lName;
-            this.TelephoneNumber= telephoneNumber;
+            this.TelephoneNumber = telephoneNumber;
             this.Passport = passport;
+            HistoryRecord historyRecord = new HistoryRecord(manager);
+            historyRecord.Add(new Record("Client", null, "Создан клиент"));
+            historyChanges = new ObservableCollection<HistoryRecord>() { historyRecord};
         }
 
         //Переопределённый метод ToString() для удобства, закрепления

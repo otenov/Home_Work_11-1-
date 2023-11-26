@@ -9,6 +9,6 @@ namespace Home_Work_11_1_
 {
     interface IConsultant
     {
-        bool ChangedNumber(Client client, string newTNumber);
+        bool EditTNumber(Client client, string newTNumber);
     }
 }

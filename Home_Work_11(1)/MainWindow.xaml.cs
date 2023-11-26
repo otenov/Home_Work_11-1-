@@ -129,7 +129,7 @@ namespace Home_Work_11_1_
                 TelephoneNumber.ToolTip = "Некорректные данные";
                 return;
             }
-            if (consultant.ChangedNumber(client, TelephoneNumber.Text))
+            if (consultant.EditTNumber(client, TelephoneNumber.Text))
             {
                 MessageBox.Show("Данные не обновлены\n" +
                     "Вы не внесли никаких изменений", "Оповещение", MessageBoxButton.OK, MessageBoxImage.Warning);

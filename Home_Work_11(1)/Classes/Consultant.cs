@@ -47,7 +47,14 @@ namespace Home_Work_11_1_
             return clients;
         }
 
-        public bool ChangedNumber(Client client, string newTNumber)
+
+        /// <summary>
+        /// Изменяет номер клиента
+        /// </summary>
+        /// <param name="client">Клиент номер которого будет изменён</param>
+        /// <param name="newTNumber">Новый телефонный номер</param>
+        /// <returns></returns>
+        public bool EditTNumber(Client client, string newTNumber)
         {
             HistoryRecord historyRecord = new HistoryRecord(this);
             if (client.TelephoneNumber != newTNumber)
