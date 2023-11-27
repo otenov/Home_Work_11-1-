@@ -30,20 +30,20 @@ namespace Home_Work_11_1_
             return copyClients;
         }
 
-        protected ObservableCollection<Client> clients;
+        protected Bank bank;
 
-        public Worker(string name, ObservableCollection<Client> clients)
+        public Worker(string name, Bank bank)
         {
             Name = name;
-            this.clients = clients;
+            this.bank = bank;
         }
 
         /// <summary>
         /// Сохранение всех изменений в файл
         /// </summary>
-        public virtual void Save(ObservableCollection<Client> clients)
+        public virtual void Save()
         {
-            App.repositoryClients.SerializeClientsList(this.clients);
+            App.repositoryClients.SerializeClientsList(bank.clients);
         }
 
     }

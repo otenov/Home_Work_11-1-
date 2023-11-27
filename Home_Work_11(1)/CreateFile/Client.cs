@@ -149,7 +149,7 @@ namespace Home_Work_11_1_
             this.Passport = passport;
             HistoryRecord historyRecord = new HistoryRecord(manager);
             historyRecord.Add(new Record("Client", null, "Создан клиент"));
-            historyChanges = new ObservableCollection<HistoryRecord>() { historyRecord};
+            historyChanges = new ObservableCollection<HistoryRecord>() {historyRecord};
         }
 
         //Переопределённый метод ToString() для удобства, закрепления

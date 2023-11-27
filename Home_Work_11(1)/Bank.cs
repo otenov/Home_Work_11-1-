@@ -7,8 +7,13 @@ using System.Threading.Tasks;
 
 namespace Home_Work_11_1_
 {
-    class Bank
+    public class Bank
     {
         public ObservableCollection<Client> clients;
+
+        public Bank()
+        {
+            clients = new ObservableCollection<Client>();
+        }
     }
 }

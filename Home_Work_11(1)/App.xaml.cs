@@ -16,15 +16,12 @@ namespace Home_Work_11_1_
     /// </summary>
     public partial class App : Application
     {
+        static public Bank bank;
+
         /// <summary>
         /// Репозиторий
         /// </summary>
         static public Repository repositoryClients;
-
-        /// <summary>
-        /// Исходная коллекция клиентов
-        /// </summary>
-        static public ObservableCollection<Client> clients;
 
         /// <summary>
         /// Метод для парсинга файла sd как observableCollection
@@ -48,16 +45,16 @@ namespace Home_Work_11_1_
 
         static App()
         {
-
+            bank = new Bank();
             if (File.Exists("CollectionClients"))
             {
                 repositoryClients = new Repository("CollectionClients");
-                clients = DeserializeObservableClient(repositoryClients.path);
+                bank.clients = DeserializeObservableClient(repositoryClients.path);
             }
             else
             {
                 repositoryClients = new Repository();
-                clients = DeserializeObservableClient(repositoryClients.path);
+                bank.clients = DeserializeObservableClient(repositoryClients.path);
             }
         }
     }

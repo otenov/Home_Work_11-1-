@@ -59,7 +59,7 @@ namespace Home_Work_11_1_
             InitializeComponent();
             HistoryChangePage = new HistoryChange();
             HistoryFrame.Content = HistoryChangePage;
-            consultant = new Consultant("Сергей", clients);
+            consultant = new Consultant("Сергей", App.bank);
 
             lw.ItemsSource = ((Consultant)consultant).WorkerCollection;
             lw.Visibility = Visibility.Hidden;
@@ -147,7 +147,7 @@ namespace Home_Work_11_1_
         /// <param name="e"></param>
         private void btnBackClick(object sender, RoutedEventArgs e)
         {
-            ((Consultant)consultant).Save((ObservableCollection<Client>)lw.ItemsSource);
+            ((Consultant)consultant).Save();
             StartWindow startWindow = new StartWindow();
             startWindow.Show();
             Close();
@@ -155,7 +155,7 @@ namespace Home_Work_11_1_
 
         private void btnSaveClick(object sender, RoutedEventArgs e)
         {
-            ((Consultant)consultant).Save((ObservableCollection<Client>)lw.ItemsSource);
+            ((Consultant)consultant).Save();
             MessageBox.Show("Данные клиента успешно сохранены", "Оповещение", MessageBoxButton.OK);
         }
     }

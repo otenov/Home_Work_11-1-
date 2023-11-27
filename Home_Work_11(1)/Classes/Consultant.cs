@@ -11,17 +11,16 @@ namespace Home_Work_11_1_
 {
     public class Consultant : Worker, IConsultant
     {
-        Bank a;
-
         /// <summary>
         /// Коллекция, с которой работает консультант
         /// </summary>
         public ObservableCollection<Client> WorkerCollection { get; set; }
 
 
-        public Consultant(string name, ObservableCollection<Client> clients) :base(name, clients)
+        public Consultant(string name, Bank bank) :base(name, bank)
         {
-            WorkerCollection = CreateConsultantCollection(clients);
+            WorkerCollection = CreateConsultantCollection(bank.clients);
+
         }
 
         /// <summary>
@@ -74,27 +73,29 @@ namespace Home_Work_11_1_
             if (client.TelephoneNumber != newTNumber)
             {
                 historyRecord.Add(new Record("TelephoneNumber", client.TelephoneNumber, newTNumber));
+                //bank.clients[bank.clients.IndexOf(client)].TelephoneNumber = newTNumber;
                 client.TelephoneNumber = newTNumber;
             }
             if (historyRecord.Records.Count == 0) return true;
             client.historyChanges.Add(historyRecord);
+            //bank.clients[bank.clients.IndexOf(client)].historyChanges.Add(historyRecord);
             return false;
         }
 
-        public void Sync(ObservableCollection<Client> clients)
+        public void Sync()
         {
             {
-                for (int i = 0; i <= clients.Count - 1; i++)
+                for (int i = 0; i <= WorkerCollection.Count - 1; i++)
                 {
-                    base.clients[i].TelephoneNumber = clients[i].TelephoneNumber;
+                    bank.clients[i].TelephoneNumber = WorkerCollection[i].TelephoneNumber;
                 }
             }
         }
 
-        public override void Save(ObservableCollection<Client> clients)
+        public override void Save()
         {
-            Sync(clients);
-            base.Save(base.clients);
+            Sync();
+            base.Save();
         }
     }
 }

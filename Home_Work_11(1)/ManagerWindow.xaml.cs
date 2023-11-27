@@ -27,7 +27,7 @@ namespace Home_Work_11_1_
         public ManagerWindow(ObservableCollection<Client> clients)
         {
             InitializeComponent();
-            manager = new Manager("Сергей", clients);
+            manager = new Manager("Сергей", App.bank);
             lw.ItemsSource = clients;
             lw.Visibility = Visibility.Hidden;
             btnSave.IsEnabled = false;
@@ -194,7 +194,7 @@ namespace Home_Work_11_1_
         /// <param name="e"></param>
         private void btnBackClick(object sender, RoutedEventArgs e)
         {
-            ((Manager)manager).Save((ObservableCollection<Client>)lw.ItemsSource); //Вопрос. Если метод будет protected, то я не смогу вызвать метод, когда обратно верну
+            ((Manager)manager).Save(); //Вопрос. Если метод будет protected, то я не смогу вызвать метод, когда обратно верну
             StartWindow startWindow = new StartWindow();
             startWindow.Show();
             Close();
@@ -202,7 +202,7 @@ namespace Home_Work_11_1_
 
         private void btnSaveClick(object sender, RoutedEventArgs e)
         {
-            ((Manager)manager).Save((ObservableCollection<Client>)lw.ItemsSource); // Переделать интерфейсы
+            ((Manager)manager).Save(); // Переделать интерфейсы
             MessageBox.Show("Данные клиента успешно сохранены", "Оповещение", MessageBoxButton.OK);
         }
     }
