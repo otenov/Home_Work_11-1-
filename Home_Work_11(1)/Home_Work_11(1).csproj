@@ -66,6 +66,7 @@
     <Compile Include="Bank.cs" />
     <Compile Include="Classes\Helper.cs" />
     <Compile Include="Classes\HistoryRecord.cs" />
+    <Compile Include="ClientGenerator.cs" />
     <Compile Include="CreateFile\Client.cs" />
     <Compile Include="HistoryChange.xaml.cs">
       <DependentUpon>HistoryChange.xaml</DependentUpon>

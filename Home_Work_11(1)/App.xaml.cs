@@ -16,12 +16,12 @@ namespace Home_Work_11_1_
     /// </summary>
     public partial class App : Application
     {
-        static public Bank bank;
+        public static Bank bank;
 
         /// <summary>
         /// Репозиторий
         /// </summary>
-        static public Repository repositoryClients;
+        public static Repository repositoryClients;
 
         /// <summary>
         /// Метод для парсинга файла sd как observableCollection

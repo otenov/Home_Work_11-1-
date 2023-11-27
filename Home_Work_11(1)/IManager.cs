@@ -13,9 +13,5 @@ namespace Home_Work_11_1_
 
         bool EditClient(Client client, string surname, string name, string lName, string passport, string tNumber);
 
-        ///// <summary>
-        ///// Метод для сохранения данных менеджером
-        ///// </summary>
-        //void Save();
     }
 }

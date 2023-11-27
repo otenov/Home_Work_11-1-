@@ -18,8 +18,11 @@ namespace Home_Work_11_1_
 
         public void AddClient(string surname, string name, string lName, string passport, string tNumber)
         {
-            Client newClient = new Client(surname, name, lName, tNumber, passport, this);
 
+            HistoryRecord historyRecord = new HistoryRecord(this);
+            historyRecord.Add(new Record("Client", null, "Создан клиент"));
+            Client newClient = new Client(surname, name, lName, tNumber, passport);
+            newClient.historyChanges.Add(historyRecord);
             bank.clients.Add(newClient);
         }
 

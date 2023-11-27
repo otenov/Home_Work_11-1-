@@ -13,6 +13,8 @@ namespace Home_Work_11_1_
     
     public class Repository
     {
+        public ClientGenerator clientGenerator;
+
         /// <summary>
         /// Коллекция клиентов
         /// </summary>
@@ -28,18 +30,9 @@ namespace Home_Work_11_1_
         /// </summary>
         public Repository()
         {
-            this.clients = new ObservableCollection<Client>();
-            for (int i = 0; i < 50; i++)
-            {
-                clients.Add(new Client());
-            }
-
-            foreach (var item in clients)
-            {
-                Debug.WriteLine(item.ToString());
-            }
-            
-            SerializeClientsList(this.clients);
+            clientGenerator = new ClientGenerator();
+            clients = clientGenerator.CreateClientsCollection(50);
+            SerializeClientsList(clients);
         }
 
         public Repository(string path)
