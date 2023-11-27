@@ -43,7 +43,7 @@ namespace Home_Work_11_1_
             }
             if (client.FName != name)
             {
-                historyRecord.Add(new Record("FName", client.Passport, passport));
+                historyRecord.Add(new Record("Passport", client.Passport, passport));
                 client.Passport = passport;
             }
             if (client.TelephoneNumber != tNumber)

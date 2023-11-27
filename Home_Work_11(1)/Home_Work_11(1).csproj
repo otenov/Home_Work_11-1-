@@ -63,6 +63,7 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="Bank.cs" />
     <Compile Include="Classes\Helper.cs" />
     <Compile Include="Classes\HistoryRecord.cs" />
     <Compile Include="CreateFile\Client.cs" />

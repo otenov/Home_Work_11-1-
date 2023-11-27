@@ -11,6 +11,8 @@ namespace Home_Work_11_1_
 {
     public class Consultant : Worker, IConsultant
     {
+        Bank a;
+
         /// <summary>
         /// Коллекция, с которой работает консультант
         /// </summary>
@@ -43,6 +45,18 @@ namespace Home_Work_11_1_
             {
                 if (!String.IsNullOrEmpty(clients[i].Passport))
                     clients[i].Passport = "**** ******";
+                //for (int j = 0; j < clients[i].historyChanges.Count; j++)
+                //{
+                //    for (int l = 0; l < clients[i].historyChanges[j].Records.Count; l++)
+                //    {
+                //        if (clients[i].historyChanges[j].Records[l].Field == "Passport")
+                //        {
+                //            clients[i].historyChanges[j].Records[l].PreviousValue = "*********";
+                //            clients[i].historyChanges[j].Records[l].NewValue = "*********";
+                //        }
+                //    }
+                //}
+
             }
             return clients;
         }

@@ -52,8 +52,12 @@ namespace Home_Work_11_1_
         private string PNumber { get; set; }
         private string passport;
         public string Passport
+            
         {
-            get { return passport; }
+            get
+            {
+                return passport; 
+            }
             set { passport = value; OnPropertyChanged("Passport"); }
         }
 
