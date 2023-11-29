@@ -59,6 +59,8 @@ namespace Home_Work_11_1_
             InitializeComponent();
             HistoryChangePage = new HistoryChange();
             HistoryFrame.Content = HistoryChangePage;
+
+            //var clients = App.bank.GetClientsForConsultant();
             consultant = new Consultant("Сергей", App.bank);
 
             lw.ItemsSource = ((Consultant)consultant).WorkerCollection;

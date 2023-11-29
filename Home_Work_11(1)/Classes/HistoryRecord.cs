@@ -22,6 +22,8 @@ namespace Home_Work_11_1_
             }
         }
 
+        public string Title;
+
         public HistoryRecord()
         {
                 

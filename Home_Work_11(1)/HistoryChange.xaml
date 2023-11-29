@@ -10,7 +10,11 @@
 
     <Grid Background="White" Margin="10">
         <ListBox x:Name="HistoryList">
-            
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock Text="{}"></TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
         </ListBox>
     </Grid>
 </Page>

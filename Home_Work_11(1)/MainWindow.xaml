@@ -216,6 +216,7 @@
         </Grid>
 
         <Frame Grid.Column="3" x:Name="HistoryFrame" Margin="30">
+            
         </Frame>
 
     </Grid>

@@ -40,24 +40,30 @@ namespace Home_Work_11_1_
         /// <returns></returns>
         private ObservableCollection<Client> DepersonalizationCollection(ObservableCollection<Client> clients)
         {
+            //Можно
+            //Следующая итерация цикла не должна зависеть от предыдущей итерации цикла 
+            //Parallel.For(0, clients.Count, (i) =>
+            //{
+            //    if (!String.IsNullOrEmpty(clients[i].Passport))
+            //        clients[i].Passport = "**** ******";
+            //});
             for (int i = 0; i < clients.Count; i++)
             {
                 if (!String.IsNullOrEmpty(clients[i].Passport))
                     clients[i].Passport = "**** ******";
-                //for (int j = 0; j < clients[i].historyChanges.Count; j++)
-                //{
-                //    for (int l = 0; l < clients[i].historyChanges[j].Records.Count; l++)
-                //    {
-                //        if (clients[i].historyChanges[j].Records[l].Field == "Passport")
-                //        {
-                //            clients[i].historyChanges[j].Records[l].PreviousValue = "*********";
-                //            clients[i].historyChanges[j].Records[l].NewValue = "*********";
-                //        }
-                //    }
-                //}
-
+                for (int j = 0; j < clients[i].historyChanges.Count; j++)
+                {
+                    for (int l = 0; l < clients[i].historyChanges[j].Records.Count; l++)
+                    {
+                        if (clients[i].historyChanges[j].Records[l].Field == "Passport")
+                        {
+                            clients[i].historyChanges[j].Records[l].PreviousValue = "*********";
+                            clients[i].historyChanges[j].Records[l].NewValue = "*********";
+                        }
+                    }
+                }
             }
-            return clients;
+            return clients; //Вынести в банк
         }
 
 
@@ -73,12 +79,10 @@ namespace Home_Work_11_1_
             if (client.TelephoneNumber != newTNumber)
             {
                 historyRecord.Add(new Record("TelephoneNumber", client.TelephoneNumber, newTNumber));
-                //bank.clients[bank.clients.IndexOf(client)].TelephoneNumber = newTNumber;
                 client.TelephoneNumber = newTNumber;
             }
             if (historyRecord.Records.Count == 0) return true;
             client.historyChanges.Add(historyRecord);
-            //bank.clients[bank.clients.IndexOf(client)].historyChanges.Add(historyRecord);
             return false;
         }
 
@@ -89,6 +93,10 @@ namespace Home_Work_11_1_
                 {
                     bank.clients[i].TelephoneNumber = WorkerCollection[i].TelephoneNumber;
                 }
+
+                List<HistoryRecord> historyRecords;
+                //bank.clients[5].historyChanges.Add(historyRecords);
+                //синхронизация истории изменений
             }
         }
 
