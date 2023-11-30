@@ -22,7 +22,7 @@ namespace Home_Work_11_1_
             }
         }
 
-        public string Title;
+        public string NumberOfRecord { get; set; }
 
         public HistoryRecord()
         {
@@ -31,8 +31,9 @@ namespace Home_Work_11_1_
 
         public ObservableCollection<Record> Records;
 
-        public HistoryRecord(Worker worker)
+        public HistoryRecord(Worker worker, string numberOfRecord)
         {
+            NumberOfRecord = numberOfRecord;
             Author = WhoIsAuthor(worker);
             DateOfHistory = DateTime.Now;
             Records = new ObservableCollection<Record>();
@@ -49,14 +50,6 @@ namespace Home_Work_11_1_
             if (w is Manager) return "Менеджер";
             return "";
         }
-
-        private ObservableCollection<Record> ConsultantCreateRecords(string previousNumber, string newNumber)
-        {
-            ObservableCollection<Record> records = new ObservableCollection<Record>();
-            records.Add(new Record("TelephoneNumber", previousNumber, newNumber));
-            return records;
-        }
-
     }
 
     public class Record

@@ -122,7 +122,6 @@
             <ColumnDefinition Width="3" />
             <ColumnDefinition Width="5*" />
             <ColumnDefinition Width="350"/>
-
         </Grid.ColumnDefinitions>
 
 
@@ -214,10 +213,17 @@
                 </ListView.View>
             </ListView>
         </Grid>
-
-        <Frame Grid.Column="3" x:Name="HistoryFrame" Margin="30">
-            
-        </Frame>
+        
+        <ListBox x:Name="HistoryList" Grid.Column= "3" Margin="20">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                        <Run Text="Изменение "/>
+                        <Run Text="{Binding NumberOfRecord}" />
+                    </TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
 
     </Grid>
 </Window>

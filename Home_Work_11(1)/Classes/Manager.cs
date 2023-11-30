@@ -19,7 +19,7 @@ namespace Home_Work_11_1_
         public void AddClient(string surname, string name, string lName, string passport, string tNumber)
         {
 
-            HistoryRecord historyRecord = new HistoryRecord(this);
+            HistoryRecord historyRecord = new HistoryRecord(this, "1"); //Как тут более правильно
             historyRecord.Add(new Record("Client", null, "Создан клиент"));
             Client newClient = new Client(surname, name, lName, tNumber, passport);
             newClient.historyChanges.Add(historyRecord);
@@ -28,7 +28,7 @@ namespace Home_Work_11_1_
 
         public bool EditClient(Client client, string surname, string name, string lName, string passport, string tNumber)
         {
-            HistoryRecord historyRecord = new HistoryRecord(this); 
+            HistoryRecord historyRecord = new HistoryRecord(this, Convert.ToString(client.historyChanges.Count + 1)); //когда делать операцию приведения типа
             if (client.Surname != surname)
             {
                 historyRecord.Add(new Record("Surname", client.Surname, surname));
@@ -44,7 +44,7 @@ namespace Home_Work_11_1_
                 historyRecord.Add(new Record("LName", client.LName, lName));
                 client.LName = lName;
             }
-            if (client.FName != name)
+            if (client.Passport != passport)
             {
                 historyRecord.Add(new Record("Passport", client.Passport, passport));
                 client.Passport = passport;

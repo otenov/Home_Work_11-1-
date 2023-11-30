@@ -35,7 +35,7 @@ namespace Home_Work_11_1_
         /// <param name="e"></param>
         private void CheckedConsultant(object sender, RoutedEventArgs e)
         {
-            ConsultantWindow consultantWindow = new ConsultantWindow(App.bank.clients);
+            ConsultantWindow consultantWindow = new ConsultantWindow();
             consultantWindow.Show();
             this.Close();
 
@@ -48,7 +48,7 @@ namespace Home_Work_11_1_
         /// <param name="e"></param>
         private void CheckedManager(object sender, RoutedEventArgs e)
         {
-            ManagerWindow managerWindow = new ManagerWindow(App.bank.clients);
+            ManagerWindow managerWindow = new ManagerWindow();
             managerWindow.Show();
             this.Close();
         }

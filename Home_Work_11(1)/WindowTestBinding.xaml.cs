@@ -10,17 +10,16 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
 
 namespace Home_Work_11_1_
 {
     /// <summary>
-    /// Логика взаимодействия для HistoryChange.xaml
+    /// Логика взаимодействия для WindowTestBinding.xaml
     /// </summary>
-    public partial class HistoryChange : Page
+    public partial class WindowTestBinding : Window
     {
-        public HistoryChange()
+        public WindowTestBinding()
         {
             InitializeComponent();
         }

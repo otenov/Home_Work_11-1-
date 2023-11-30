@@ -24,11 +24,11 @@ namespace Home_Work_11_1_
     {
         IManager manager;
 
-        public ManagerWindow(ObservableCollection<Client> clients)
+        public ManagerWindow()
         {
             InitializeComponent();
             manager = new Manager("Сергей", App.bank.clients);
-            lw.ItemsSource = clients;
+            lw.ItemsSource = ((Manager)manager).WorkerClients;
             lw.Visibility = Visibility.Hidden;
             btnSave.IsEnabled = false;
             btnChange.IsEnabled = false;
@@ -114,6 +114,7 @@ namespace Home_Work_11_1_
             PassportNumber.Text = client.Passport.Substring(5, 6);
             TelephoneNumber.Text = client.TelephoneNumber;
             btnChange.IsEnabled = true;
+            HistoryList.ItemsSource = client.historyChanges;
         }
 
         /// <summary>
@@ -175,7 +176,7 @@ namespace Home_Work_11_1_
                 Surname.Text,
                 Name.Text,
                 LName.Text,
-                PassportSeries + " " + PassportNumber,
+                PassportSeries.Text + " " + PassportNumber.Text,
                 TelephoneNumber.Text))
             {
                 MessageBox.Show("Данные не обновлены\n" +
@@ -194,7 +195,7 @@ namespace Home_Work_11_1_
         /// <param name="e"></param>
         private void btnBackClick(object sender, RoutedEventArgs e)
         {
-            ((Manager)manager).Save(); //Вопрос. Если метод будет protected, то я не смогу вызвать метод, когда обратно верну
+            App.bank.Save((Manager)manager);
             StartWindow startWindow = new StartWindow();
             startWindow.Show();
             Close();
@@ -202,7 +203,7 @@ namespace Home_Work_11_1_
 
         private void btnSaveClick(object sender, RoutedEventArgs e)
         {
-            ((Manager)manager).Save(); // Переделать интерфейсы
+            App.bank.Save((Manager)manager); // Переделать интерфейсы
             MessageBox.Show("Данные клиента успешно сохранены", "Оповещение", MessageBoxButton.OK);
         }
     }

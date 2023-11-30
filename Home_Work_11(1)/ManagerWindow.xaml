@@ -6,8 +6,8 @@
         xmlns:local="clr-namespace:Home_Work_11_1_"
         mc:Ignorable="d"
         xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        Title="ManagerWindow" MinHeight="600" MinWidth="1000"
-        Height="600" Width="1000">
+        Title="ManagerWindow" Height="600" Width="1350"
+        MinHeight="600" MinWidth="1000">
     <Window.Resources>
         <!--<LinearGradientBrush x:Key="GridViewColumnHeaderBackground" EndPoint="0,1" StartPoint="0,0">
             <GradientStop Color="#FFFFFFFF" Offset="0"/>
@@ -118,11 +118,15 @@
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition MinWidth="200" Width="2*" />
+            <ColumnDefinition MinWidth="200" Width="1.8*" />
+            <ColumnDefinition Width="3" />
             <ColumnDefinition Width="5*" />
+            <ColumnDefinition Width="350"/>
         </Grid.ColumnDefinitions>
-        
-        <Grid Grid.Column="1">
+
+        <GridSplitter VerticalAlignment="Stretch" Grid.Column="1" Width="2"/>
+
+        <Grid Grid.Column="2">
             <ListView x:Name="lw"  Grid.Column="2" Margin="10" Grid.Row="1" SelectionChanged="SelectionChangedMethod" >
                 <!--#region Отработка ListView.ItemTemplate -->
                 <!--<ListView.ItemTemplate>
@@ -260,6 +264,17 @@
 
             </Canvas>
         </Border>
+
+        <ListBox x:Name="HistoryList" Grid.Column= "3" Margin="20">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                        <Run Text="Изменение "/>
+                        <Run Text="{Binding NumberOfRecord}" />
+                    </TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
 
     </Grid>
 </Window>

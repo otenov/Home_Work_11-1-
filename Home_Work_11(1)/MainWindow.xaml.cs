@@ -26,9 +26,7 @@ namespace Home_Work_11_1_
     {
         IConsultant consultant;
 
-        public HistoryChange HistoryChangePage;
-
-        public ConsultantWindow(ObservableCollection<Client> clients)  
+        public ConsultantWindow()  
         {
 
             #region Получение списка директорий в папке
@@ -57,14 +55,9 @@ namespace Home_Work_11_1_
             #endregion
 
             InitializeComponent();
-            HistoryChangePage = new HistoryChange();
-            HistoryFrame.Content = HistoryChangePage;
 
-            //var clients = App.bank.GetClientsForConsultant();
-            
-            consultant = new Consultant("Сергей", App.bank.CreateCollectionForConsultant(clients));
-
-            lw.ItemsSource = ((Consultant)consultant).WorkerCollection;
+            consultant = new Consultant("Сергей", App.bank.CreateCollectionForConsultant());
+            lw.ItemsSource = ((Consultant)consultant).WorkerClients;
             lw.Visibility = Visibility.Hidden;
             btnSave.IsEnabled = false;
             btnChange.IsEnabled = false;
@@ -112,8 +105,13 @@ namespace Home_Work_11_1_
             TelephoneNumber.IsEnabled = true;
             TelephoneNumber.Text = client.TelephoneNumber;
             btnChange.IsEnabled = true;
+            HistoryList.ItemsSource = client.historyChanges;
 
-            HistoryChangePage.HistoryList.ItemsSource = client.historyChanges;
+
+            //
+            //var arr = Enumerable.Range(1, client.historyChanges.Count).ToArray();
+            //var historyChangesDict = client.historyChanges.ToDictionary(y => client.historyChanges.IndexOf(y) + 1, x => x);
+            //HistoryList.ItemsSource = arr;
         }
 
         /// <summary>
@@ -150,7 +148,7 @@ namespace Home_Work_11_1_
         /// <param name="e"></param>
         private void btnBackClick(object sender, RoutedEventArgs e)
         {
-            ((Consultant)consultant).Save();
+            App.bank.Save((Consultant)consultant);
             StartWindow startWindow = new StartWindow();
             startWindow.Show();
             Close();
@@ -158,7 +156,7 @@ namespace Home_Work_11_1_
 
         private void btnSaveClick(object sender, RoutedEventArgs e)
         {
-            ((Consultant)consultant).Save();
+            App.bank.Save((Consultant)consultant);
             MessageBox.Show("Данные клиента успешно сохранены", "Оповещение", MessageBoxButton.OK);
         }
     }

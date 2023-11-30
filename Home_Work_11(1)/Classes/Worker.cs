@@ -22,14 +22,5 @@ namespace Home_Work_11_1_
             Name = name;
             WorkerClients = clients;
         }
-
-        /// <summary>
-        /// Сохранение всех изменений в файл
-        /// </summary>
-        public virtual void Save()
-        {
-            App.repositoryClients.SerializeClientsList(bank.clients);
-        }
-
     }
 }

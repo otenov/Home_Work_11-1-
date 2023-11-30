@@ -11,12 +11,6 @@ namespace Home_Work_11_1_
 {
     public class Consultant : Worker, IConsultant
     {
-        /// <summary>
-        /// Коллекция, с которой работает консультант
-        /// </summary>
-        public ObservableCollection<Client> WorkerCollection { get; set; }
-
-
         public Consultant(string name, ObservableCollection<Client> clients) : base(name, clients)
         {
 
@@ -31,7 +25,7 @@ namespace Home_Work_11_1_
         /// <returns></returns>
         public bool EditTNumber(Client client, string newTNumber)
         {
-            HistoryRecord historyRecord = new HistoryRecord(this);
+            HistoryRecord historyRecord = new HistoryRecord(this, Convert.ToString(client.historyChanges.Count + 1)); //как правильно делать данную операцию
             if (client.TelephoneNumber != newTNumber)
             {
                 historyRecord.Add(new Record("TelephoneNumber", client.TelephoneNumber, newTNumber));
@@ -40,14 +34,6 @@ namespace Home_Work_11_1_
             if (historyRecord.Records.Count == 0) return true;
             client.historyChanges.Add(historyRecord);
             return false;
-        }
-
-
-
-        public override void Save()
-        {
-            Sync();
-            base.Save();
         }
     }
 }
