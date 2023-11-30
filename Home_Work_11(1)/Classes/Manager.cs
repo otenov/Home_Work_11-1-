@@ -11,7 +11,7 @@ namespace Home_Work_11_1_
     public class Manager : Worker, IManager
     {
 
-        public Manager(string name, Bank bank) : base(name, bank)
+        public Manager(string name, ObservableCollection<Client> clients) : base(name, clients)
         {
 
         }
@@ -23,7 +23,7 @@ namespace Home_Work_11_1_
             historyRecord.Add(new Record("Client", null, "Создан клиент"));
             Client newClient = new Client(surname, name, lName, tNumber, passport);
             newClient.historyChanges.Add(historyRecord);
-            bank.clients.Add(newClient);
+            WorkerClients.Add(newClient);
         }
 
         public bool EditClient(Client client, string surname, string name, string lName, string passport, string tNumber)

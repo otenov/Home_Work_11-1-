@@ -15,27 +15,12 @@ namespace Home_Work_11_1_
         /// </summary>
         protected string Name { get; set; }
 
-        /// <summary>
-        /// Метод копирует исходную коллекцию
-        /// </summary>
-        /// <param name="clients">Оригинал коллекции</param>
-        /// <returns>Копия коллекции</returns>
-        protected ObservableCollection<Client> CopyCollection(ObservableCollection<Client> clients)
-        {
-            ObservableCollection<Client> copyClients = new ObservableCollection<Client>();
-            foreach (Client item in clients)
-            {
-                copyClients.Add(new Client(item));
-            }
-            return copyClients;
-        }
+        public ObservableCollection<Client> WorkerClients { get; set; }
 
-        protected Bank bank;
-
-        public Worker(string name, Bank bank)
+        public Worker(string name, ObservableCollection<Client> clients)
         {
             Name = name;
-            this.bank = bank;
+            WorkerClients = clients;
         }
 
         /// <summary>

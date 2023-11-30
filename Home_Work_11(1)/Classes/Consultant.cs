@@ -17,53 +17,9 @@ namespace Home_Work_11_1_
         public ObservableCollection<Client> WorkerCollection { get; set; }
 
 
-        public Consultant(string name, Bank bank) :base(name, bank)
+        public Consultant(string name, ObservableCollection<Client> clients) : base(name, clients)
         {
-            WorkerCollection = CreateConsultantCollection(bank.clients);
 
-        }
-
-        /// <summary>
-        /// Метод, который Консультанту подготавливает коллекцию для работы с данными клиентов
-        /// </summary>
-        /// <param name="clients">Исходная коллекция</param>
-        /// <returns>Коллекция для консультанта</returns>
-        private ObservableCollection<Client> CreateConsultantCollection(ObservableCollection<Client> clients)
-        {
-            return DepersonalizationCollection(CopyCollection(clients));
-        }
-
-        /// <summary>
-        /// Метод по подготовки коллекции для консультанта. Обезличивание
-        /// </summary>
-        /// <param name="clients">Коллекция данных</param>
-        /// <returns></returns>
-        private ObservableCollection<Client> DepersonalizationCollection(ObservableCollection<Client> clients)
-        {
-            //Можно
-            //Следующая итерация цикла не должна зависеть от предыдущей итерации цикла 
-            //Parallel.For(0, clients.Count, (i) =>
-            //{
-            //    if (!String.IsNullOrEmpty(clients[i].Passport))
-            //        clients[i].Passport = "**** ******";
-            //});
-            for (int i = 0; i < clients.Count; i++)
-            {
-                if (!String.IsNullOrEmpty(clients[i].Passport))
-                    clients[i].Passport = "**** ******";
-                for (int j = 0; j < clients[i].historyChanges.Count; j++)
-                {
-                    for (int l = 0; l < clients[i].historyChanges[j].Records.Count; l++)
-                    {
-                        if (clients[i].historyChanges[j].Records[l].Field == "Passport")
-                        {
-                            clients[i].historyChanges[j].Records[l].PreviousValue = "*********";
-                            clients[i].historyChanges[j].Records[l].NewValue = "*********";
-                        }
-                    }
-                }
-            }
-            return clients; //Вынести в банк
         }
 
 
@@ -86,19 +42,7 @@ namespace Home_Work_11_1_
             return false;
         }
 
-        public void Sync()
-        {
-            {
-                for (int i = 0; i <= WorkerCollection.Count - 1; i++)
-                {
-                    bank.clients[i].TelephoneNumber = WorkerCollection[i].TelephoneNumber;
-                }
 
-                List<HistoryRecord> historyRecords;
-                //bank.clients[5].historyChanges.Add(historyRecords);
-                //синхронизация истории изменений
-            }
-        }
 
         public override void Save()
         {

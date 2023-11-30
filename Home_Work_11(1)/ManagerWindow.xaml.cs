@@ -27,7 +27,7 @@ namespace Home_Work_11_1_
         public ManagerWindow(ObservableCollection<Client> clients)
         {
             InitializeComponent();
-            manager = new Manager("Сергей", App.bank);
+            manager = new Manager("Сергей", App.bank.clients);
             lw.ItemsSource = clients;
             lw.Visibility = Visibility.Hidden;
             btnSave.IsEnabled = false;

@@ -61,7 +61,8 @@ namespace Home_Work_11_1_
             HistoryFrame.Content = HistoryChangePage;
 
             //var clients = App.bank.GetClientsForConsultant();
-            consultant = new Consultant("Сергей", App.bank);
+            
+            consultant = new Consultant("Сергей", App.bank.CreateCollectionForConsultant(clients));
 
             lw.ItemsSource = ((Consultant)consultant).WorkerCollection;
             lw.Visibility = Visibility.Hidden;
