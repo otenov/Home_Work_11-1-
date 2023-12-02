@@ -265,7 +265,7 @@
             </Canvas>
         </Border>
 
-        <ListBox x:Name="HistoryList" Grid.Column= "3" Margin="20">
+        <ListBox x:Name="HistoryList" Grid.Column= "3" Margin="20" MouseDoubleClick="MouseDoubleClickMethod">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock>

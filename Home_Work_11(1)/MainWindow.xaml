@@ -220,6 +220,7 @@
                     <TextBlock>
                         <Run Text="Изменение "/>
                         <Run Text="{Binding NumberOfRecord}" />
+                        <Run Text="{Binding DateOfHistory}"/>
                     </TextBlock>
                 </DataTemplate>
             </ListBox.ItemTemplate>

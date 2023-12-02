@@ -206,5 +206,11 @@ namespace Home_Work_11_1_
             App.bank.Save((Manager)manager); // Переделать интерфейсы
             MessageBox.Show("Данные клиента успешно сохранены", "Оповещение", MessageBoxButton.OK);
         }
+
+        private void MouseDoubleClickMethod(object sender, MouseButtonEventArgs e)
+        {
+            HistoryRecordWindow historyRecordWindow = new HistoryRecordWindow(((HistoryRecord)HistoryList.SelectedItem).Records);
+
+        }
     }
 }
