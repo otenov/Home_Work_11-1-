@@ -208,9 +208,9 @@ namespace Home_Work_11_1_
         }
 
         private void MouseDoubleClickMethod(object sender, MouseButtonEventArgs e)
-        {
-            HistoryRecordWindow historyRecordWindow = new HistoryRecordWindow(((HistoryRecord)HistoryList.SelectedItem).Records);
-
+        { 
+            HistoryRecordWindow historyRecordWindow = new HistoryRecordWindow((HistoryRecord)HistoryList.SelectedItem);
+            historyRecordWindow.ShowDialog();
         }
     }
 }

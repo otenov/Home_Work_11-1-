@@ -5,16 +5,24 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Home_Work_11_1_"
         mc:Ignorable="d"
-        Title="HistoryRecordWindow" Height="550" Width="450">
+        Title="HistoryRecordWindow" Height="500" Width="450">
     <Grid>
         <StackPanel Orientation="Vertical">
-            <TextBlock Height="50" Margin="10"/>
-            <TextBlock Height="50" Margin="10"/>
-            <ListBox x:Name="HistoryRecordList" Height = "350" Margin="10">
+            <TextBlock Height="40" Margin="15 15 15 0" FontSize="20">
+                <Run Text="Автор: " />
+                <Run x:Name="Author" TextDecorations="Underline" />
+            </TextBlock>
+            <TextBlock Height="40" Margin="15 15 15 0" FontSize="20">
+                <Run Text="Дата изменения: " />
+                <Run x:Name="Date" TextDecorations="Underline" />
+            </TextBlock>
+            <TextBlock Text="Список изменений" HorizontalAlignment="Center" Height="40" Margin="15 15 15 0" FontSize="20">
+            </TextBlock>
+            <ListBox x:Name="HistoryRecordList" Height = "250" Margin="15 0" MouseDoubleClick="MouseDoubleClickMethod">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
-                        <TextBlock>
-                            <Run Text="Изменённое поле: "/>
+                        <TextBlock FontSize="15">
+                            <Run Text="Изменённое поле: " />
                             <Run Text="{Binding Field}"/>
                         </TextBlock>
                     </DataTemplate>

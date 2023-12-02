@@ -20,12 +20,21 @@ namespace Home_Work_11_1_
     /// </summary>
     public partial class HistoryRecordWindow : Window
     {
-        HistoryRecord HistoryRecord;
-        public HistoryRecordWindow(ObservableCollection<Record> records)
+
+        public HistoryRecordWindow(HistoryRecord historyRecord)
         {
             InitializeComponent();
 
-            HistoryRecordList.ItemsSource = records;
+            Author.Text = historyRecord.Author;
+            Date.Text = historyRecord.DateOfHistory.Date.ToString();
+
+            HistoryRecordList.ItemsSource = historyRecord.Records;
+        }
+
+        private void MouseDoubleClickMethod(object sender, MouseButtonEventArgs e)
+        {
+            RecordWindow recordWindow = new RecordWindow((Record)HistoryRecordList.SelectedItem);
+            recordWindow.ShowDialog();
         }
     }
 }
