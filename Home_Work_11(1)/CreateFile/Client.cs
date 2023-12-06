@@ -59,7 +59,7 @@ namespace Home_Work_11_1_
             set { passport = value; OnPropertyChanged("Passport"); }
         }
 
-        public ObservableCollection<HistoryRecord> historyChanges;
+        public ObservableCollection<HistoryRecord> HistoryChanges { get; set; }
 
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
@@ -85,7 +85,7 @@ namespace Home_Work_11_1_
             this.LName = item.LName;
             this.TelephoneNumber = item.telephoneNumber;
             this.Passport = item.Passport;
-            this.historyChanges = item.historyChanges;
+            this.HistoryChanges = item.HistoryChanges;
         }
 
 
@@ -96,7 +96,7 @@ namespace Home_Work_11_1_
             this.LName = lName;
             this.TelephoneNumber = tNumber;
             this.Passport = passport;
-            historyChanges = new ObservableCollection<HistoryRecord>();
+            HistoryChanges = new ObservableCollection<HistoryRecord>();
         }
 
         //Переопределённый метод ToString() для удобства, закрепления

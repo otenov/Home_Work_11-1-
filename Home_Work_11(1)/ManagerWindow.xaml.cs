@@ -27,7 +27,7 @@ namespace Home_Work_11_1_
         public ManagerWindow()
         {
             InitializeComponent();
-            manager = new Manager("Сергей", App.bank.clients);
+            manager = new Manager("Сергей", App.bank.Сlients);
             lw.ItemsSource = ((Manager)manager).WorkerClients;
             lw.Visibility = Visibility.Hidden;
             btnSave.IsEnabled = false;
@@ -114,7 +114,7 @@ namespace Home_Work_11_1_
             PassportNumber.Text = client.Passport.Substring(5, 6);
             TelephoneNumber.Text = client.TelephoneNumber;
             btnChange.IsEnabled = true;
-            HistoryList.ItemsSource = client.historyChanges;
+            HistoryList.ItemsSource = client.HistoryChanges;
         }
 
         /// <summary>

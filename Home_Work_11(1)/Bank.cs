@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,11 +10,11 @@ namespace Home_Work_11_1_
 {
     public class Bank
     {
-        public ObservableCollection<Client> clients;
+        public ObservableCollection<Client> Сlients { get; private set; }
 
         public Bank()
         {
-            clients = new ObservableCollection<Client>();
+            Сlients = Repository.Clients;
         }
 
         /// <summary>
@@ -23,7 +24,7 @@ namespace Home_Work_11_1_
         /// <returns>Коллекция для консультанта</returns>
         public ObservableCollection<Client> CreateCollectionForConsultant()
         {
-            return DepersonalizationCollection(CopyCollection(clients));
+            return DepersonalizationCollection(CopyCollection(Сlients));
         }
 
         /// <summary>
@@ -35,23 +36,23 @@ namespace Home_Work_11_1_
         {
             //Можно
             //Следующая итерация цикла не должна зависеть от предыдущей итерации цикла 
-            //Parallel.For(0, clients.Count, (i) =>
+            //Parallel.For(0, Сlients.Count, (i) =>
             //{
-            //    if (!String.IsNullOrEmpty(clients[i].Passport))
-            //        clients[i].Passport = "**** ******";
+            //    if (!String.IsNullOrEmpty(Сlients[i].Passport))
+            //        Сlients[i].Passport = "**** ******";
             //});
             for (int i = 0; i < clients.Count; i++)
             {
                 if (!String.IsNullOrEmpty(clients[i].Passport))
                     clients[i].Passport = "**** ******";
-                for (int j = 0; j < clients[i].historyChanges.Count; j++)
+                for (int j = 0; j < clients[i].HistoryChanges.Count; j++)
                 {
-                    for (int l = 0; l < clients[i].historyChanges[j].Records.Count; l++)
+                    for (int l = 0; l < clients[i].HistoryChanges[j].Records.Count; l++)
                     {
-                        if (clients[i].historyChanges[j].Records[l].Field == "Passport")
+                        if (clients[i].HistoryChanges[j].Records[l].Field == "Passport")
                         {
-                            clients[i].historyChanges[j].Records[l].PreviousValue = "*********";
-                            clients[i].historyChanges[j].Records[l].NewValue = "*********";
+                            clients[i].HistoryChanges[j].Records[l].PreviousValue = "*********";
+                            clients[i].HistoryChanges[j].Records[l].NewValue = "*********";
                         }
                     }
                 }
@@ -78,22 +79,22 @@ namespace Home_Work_11_1_
         {
             for (int i = 0; i <= WorkerCollection.Count - 1; i++)
             {
-                clients[i].TelephoneNumber = WorkerCollection[i].TelephoneNumber;
+                Сlients[i].TelephoneNumber = WorkerCollection[i].TelephoneNumber;
             }
         }
 
         private void SyncHistoryChanges(ObservableCollection<Client> WorkerCollection)
         {
-            for (int i = 0; i < clients.Count - 1; i++)
+            for (int i = 0; i < Сlients.Count - 1; i++)
             {
-                if (clients[i].historyChanges.Count == WorkerCollection[i].historyChanges.Count)
+                if (Сlients[i].HistoryChanges.Count == WorkerCollection[i].HistoryChanges.Count)
                 {
                     continue;
                 }
 
-                for (int j = clients[i].historyChanges.Count + 1; j < WorkerCollection[i].historyChanges.Count - 1; j++)
+                for (int j = Сlients[i].HistoryChanges.Count + 1; j < WorkerCollection[i].HistoryChanges.Count - 1; j++)
                 {
-                    clients[i].historyChanges.Add(WorkerCollection[i].historyChanges[j]);
+                    Сlients[i].HistoryChanges.Add(WorkerCollection[i].HistoryChanges[j]);
                 }
             }
         }
@@ -113,12 +114,12 @@ namespace Home_Work_11_1_
             if (w is Consultant)
             {
                 Sync(w.WorkerClients);
-                App.repositoryClients.SerializeClientsList(clients);
+                Repository.SerializeClientsList(Сlients);
                 return;
             }
             if (w is Manager)
             {
-                App.repositoryClients.SerializeClientsList(clients);
+                Repository.SerializeClientsList(Сlients);
                 return;
             }
         }

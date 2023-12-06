@@ -25,14 +25,14 @@ namespace Home_Work_11_1_
         /// <returns></returns>
         public bool EditTNumber(Client client, string newTNumber)
         {
-            HistoryRecord historyRecord = new HistoryRecord(this, Convert.ToString(client.historyChanges.Count + 1)); //как правильно делать данную операцию
+            HistoryRecord historyRecord = new HistoryRecord(this, Convert.ToString(client.HistoryChanges.Count + 1)); //как правильно делать данную операцию
             if (client.TelephoneNumber != newTNumber)
             {
                 historyRecord.Add(new Record("TelephoneNumber", client.TelephoneNumber, newTNumber));
                 client.TelephoneNumber = newTNumber;
             }
             if (historyRecord.Records.Count == 0) return true;
-            client.historyChanges.Add(historyRecord);
+            client.HistoryChanges.Add(historyRecord);
             return false;
         }
     }

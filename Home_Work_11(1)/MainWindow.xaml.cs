@@ -38,7 +38,7 @@ namespace Home_Work_11_1_
             #endregion
             #region Debug
             //Проверка парсинга и отображения данных
-            //foreach (var item in clients)
+            //foreach (var item in Сlients)
             //{
             //    Debug.WriteLine(item.FName);
             //    Debug.WriteLine(item.LName);
@@ -51,7 +51,7 @@ namespace Home_Work_11_1_
             //List<Client> c = DeserializeList(@"C:\Users\oteno\Desktop\Skillbox\Дз\Home_Work_11\Home_Work_11(1)\sd");
             #endregion
             #region Построение коллекции observableCollection на основе List
-            //ObservableCollection<Client> clients = new ObservableCollection<Client>(c); //построение коллекции observableCollection на основе list
+            //ObservableCollection<Client> Сlients = new ObservableCollection<Client>(c); //построение коллекции observableCollection на основе list
             #endregion
 
             InitializeComponent();
@@ -105,12 +105,12 @@ namespace Home_Work_11_1_
             TelephoneNumber.IsEnabled = true;
             TelephoneNumber.Text = client.TelephoneNumber;
             btnChange.IsEnabled = true;
-            HistoryList.ItemsSource = client.historyChanges;
+            HistoryList.ItemsSource = client.HistoryChanges;
 
 
             //
-            //var arr = Enumerable.Range(1, client.historyChanges.Count).ToArray();
-            //var historyChangesDict = client.historyChanges.ToDictionary(y => client.historyChanges.IndexOf(y) + 1, x => x);
+            //var arr = Enumerable.Range(1, client.HistoryChanges.Count).ToArray();
+            //var historyChangesDict = client.HistoryChanges.ToDictionary(y => client.HistoryChanges.IndexOf(y) + 1, x => x);
             //HistoryList.ItemsSource = arr;
         }
 

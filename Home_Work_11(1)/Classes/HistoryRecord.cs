@@ -29,7 +29,7 @@ namespace Home_Work_11_1_
                 
         }
 
-        public ObservableCollection<Record> Records;
+        public ObservableCollection<Record> Records { get; private set; }
 
         public HistoryRecord(Worker worker, string numberOfRecord)
         {
