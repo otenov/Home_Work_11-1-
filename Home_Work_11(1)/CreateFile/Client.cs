@@ -11,7 +11,21 @@ namespace Home_Work_11_1_
 {
     public class Client : INotifyPropertyChanged
     {
+        private static int staticId;
+
+        private static int NextId()
+        {
+            staticId++;
+            return staticId;
+        }
+
+        static Client()
+        {
+            staticId = 0;
+        }
         //Список необходимых свойств
+
+        public int Id { get; set; }
         private string surname;
         public string Surname 
         {
@@ -78,8 +92,9 @@ namespace Home_Work_11_1_
         /// Конструктор для копирования
         /// </summary>
         /// <param name="item">Оригинал</param>
-        public Client(Client item)
+        public Client(Client item)    //Этот код окей?
         {
+            this.Id = item.Id;
             this.Surname = item.Surname;
             this.FName = item.FName;
             this.LName = item.LName;
@@ -91,6 +106,7 @@ namespace Home_Work_11_1_
 
         public Client(string surname, string fName, string lName, string tNumber, string passport)
         {
+            this.Id = NextId();
             this.Surname = surname;
             this.FName = fName;
             this.LName = lName;

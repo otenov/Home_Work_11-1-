@@ -9,7 +9,7 @@ namespace Home_Work_11_1_
 {
     public class HistoryRecord
     {
-        public DateTime DateOfHistory { get; set; }
+        public DateTime DateOfHistory { get;  set; } //Как работать с датой и временем
 
         private string author;
 
@@ -44,7 +44,7 @@ namespace Home_Work_11_1_
         {
             NumberOfRecord = numberOfRecord;
             Author = WhoIsAuthor(worker);
-            DateOfHistory = DateTime.Now;
+            DateOfHistory = DateTime.Now; //Как вывести минуты и часы
             if (typeOfHistory == TypeOfHistory.Add) TypeOfHistoryString = "Добавление";
             if (typeOfHistory == TypeOfHistory.Edit) TypeOfHistoryString = "Изменение";
             Records = new ObservableCollection<Record>();

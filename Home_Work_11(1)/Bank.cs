@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace Home_Work_11_1_
 {
-    public class Bank
+    public class Bank //Спросить как должна лежать коллекция и репозиторий
     {
         /// <summary>
         /// Индексатор по позиции
