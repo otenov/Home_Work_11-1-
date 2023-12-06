@@ -31,10 +31,5 @@ namespace Home_Work_11_1_
             HistoryRecordList.ItemsSource = historyRecord.Records;
         }
 
-        private void MouseDoubleClickMethod(object sender, MouseButtonEventArgs e)
-        {
-            RecordWindow recordWindow = new RecordWindow((Record)HistoryRecordList.SelectedItem);
-            recordWindow.ShowDialog();
-        }
     }
 }

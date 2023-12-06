@@ -10,6 +10,17 @@ namespace Home_Work_11_1_
 {
     public class Bank
     {
+        /// <summary>
+        /// Индексатор по позиции
+        /// </summary>
+        /// <param name="index">Позиция клиента в банке</param>
+        /// <returns>Клиент</returns>
+        public Client this[int index]
+        {
+            get { return Сlients[index]; }
+            set { Сlients[index] = value; }
+        }
+
         public ObservableCollection<Client> Сlients { get; private set; }
 
         public Bank()

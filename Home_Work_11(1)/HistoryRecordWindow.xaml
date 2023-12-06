@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Home_Work_11_1_"
         mc:Ignorable="d"
-        Title="HistoryRecordWindow" Height="500" Width="450">
+        Title="HistoryRecordWindow" Height="600" Width="650">
     <Grid>
         <StackPanel Orientation="Vertical">
             <TextBlock Height="40" Margin="15 15 15 0" FontSize="20">
@@ -18,16 +18,16 @@
             </TextBlock>
             <TextBlock Text="Список изменений" HorizontalAlignment="Center" Height="40" Margin="15 15 15 0" FontSize="20">
             </TextBlock>
-            <ListBox x:Name="HistoryRecordList" Height = "250" Margin="15 0" MouseDoubleClick="MouseDoubleClickMethod">
-                <ListBox.ItemTemplate>
-                    <DataTemplate>
-                        <TextBlock FontSize="15">
-                            <Run Text="Изменённое поле: " />
-                            <Run Text="{Binding Field}"/>
-                        </TextBlock>
-                    </DataTemplate>
-                </ListBox.ItemTemplate>
-            </ListBox>
+            
+            <ListView x:Name="HistoryRecordList" Height = "250" Margin="15 0">
+                <ListView.View>
+                    <GridView  AllowsColumnReorder="False">
+                        <GridViewColumn Header="Изменённое поле" Width ="200"  DisplayMemberBinding="{Binding Field}" />
+                        <GridViewColumn Header="Прошлое значение" Width ="200" DisplayMemberBinding="{Binding PreviousValue}" />
+                        <GridViewColumn Header="Новое значение" Width ="200" DisplayMemberBinding="{Binding NewValue}" />
+                    </GridView>
+                </ListView.View>
+            </ListView>
         </StackPanel>
     </Grid>
 </Window>

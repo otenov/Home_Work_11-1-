@@ -74,9 +74,6 @@
     <Compile Include="IConsultant.cs" />
     <Compile Include="IManager.cs" />
     <Compile Include="CreateFile\Repository.cs" />
-    <Compile Include="RecordWindow.xaml.cs">
-      <DependentUpon>RecordWindow.xaml</DependentUpon>
-    </Compile>
     <Compile Include="StartWindow.xaml.cs">
       <DependentUpon>StartWindow.xaml</DependentUpon>
     </Compile>
@@ -109,10 +106,6 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="ManagerWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="RecordWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
