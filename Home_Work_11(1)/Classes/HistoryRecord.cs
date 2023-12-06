@@ -24,6 +24,15 @@ namespace Home_Work_11_1_
 
         public string NumberOfRecord { get; set; }
 
+        public enum TypeOfHistory
+        {
+            Add,
+            Edit,
+            Delete
+        }
+
+        public string TypeOfHistoryString { get; }
+
         public HistoryRecord()
         {
                 
@@ -31,11 +40,13 @@ namespace Home_Work_11_1_
 
         public ObservableCollection<Record> Records { get; set; }
 
-        public HistoryRecord(Worker worker, string numberOfRecord)
+        public HistoryRecord(Worker worker, string numberOfRecord, TypeOfHistory typeOfHistory)
         {
             NumberOfRecord = numberOfRecord;
             Author = WhoIsAuthor(worker);
             DateOfHistory = DateTime.Now;
+            if (typeOfHistory == TypeOfHistory.Add) TypeOfHistoryString = "Добавление";
+            if (typeOfHistory == TypeOfHistory.Edit) TypeOfHistoryString = "Изменение";
             Records = new ObservableCollection<Record>();
         }
 

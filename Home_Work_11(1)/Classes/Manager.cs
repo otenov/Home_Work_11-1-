@@ -18,7 +18,7 @@ namespace Home_Work_11_1_
 
         public void AddClient(string surname, string name, string lName, string passport, string tNumber)
         {
-            HistoryRecord historyRecord = new HistoryRecord(this, "1"); //Как тут более правильно
+            HistoryRecord historyRecord = new HistoryRecord(this, "1", HistoryRecord.TypeOfHistory.Add); //Как тут более правильно
             historyRecord.Add(new Record("Client", null, "Создан клиент"));
             Client newClient = new Client(surname, name, lName, tNumber, passport);
             newClient.HistoryChanges.Add(historyRecord);
@@ -27,7 +27,8 @@ namespace Home_Work_11_1_
 
         public bool EditClient(Client client, string surname, string name, string lName, string passport, string tNumber)
         {
-            HistoryRecord historyRecord = new HistoryRecord(this, Convert.ToString(client.HistoryChanges.Count + 1)); //когда делать операцию приведения типа
+
+            HistoryRecord historyRecord = new HistoryRecord(this, Convert.ToString(client.HistoryChanges.Count + 1), HistoryRecord.TypeOfHistory.Edit); //когда делать операцию приведения типа
             if (client.Surname != surname)
             {
                 historyRecord.Add(new Record("Surname", client.Surname, surname));

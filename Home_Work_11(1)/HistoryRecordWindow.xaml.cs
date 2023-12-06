@@ -27,6 +27,7 @@ namespace Home_Work_11_1_
 
             Author.Text = historyRecord.Author;
             Date.Text = historyRecord.DateOfHistory.Date.ToString();
+            TypeOfHistory.Text = historyRecord.TypeOfHistoryString;
 
             HistoryRecordList.ItemsSource = historyRecord.Records;
         }

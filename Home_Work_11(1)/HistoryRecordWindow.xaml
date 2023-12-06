@@ -16,6 +16,10 @@
                 <Run Text="Дата изменения: " />
                 <Run x:Name="Date" TextDecorations="Underline" />
             </TextBlock>
+            <TextBlock Height="40" Margin="15 15 15 0" FontSize="20">
+                <Run Text="Тип изменения: " />
+                <Run x:Name="TypeOfHistory" TextDecorations="Underline" />
+            </TextBlock>
             <TextBlock Text="Список изменений" HorizontalAlignment="Center" Height="40" Margin="15 15 15 0" FontSize="20">
             </TextBlock>
             
