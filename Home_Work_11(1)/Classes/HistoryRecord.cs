@@ -65,12 +65,6 @@ namespace Home_Work_11_1_
 
     public class Record
     {
-        //public enum TypeOfChange
-        //{
-        //    Change,
-        //    Add,
-        //    Delete
-        //}
 
         public string Field { get; set; }
 
