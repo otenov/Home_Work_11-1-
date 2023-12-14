@@ -22,7 +22,7 @@ namespace Home_Work_11_1_
             }
         }
 
-        public string NumberOfRecord { get; set; }
+        public int NumberOfRecord { get; set; }
 
         public enum TypeOfHistory
         {
@@ -40,7 +40,7 @@ namespace Home_Work_11_1_
 
         public ObservableCollection<Record> Records { get; set; }
 
-        public HistoryRecord(Worker worker, string numberOfRecord, TypeOfHistory typeOfHistory)
+        public HistoryRecord(Worker worker, int numberOfRecord, TypeOfHistory typeOfHistory)
         {
             NumberOfRecord = numberOfRecord;
             Author = WhoIsAuthor(worker);

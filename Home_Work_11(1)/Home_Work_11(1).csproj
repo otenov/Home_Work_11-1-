@@ -67,6 +67,7 @@
     <Compile Include="Classes\Helper.cs" />
     <Compile Include="Classes\HistoryRecord.cs" />
     <Compile Include="ClientGenerator.cs" />
+    <Compile Include="CommandBase.cs" />
     <Compile Include="CreateFile\Client.cs" />
     <Compile Include="HistoryRecordWindow.xaml.cs">
       <DependentUpon>HistoryRecordWindow.xaml</DependentUpon>
@@ -74,6 +75,7 @@
     <Compile Include="IConsultant.cs" />
     <Compile Include="IManager.cs" />
     <Compile Include="CreateFile\Repository.cs" />
+    <Compile Include="MainWindowVM.cs" />
     <Compile Include="StartWindow.xaml.cs">
       <DependentUpon>StartWindow.xaml</DependentUpon>
     </Compile>

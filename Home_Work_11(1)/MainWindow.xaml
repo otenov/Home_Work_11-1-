@@ -48,7 +48,8 @@
                     Width="85" Height="30"
                     FontSize="10"
                     ToolTip="Изменить номер телефона"
-                    Click="btnChange_Click"/>
+                    Click="btnChange_Click"
+                        Command="{Binding ButtonChangeCommand}"/>
 
                 <Button x:Name="btnSave"
                     Content="Сохранить" 
@@ -85,7 +86,9 @@
         <GridSplitter VerticalAlignment="Stretch" Grid.Column="1" Width="2"/>
 
         <Grid Grid.Column="2">
-            <ListView x:Name="lw"  Grid.Column="2" Margin="10" Grid.Row="1" SelectionChanged="SelectionChangedMethod" >
+            <ListView x:Name="lw"  Grid.Column="2" Margin="10" Grid.Row="1" SelectionChanged="SelectionChangedMethod"
+                      Visibility="{Binding }" >
+                <!-- visibility =  --> >
                 <!--#region Отработка ListView.ItemTemplate -->
                 <!--<ListView.ItemTemplate>
                     <DataTemplate>

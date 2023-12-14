@@ -55,6 +55,8 @@ namespace Home_Work_11_1_
             #endregion
 
             InitializeComponent();
+            string s = "sd";
+            DataContext = s;
 
             consultant = new Consultant("Сергей", App.bank.CreateCollectionForConsultant());
             lw.ItemsSource = ((Consultant)consultant).WorkerClients;
@@ -63,6 +65,8 @@ namespace Home_Work_11_1_
             btnChange.IsEnabled = false;
             TelephoneNumber.IsEnabled = false;
         }
+
+        //TODO: Создать нормальные папки и навигацию (v vm )
 
         /// <summary>
         /// Обработчик для кнопки Просмотр

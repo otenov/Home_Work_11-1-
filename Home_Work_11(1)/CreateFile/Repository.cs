@@ -27,6 +27,7 @@ namespace Home_Work_11_1_
 
         static Repository()
         {
+            //TODO: Перенести в отдельный метод
             if (File.Exists("CollectionClients"))
             {
                 Stream fStream = new FileStream("CollectionClients", FileMode.OpenOrCreate, FileAccess.Read);
