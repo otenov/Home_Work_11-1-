@@ -55,48 +55,47 @@ namespace Home_Work_11_1_
             #endregion
 
             InitializeComponent();
-            string s = "sd";
-            DataContext = s;
+            DataContext = new MainWindowVM();
 
             consultant = new Consultant("Сергей", App.bank.CreateCollectionForConsultant());
-            lw.ItemsSource = ((Consultant)consultant).WorkerClients;
-            lw.Visibility = Visibility.Hidden;
-            btnSave.IsEnabled = false;
-            btnChange.IsEnabled = false;
-            TelephoneNumber.IsEnabled = false;
+            //lw.ItemsSource = ((Consultant)consultant).WorkerClients;
+            //lw.Visibility = Visibility.Hidden;
+            //btnSave.IsEnabled = false;
+            //btnChange.IsEnabled = false;
+            //TelephoneNumber.IsEnabled = false;
         }
 
-        //TODO: Создать нормальные папки и навигацию (v vm )
+        //TODO: Создать нормальные папки и навигацию (v vm)
 
         /// <summary>
         /// Обработчик для кнопки Просмотр
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ButtonViewClick(object sender, RoutedEventArgs e)
-        {
-            if (lw.Visibility == Visibility.Visible) return;
-            lw.Visibility = Visibility.Visible;
-            if (!(lw.SelectedItem is null))
-            {
-                TelephoneNumber.IsEnabled = true;
-                btnChange.IsEnabled = true;
-            }
-        }
+        //private void ButtonViewClick(object sender, RoutedEventArgs e)
+        //{
+        //    if (lw.Visibility == Visibility.Visible) return;
+        //    lw.Visibility = Visibility.Visible;
+        //    if (!(lw.SelectedItem is null))
+        //    {
+        //        TelephoneNumber.IsEnabled = true;
+        //        btnChange.IsEnabled = true;
+        //    }
+        //}
 
         /// <summary>
         /// Обработчик для кнопки Скрыть
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ButtonHideClick(object sender, RoutedEventArgs e)
-        {
-            if (lw.Visibility == Visibility.Hidden) return;
-            lw.Visibility = Visibility.Hidden;
-            btnSave.IsEnabled = false;
-            btnChange.IsEnabled = false;
-            TelephoneNumber.IsEnabled = false;
-        }
+        //private void ButtonHideClick(object sender, RoutedEventArgs e)
+        //{
+        //    if (lw.Visibility == Visibility.Hidden) return;
+        //    lw.Visibility = Visibility.Hidden;
+        //    btnSave.IsEnabled = false;
+        //    btnChange.IsEnabled = false;
+        //    TelephoneNumber.IsEnabled = false;
+        //}
 
         /// <summary>
         /// Обработчик для изменения выбора элемента списка. Реализован для изменения данных

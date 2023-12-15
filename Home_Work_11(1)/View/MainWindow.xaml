@@ -40,6 +40,7 @@
                      Cursor="IBeam"
                      ToolTip="Введите новый номер"
                      materialDesign:HintAssist.Hint="Введите номер телефона"
+                     IsEnabled="{Binding IsEnabledButtonTNumber}"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
 
                 <Button x:Name="btnChange"
@@ -49,30 +50,29 @@
                     FontSize="10"
                     ToolTip="Изменить номер телефона"
                     Click="btnChange_Click"
-                        Command="{Binding ButtonChangeCommand}"/>
+                    IsEnabled="{Binding IsEnabledButtonEdit}"/>
 
                 <Button x:Name="btnSave"
                     Content="Сохранить" 
                     Canvas.Bottom="140" Canvas.Left="110" 
                     Width="85" Height="30"
                     FontSize="10"
-                    Click="btnSaveClick"
-                    />
+                    IsEnabled="{Binding IsEnabledButtonSave}"
+                    Click="btnSaveClick" />
 
                 <Button x:Name="btnLook"
                     Content="Просмотр" 
                     Canvas.Bottom="100" Canvas.Left="50" 
                     Width="100" Height="30" 
-                    Click="ButtonViewClick"
                     FontSize="10"
-                    />
+                    Command="{Binding ButtonViewClickCommand}"/>
 
                 <Button x:Name="btnHide"
                     Content="Скрыть" 
                     Canvas.Bottom="60" Canvas.Left="50"
                     Width="100" Height="30" 
-                    Click="ButtonHideClick"
-                    FontSize="10"/>
+                    FontSize="10"
+                    Command="{Binding ButtonHideClickCommand}"/>
 
                 <Button x:Name="btnBack"
                     Content="Назад" 
@@ -87,7 +87,8 @@
 
         <Grid Grid.Column="2">
             <ListView x:Name="lw"  Grid.Column="2" Margin="10" Grid.Row="1" SelectionChanged="SelectionChangedMethod"
-                      Visibility="{Binding }" >
+                      Visibility="{Binding ListViewVisibility}" ItemsSource="{Binding Clients}" 
+                      SelectedItem="{Binding SelectedClient}">
                 <!-- visibility =  --> >
                 <!--#region Отработка ListView.ItemTemplate -->
                 <!--<ListView.ItemTemplate>
@@ -121,7 +122,13 @@
             </ListView>
         </Grid>
 
-        <ListBox x:Name="HistoryList" Grid.Column= "3" Margin="20" MouseDoubleClick="MouseDoubleClickMethod">
+        <ListBox x:Name="HistoryList"
+                 Grid.Column= "3"
+                 Margin="20" 
+                 MouseDoubleClick="MouseDoubleClickMethod"
+                 ItemsSource="{Binding Clients}"
+                 Visibility="{Binding Path=ListViewVisibility}" 
+                 SelectedItem="{Binding Path=SelectedClient}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock>

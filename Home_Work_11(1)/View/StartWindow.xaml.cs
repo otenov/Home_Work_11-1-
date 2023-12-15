@@ -26,6 +26,7 @@ namespace Home_Work_11_1_
         public StartWindow()
         {
             InitializeComponent();
+            DataContext = new StartWindowVM();
         }
 
         /// <summary>
@@ -33,24 +34,24 @@ namespace Home_Work_11_1_
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void CheckedConsultant(object sender, RoutedEventArgs e)
-        {
-            ConsultantWindow consultantWindow = new ConsultantWindow();
-            consultantWindow.Show();
-            this.Close();
+        //private void CheckedConsultant(object sender, RoutedEventArgs e)
+        //{
+        //    ConsultantWindow consultantWindow = new ConsultantWindow();
+        //    consultantWindow.Show();
+        //    this.Close();
 
-        }
+        //}
 
-        /// <summary>
-        /// Выбор Менеджера
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void CheckedManager(object sender, RoutedEventArgs e)
-        {
-            ManagerWindow managerWindow = new ManagerWindow();
-            managerWindow.Show();
-            this.Close();
-        }
+        ///// <summary>
+        ///// Выбор Менеджера
+        ///// </summary>
+        ///// <param name="sender"></param>
+        ///// <param name="e"></param>
+        //private void CheckedManager(object sender, RoutedEventArgs e)
+        //{
+        //    ManagerWindow managerWindow = new ManagerWindow();
+        //    managerWindow.Show();
+        //    this.Close();
+        //}
     }
 }

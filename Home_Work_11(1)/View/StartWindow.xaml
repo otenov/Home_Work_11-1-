@@ -5,7 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Home_Work_11_1_"
         mc:Ignorable="d"
-        Title="StartWindow" Height="300" Width="400">
+        Title="StartWindow" Height="300" Width="400"
+        >
     <Grid>
         <Border Margin="20" CornerRadius="30" Background="Beige">
             <Border.Effect>
@@ -20,8 +21,8 @@
                     <TextBlock Margin="5" Text="Выберите роль" HorizontalAlignment="Center" FontSize="16"/>
                 </Border>
                 <StackPanel Grid.Row="1" Margin="20 15" Orientation="Vertical">
-                    <RadioButton Checked="CheckedConsultant" Content="Консультант" HorizontalAlignment="Center" Margin="10" Style="{StaticResource MaterialDesignCalendarMeridiemRadioButtonDefault}"/>
-                    <RadioButton Checked="CheckedManager" Content="Менеджер" HorizontalAlignment="Center" Margin="10" Style="{StaticResource MaterialDesignCalendarMeridiemRadioButtonDefault}"/>
+                    <RadioButton Command="{Binding ConsultantWindowLoadCommand}" Content="Консультант" HorizontalAlignment="Center" Margin="10" Style="{StaticResource MaterialDesignCalendarMeridiemRadioButtonDefault}"/>
+                    <RadioButton Command="{Binding ManagerWindowLoadCommand}" Content="Менеджер" HorizontalAlignment="Center" Margin="10" Style="{StaticResource MaterialDesignCalendarMeridiemRadioButtonDefault}"/>
                 </StackPanel>
             </Grid>
         </Border>
