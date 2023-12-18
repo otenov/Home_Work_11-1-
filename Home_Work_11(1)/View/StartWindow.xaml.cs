@@ -15,8 +15,9 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Xml.Serialization;
+using Home_Work_11_1_.ViewModel;
 
-namespace Home_Work_11_1_
+namespace Home_Work_11_1_.View
 {
     /// <summary>
     /// Логика взаимодействия для StartWindow.xaml
@@ -26,9 +27,10 @@ namespace Home_Work_11_1_
         public StartWindow()
         {
             InitializeComponent();
-            DataContext = new StartWindowVM();
+            DataContext = new StartWindowVM(this.Close);
         }
 
+        #region Без VM
         /// <summary>
         /// Выбор Консультанта
         /// </summary>
@@ -53,5 +55,6 @@ namespace Home_Work_11_1_
         //    managerWindow.Show();
         //    this.Close();
         //}
+        #endregion
     }
 }

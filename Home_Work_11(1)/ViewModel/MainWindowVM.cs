@@ -11,10 +11,17 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 
-namespace Home_Work_11_1_
+
+namespace Home_Work_11_1_.ViewModel
 {
     public class MainWindowVM : INotifyPropertyChanged
     {
+        private Consultant consultant;
+        public Consultant Consultant
+        {
+            get => consultant;
+        }
+
         private Visibility listViewVisibility;
         public Visibility ListViewVisibility
         {
@@ -26,21 +33,32 @@ namespace Home_Work_11_1_
             }
         }
 
-        public Client SelectedClient { get; set; }
-
-        private ObservableCollection<Client> clients;
-        public ObservableCollection<Client> Clients
+        private Client selectedClient;
+        public Client SelectedClient
         {
-            get
-            {
-                return clients;
-            }
+            get => selectedClient;
             set
             {
-                clients = value;
-                OnPropertyChanged("Clients");
+                selectedClient = value;
+                OnPropertyChanged("SelectedClient");
+                IsEnabledButtonTNumber = true;
+                IsEnabledButtonEdit = true;
             }
         }
+
+        //private ObservableCollection<Client> clients;
+        public ObservableCollection<Client> Clients { get; set; }
+        //{
+        //    get
+        //    {
+        //        return clients;
+        //    }
+        //    set
+        //    {
+        //        clients = value;
+        //        OnPropertyChanged("Clients");
+        //    }
+        //}
 
         private bool isEnabledButtonTNumber;
         public bool IsEnabledButtonTNumber
@@ -91,8 +109,6 @@ namespace Home_Work_11_1_
         {
             if (ListViewVisibility == Visibility.Visible) return;
             ListViewVisibility = Visibility.Visible;
-            IsEnabledButtonTNumber = true;
-            IsEnabledButtonEdit = true;
             if (!(SelectedClient is null))
             {
                 IsEnabledButtonTNumber = true;
@@ -118,6 +134,8 @@ namespace Home_Work_11_1_
 
         public MainWindowVM()
         {
+            consultant = new Consultant("Сергей", App.bank.CreateCollectionForConsultant());
+            Clients = consultant.WorkerClients;
             ButtonViewClickCommand = new CommandBase(ButtonViewClick);
             ButtonHideClickCommand = new CommandBase(ButtonHideClick);
             IsEnabledButtonSave = false;

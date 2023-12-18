@@ -4,8 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Home_Work_11_1_.View;
 
-namespace Home_Work_11_1_
+namespace Home_Work_11_1_.ViewModel
 {
     class StartWindowVM
     {
@@ -13,24 +14,27 @@ namespace Home_Work_11_1_
 
         public ICommand ManagerWindowLoadCommand { get; set; }
 
+        private Action Action { get; set; }
+
         private void ConsultantWindowLoad()
         {
             ConsultantWindow consultantWindow = new ConsultantWindow();
+            Action.Invoke(); //TODO: Правильное ли это решение?
             consultantWindow.Show();
-            //this.Close();
         }
 
         private void ManagerWindowLoad()
         {
             ManagerWindow managerWindow = new ManagerWindow();
+            Action.Invoke();
             managerWindow.Show();
-            //this.Close();
         }
 
-        public StartWindowVM()
+        public StartWindowVM(Action action)
         {
             ConsultantWindowLoadCommand = new CommandBase(ConsultantWindowLoad);
             ManagerWindowLoadCommand = new CommandBase(ManagerWindowLoad);
+            this.Action = action;
         }
 
     }

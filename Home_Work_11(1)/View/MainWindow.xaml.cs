@@ -16,8 +16,9 @@ using System.Windows.Shapes;
 using System.Diagnostics;
 using System.Xml.Serialization;
 using System.Collections.ObjectModel;
+using Home_Work_11_1_.ViewModel;
 
-namespace Home_Work_11_1_
+namespace Home_Work_11_1_.View
 {
     /// <summary>
     /// Логика взаимодействия для ConsultantWindow.xaml
@@ -57,15 +58,13 @@ namespace Home_Work_11_1_
             InitializeComponent();
             DataContext = new MainWindowVM();
 
-            consultant = new Consultant("Сергей", App.bank.CreateCollectionForConsultant());
+            //consultant = new Consultant("Сергей", App.bank.CreateCollectionForConsultant());
             //lw.ItemsSource = ((Consultant)consultant).WorkerClients;
             //lw.Visibility = Visibility.Hidden;
             //btnSave.IsEnabled = false;
             //btnChange.IsEnabled = false;
             //TelephoneNumber.IsEnabled = false;
         }
-
-        //TODO: Создать нормальные папки и навигацию (v vm)
 
         /// <summary>
         /// Обработчик для кнопки Просмотр
@@ -110,11 +109,6 @@ namespace Home_Work_11_1_
             btnChange.IsEnabled = true;
             HistoryList.ItemsSource = client.HistoryChanges;
 
-
-            //
-            //var arr = Enumerable.Range(1, client.HistoryChanges.Count).ToArray();
-            //var historyChangesDict = client.HistoryChanges.ToDictionary(y => client.HistoryChanges.IndexOf(y) + 1, x => x);
-            //HistoryList.ItemsSource = arr;
         }
 
         /// <summary>

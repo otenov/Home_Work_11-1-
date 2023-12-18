@@ -15,7 +15,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Xml.Serialization;
 
-namespace Home_Work_11_1_
+namespace Home_Work_11_1_.View
 {
     /// <summary>
     /// Логика взаимодействия для ManagerWindow.xaml
