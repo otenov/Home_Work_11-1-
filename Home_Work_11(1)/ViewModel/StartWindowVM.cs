@@ -8,7 +8,7 @@ using Home_Work_11_1_.View;
 
 namespace Home_Work_11_1_.ViewModel
 {
-    class StartWindowVM
+    class StartWindowVM //TODO: Убрать View из VM
     {
         public ICommand ConsultantWindowLoadCommand { get; set; }
 
@@ -19,7 +19,7 @@ namespace Home_Work_11_1_.ViewModel
         private void ConsultantWindowLoad()
         {
             ConsultantWindow consultantWindow = new ConsultantWindow();
-            Action.Invoke(); //TODO: Правильное ли это решение?
+            Action.Invoke();
             consultantWindow.Show();
         }
 

@@ -75,7 +75,7 @@ namespace Home_Work_11_1_
 
         public ObservableCollection<HistoryRecord> HistoryChanges { get; set; }
 
-        //в отдельный абстрактный класс
+        //TODO: в отдельный абстрактный класс. А как?
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {

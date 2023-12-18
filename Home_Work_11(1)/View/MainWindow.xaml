@@ -38,10 +38,10 @@
                      Width="150" Height="36" HorizontalAlignment="Center" 
                      Canvas.Bottom="180" Canvas.Left="30" 
                      Cursor="IBeam"
-                     
+                     Text="{Binding TextTelephoneBox}"
                      ToolTip="Введите новый номер"
                      materialDesign:HintAssist.Hint="Введите номер телефона"
-                     IsEnabled="{Binding IsEnabledButtonTNumber}"
+                     IsEnabled="{Binding IsEnabledBoxTNumber}"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
 
                 <Button x:Name="btnChange"
@@ -132,9 +132,9 @@
                  Grid.Column= "3"
                  Margin="20" 
                  MouseDoubleClick="MouseDoubleClickMethod"
-                 ItemsSource="{Binding Clients}"
+                 ItemsSource="{Binding HistoryRecords}"
                  Visibility="{Binding Path=ListViewVisibility}" 
-                 SelectedItem="{Binding Path=SelectedClient}">
+                 SelectedItem="{Binding Path=SelectedHistoryRecord}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock>

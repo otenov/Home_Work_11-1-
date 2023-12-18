@@ -101,15 +101,15 @@ namespace Home_Work_11_1_.View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void SelectionChangedMethod(object sender, SelectionChangedEventArgs e)
-        {
-            Client client = (Client)lw.SelectedItem;
-            TelephoneNumber.IsEnabled = true;
-            TelephoneNumber.Text = client.TelephoneNumber;
-            btnChange.IsEnabled = true;
-            HistoryList.ItemsSource = client.HistoryChanges;
+        //private void SelectionChangedMethod(object sender, SelectionChangedEventArgs e)
+        //{
+        //    Client client = (Client)lw.SelectedItem;
+        //    TelephoneNumber.IsEnabled = true;
+        //    TelephoneNumber.Text = client.TelephoneNumber;
+        //    btnChange.IsEnabled = true;
+        //    HistoryList.ItemsSource = client.HistoryChanges;
 
-        }
+        //}
 
         /// <summary>
         /// Обработчик для кнопки Изменить

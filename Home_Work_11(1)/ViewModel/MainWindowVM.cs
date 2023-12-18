@@ -16,6 +16,7 @@ namespace Home_Work_11_1_.ViewModel
 {
     public class MainWindowVM : INotifyPropertyChanged
     {
+        //TODO: Можно ли давать ссылку в vm на model ?
         private Consultant consultant;
         public Consultant Consultant
         {
@@ -33,7 +34,7 @@ namespace Home_Work_11_1_.ViewModel
             }
         }
 
-        private Client selectedClient;
+        private Client selectedClient; //TODO: Могу я как-то сделать привязку на основе свойства выделенного клиента его истории изменений?
         public Client SelectedClient
         {
             get => selectedClient;
@@ -41,10 +42,29 @@ namespace Home_Work_11_1_.ViewModel
             {
                 selectedClient = value;
                 OnPropertyChanged("SelectedClient");
-                IsEnabledButtonTNumber = true;
+                IsEnabledBoxTNumber = true;
                 IsEnabledButtonEdit = true;
+                TextTelephoneBox = selectedClient.TelephoneNumber;
+                HistoryRecords = selectedClient.HistoryChanges;
             }
         }
+
+
+        //TODO: Где должен быть этот код? В отдельном VM?
+        private HistoryRecord selectedHistoryRecord;
+        public HistoryRecord SelectedHistoryRecord
+        {
+            get => selectedHistoryRecord;
+            set
+            {
+                selectedHistoryRecord = value;
+                OnPropertyChanged("SelectedHistoryRecord");
+            }
+        }
+        public ObservableCollection<HistoryRecord> HistoryRecords { get; set; }
+
+
+        //TODO: Нужно ли для коллекций прописывать свойства подробно и вызывать метод OnPropertyChanged("Clients"); ?
 
         //private ObservableCollection<Client> clients;
         public ObservableCollection<Client> Clients { get; set; }
@@ -60,18 +80,19 @@ namespace Home_Work_11_1_.ViewModel
         //    }
         //}
 
-        private bool isEnabledButtonTNumber;
-        public bool IsEnabledButtonTNumber
+        //TODO: Можно ли объеинять свойства для разных компонентов?
+        private bool isEnabledBoxTNumber;
+        public bool IsEnabledBoxTNumber
         {
             get
             {
-                return isEnabledButtonTNumber;
+                return isEnabledBoxTNumber;
             }
 
             set
             {
-                isEnabledButtonTNumber = value;
-                OnPropertyChanged("IsEnabledButtonTNumber");
+                isEnabledBoxTNumber = value;
+                OnPropertyChanged("isEnabledBoxTNumber");
             }
         }
 
@@ -101,6 +122,17 @@ namespace Home_Work_11_1_.ViewModel
             }
         }
 
+        private string textTelephoneBox;
+        public string TextTelephoneBox
+        {
+            get => textTelephoneBox;
+            set
+            {
+                textTelephoneBox = value;
+                OnPropertyChanged("TextTelephoneBox");
+            }
+        }
+
         public ICommand ButtonViewClickCommand { get; set; }
 
         public ICommand ButtonHideClickCommand { get; set; }
@@ -111,7 +143,7 @@ namespace Home_Work_11_1_.ViewModel
             ListViewVisibility = Visibility.Visible;
             if (!(SelectedClient is null))
             {
-                IsEnabledButtonTNumber = true;
+                IsEnabledBoxTNumber = true;
                 IsEnabledButtonEdit = true;
             }
         }
@@ -122,7 +154,7 @@ namespace Home_Work_11_1_.ViewModel
             ListViewVisibility = Visibility.Hidden;
             IsEnabledButtonSave = false;
             IsEnabledButtonEdit = false;
-            IsEnabledButtonTNumber = false;
+            IsEnabledBoxTNumber = false;
         }
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -139,7 +171,7 @@ namespace Home_Work_11_1_.ViewModel
             ButtonViewClickCommand = new CommandBase(ButtonViewClick);
             ButtonHideClickCommand = new CommandBase(ButtonHideClick);
             IsEnabledButtonSave = false;
-            IsEnabledButtonTNumber = false;
+            IsEnabledBoxTNumber = false;
             IsEnabledButtonEdit = false;
             ListViewVisibility = Visibility.Hidden;
         }
