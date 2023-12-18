@@ -95,7 +95,7 @@
                       ItemsSource="{Binding Clients}" 
                       SelectedItem="{Binding SelectedClient}"
                       >
-                <!-- visibility =  --> >
+                <!-- visibility =  --> 
                 <!--#region Отработка ListView.ItemTemplate -->
                 <!--<ListView.ItemTemplate>
                     <DataTemplate>
