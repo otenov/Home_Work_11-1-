@@ -8,25 +8,24 @@ using Home_Work_11_1_.View;
 
 namespace Home_Work_11_1_.ViewModel
 {
-    class StartWindowVM //TODO: Убрать View из VM
+    class StartWindowVM : BaseVM
     {
         public ICommand ConsultantWindowLoadCommand { get; set; }
 
         public ICommand ManagerWindowLoadCommand { get; set; }
-
-        private Action Action { get; set; }
+        
 
         private void ConsultantWindowLoad()
         {
-            ConsultantWindow consultantWindow = new ConsultantWindow();
-            Action.Invoke();
+            ConsultantWindow consultantWindow = new ConsultantWindow(); //Ui эллемент
+            CloseAction.Invoke();
             consultantWindow.Show();
         }
 
         private void ManagerWindowLoad()
         {
-            ManagerWindow managerWindow = new ManagerWindow();
-            Action.Invoke();
+            ManagerWindow managerWindow = new ManagerWindow(); //Ui эллемент
+            CloseAction.Invoke();
             managerWindow.Show();
         }
 
@@ -34,7 +33,7 @@ namespace Home_Work_11_1_.ViewModel
         {
             ConsultantWindowLoadCommand = new CommandBase(ConsultantWindowLoad);
             ManagerWindowLoadCommand = new CommandBase(ManagerWindowLoad);
-            this.Action = action;
+            base.CloseAction = action;
         }
 
     }

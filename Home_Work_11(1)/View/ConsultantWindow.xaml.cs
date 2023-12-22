@@ -17,9 +17,12 @@ using System.Diagnostics;
 using System.Xml.Serialization;
 using System.Collections.ObjectModel;
 using Home_Work_11_1_.ViewModel;
+using Home_Work_11_1_.Helpers;
 
 namespace Home_Work_11_1_.View
 {
+    //TODO: Как сделать одно окно и для консультанта и для менеджера правильно с помощью наследования?
+
     /// <summary>
     /// Логика взаимодействия для ConsultantWindow.xaml
     /// </summary>
@@ -56,7 +59,7 @@ namespace Home_Work_11_1_.View
             #endregion
 
             InitializeComponent();
-            DataContext = new MainWindowVM();
+            DataContext = new ConsultantVM(new WPFMessageBoxHelper());
 
             //consultant = new Consultant("Сергей", App.bank.CreateCollectionForConsultant());
             //lw.ItemsSource = ((Consultant)consultant).WorkerClients;
@@ -116,27 +119,27 @@ namespace Home_Work_11_1_.View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnChange_Click(object sender, RoutedEventArgs e)
-        {
-            Client client = (Client)lw.SelectedItem;
-            if (Helper.CheckTelephoneNumber(TelephoneNumber.Text))
-            {
-                MessageBox.Show("Вы ввели неверный номер телефона\nПопробуйте еще раз", "", MessageBoxButton.OK, MessageBoxImage.Warning);
-                TelephoneNumber.Text = default;
-                TelephoneNumber.Focus();
-                TelephoneNumber.ToolTip = "Некорректные данные";
-                return;
-            }
-            if (consultant.EditTNumber(client, TelephoneNumber.Text))
-            {
-                MessageBox.Show("Данные не обновлены\n" +
-                    "Вы не внесли никаких изменений", "Оповещение", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-            MessageBox.Show("Данные клиента успешно обновлены.\n" +
-                "Сохраните изменения перед тем как закрыть приложение", "Оповещение", MessageBoxButton.OK);
-            btnSave.IsEnabled = true;
-        }
+        //private void btnChange_Click(object sender, RoutedEventArgs e)
+        //{
+        //    Client client = (Client)lw.SelectedItem;
+        //    if (Helper.CheckTelephoneNumber(TelephoneNumber.Text))
+        //    {
+        //        MessageBox.Show("Вы ввели неверный номер телефона\nПопробуйте еще раз", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+        //        TelephoneNumber.Text = default;
+        //        TelephoneNumber.Focus();
+        //        TelephoneNumber.ToolTip = "Некорректные данные";
+        //        return;
+        //    }
+        //    if (consultant.EditTNumber(client, TelephoneNumber.Text))
+        //    {
+        //        MessageBox.Show("Данные не обновлены\n" +
+        //            "Вы не внесли никаких изменений", "Оповещение", MessageBoxButton.OK, MessageBoxImage.Warning);
+        //        return;
+        //    }
+        //    MessageBox.Show("Данные клиента успешно обновлены.\n" +
+        //        "Сохраните изменения перед тем как закрыть приложение", "Оповещение", MessageBoxButton.OK);
+        //    btnSave.IsEnabled = true;
+        //}
 
         /// <summary>
         /// Обработчик для кнопки Назад
@@ -151,11 +154,11 @@ namespace Home_Work_11_1_.View
             Close();
         }
 
-        private void btnSaveClick(object sender, RoutedEventArgs e)
-        {
-            App.bank.Save((Consultant)consultant);
-            MessageBox.Show("Данные клиента успешно сохранены", "Оповещение", MessageBoxButton.OK);
-        }
+        //private void btnSaveClick(object sender, RoutedEventArgs e)
+        //{
+        //    App.bank.Save((Consultant)consultant);
+        //    MessageBox.Show("Данные клиента успешно сохранены", "Оповещение", MessageBoxButton.OK);
+        //}
 
         private void MouseDoubleClickMethod(object sender, RoutedEventArgs e)
         {

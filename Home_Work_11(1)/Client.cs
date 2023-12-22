@@ -9,7 +9,7 @@ using System.Collections.ObjectModel;
 
 namespace Home_Work_11_1_
 {
-    public class Client : INotifyPropertyChanged
+    public class Client : BaseVM, INotifyPropertyChanged
     {
         private static int staticId;
 
@@ -74,14 +74,6 @@ namespace Home_Work_11_1_
         }
 
         public ObservableCollection<HistoryRecord> HistoryChanges { get; set; }
-
-        //TODO: в отдельный абстрактный класс. А как?
-        public event PropertyChangedEventHandler PropertyChanged;
-        public void OnPropertyChanged([CallerMemberName] string prop = "")
-        {
-            if (PropertyChanged != null)
-                PropertyChanged(this, new PropertyChangedEventArgs(prop));
-        }
 
         // Конструктор без параметров
         public Client()

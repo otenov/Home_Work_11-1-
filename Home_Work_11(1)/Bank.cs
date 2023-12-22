@@ -125,12 +125,12 @@ namespace Home_Work_11_1_
             if (w is Consultant)
             {
                 Sync(w.WorkerClients);
-                Repository.SerializeClientsList(Сlients);
+                Repository.Save(Сlients);
                 return;
             }
             if (w is Manager)
             {
-                Repository.SerializeClientsList(Сlients);
+                Repository.Save(Сlients);
                 return;
             }
         }

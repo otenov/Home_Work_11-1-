@@ -38,20 +38,20 @@
                      Width="150" Height="36" HorizontalAlignment="Center" 
                      Canvas.Bottom="180" Canvas.Left="30" 
                      Cursor="IBeam"
-                     Text="{Binding TextTelephoneBox}"
+                     Text="{Binding TextTelephoneNumber}"
                      ToolTip="Введите новый номер"
                      materialDesign:HintAssist.Hint="Введите номер телефона"
-                     IsEnabled="{Binding IsEnabledBoxTNumber}"
+                     IsEnabled="{Binding IsEnabledEditPanel}"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
 
-                <Button x:Name="btnChange"
+                <Button x:Name="btnEdit"
                     Content="Изменить"
                     Canvas.Bottom="140" Canvas.Left="20" 
                     Width="85" Height="30"
                     FontSize="10"
                     ToolTip="Изменить номер телефона"
-                    Click="btnChange_Click"
-                    IsEnabled="{Binding IsEnabledButtonEdit}"/>
+                    IsEnabled="{Binding IsEnabledEditPanel}"
+                    Command="{Binding ButtonEditClickCommand}"/>
 
                 <Button x:Name="btnSave"
                     Content="Сохранить" 
@@ -59,7 +59,7 @@
                     Width="85" Height="30"
                     FontSize="10"
                     IsEnabled="{Binding IsEnabledButtonSave}"
-                    Click="btnSaveClick" />
+                    Command="{Binding ButtonSaveClickCommand}"/>
 
                 <Button x:Name="btnLook"
                     Content="Просмотр" 
@@ -95,25 +95,6 @@
                       ItemsSource="{Binding Clients}" 
                       SelectedItem="{Binding SelectedClient}"
                       >
-                <!-- visibility =  --> 
-                <!--#region Отработка ListView.ItemTemplate -->
-                <!--<ListView.ItemTemplate>
-                    <DataTemplate>
-                        <Grid>
-                            <Grid.ColumnDefinitions>
-                                <ColumnDefinition Width="200"/>
-                                <ColumnDefinition Width="200"/>
-                                <ColumnDefinition Width="200"/>
-                                <ColumnDefinition Width="200"/>
-                            </Grid.ColumnDefinitions>
-                            <TextBlock x:Name="t1" Grid.Column="0" Text="{Binding FName}"/>
-                            <TextBlock x:Name="t2" Grid.Column="1" Text="{Binding Surname}"/>
-                            <TextBlock x:Name="t3" Grid.Column="2" Text="{Binding TelephoneNumber}"/>
-                            <TextBlock x:Name="t4" Grid.Column="3" Text="{Binding Pasport}"/>
-                        </Grid>
-                    </DataTemplate>
-                </ListView.ItemTemplate>-->
-                <!--#endregion-->
                 <ListView.View>
                     <GridView ColumnHeaderContainerStyle="{StaticResource GridHeader}" AllowsColumnReorder="False">
                         <GridView.Columns>
@@ -132,7 +113,7 @@
                  Grid.Column= "3"
                  Margin="20" 
                  MouseDoubleClick="MouseDoubleClickMethod"
-                 ItemsSource="{Binding HistoryRecords}"
+                 ItemsSource="{Binding SelectedClient.HistoryChanges}"
                  Visibility="{Binding Path=ListViewVisibility}" 
                  SelectedItem="{Binding Path=SelectedHistoryRecord}">
             <ListBox.ItemTemplate>

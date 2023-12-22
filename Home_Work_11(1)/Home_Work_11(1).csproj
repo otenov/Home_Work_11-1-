@@ -64,7 +64,10 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Bank.cs" />
+    <Compile Include="BaseVM.cs" />
     <Compile Include="Helper.cs" />
+    <Compile Include="Helpers\IMessageBoxHelper.cs" />
+    <Compile Include="Helpers\MessageBoxHelper.cs" />
     <Compile Include="HistoryRecord.cs" />
     <Compile Include="ClientGenerator.cs" />
     <Compile Include="CommandBase.cs" />
@@ -75,13 +78,13 @@
     <Compile Include="IConsultant.cs" />
     <Compile Include="IManager.cs" />
     <Compile Include="Repository.cs" />
-    <Compile Include="ViewModel\MainWindowVM.cs" />
+    <Compile Include="ViewModel\ConsultantVM.cs" />
     <Compile Include="View\StartWindow.xaml.cs">
       <DependentUpon>StartWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Worker.cs" />
-    <Compile Include="ViewModel\StartWindowVM.cs" />
-    <Compile Include="WindowTestBinding.xaml.cs">
+    <Compile Include="Для справки\StartWindowVM.cs" />
+    <Compile Include="Для справки\WindowTestBinding.xaml.cs">
       <DependentUpon>WindowTestBinding.xaml</DependentUpon>
     </Compile>
     <Page Include="View\AddNewClientWindow.xaml">
@@ -92,7 +95,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\MainWindow.xaml">
+    <Page Include="View\ConsultantWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -104,8 +107,8 @@
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Consultant.cs" />
-    <Compile Include="View\MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="View\ConsultantWindow.xaml.cs">
+      <DependentUpon>ConsultantWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\ManagerWindow.xaml">
@@ -116,7 +119,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="WindowTestBinding.xaml">
+    <Page Include="Для справки\WindowTestBinding.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

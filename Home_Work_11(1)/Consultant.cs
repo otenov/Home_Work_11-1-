@@ -25,7 +25,7 @@ namespace Home_Work_11_1_
         /// <returns></returns>
         public bool EditTNumber(Client client, string newTNumber)
         {
-            HistoryRecord historyRecord = new HistoryRecord(this, client.HistoryChanges.Count + 1, HistoryRecord.TypeOfHistory.Edit); //как правильно делать данную операцию
+            HistoryRecord historyRecord = new HistoryRecord(this, client.HistoryChanges.Count + 1, HistoryRecord.TypeOfHistory.Edit);
             if (client.TelephoneNumber != newTNumber)
             {
                 historyRecord.Add(new Record("TelephoneNumber", client.TelephoneNumber, newTNumber));

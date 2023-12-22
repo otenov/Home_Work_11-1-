@@ -10,9 +10,11 @@ using System.Xml.Serialization;
 
 namespace Home_Work_11_1_
 {
-    
     public static class Repository
     {
+        /// <summary>
+        /// Генератор рандомных клиентов
+        /// </summary>
         private static ClientGenerator clientGenerator;
 
         /// <summary>
@@ -23,30 +25,28 @@ namespace Home_Work_11_1_
         /// <summary>
         /// Полный путь к файлу с данными о клиенте
         /// </summary>
-        private static string Path { get; set; }
+        private static string Path { get; set;}
 
         static Repository()
         {
-            //TODO: Перенести в отдельный метод
             if (File.Exists("CollectionClients"))
             {
                 Stream fStream = new FileStream("CollectionClients", FileMode.OpenOrCreate, FileAccess.Read);
                 Path = (fStream as FileStream).Name;
-                Clients = DeserializeObservableClient();
+                Clients = Load();
             }
             else
             {
-                clientGenerator = new ClientGenerator();
-                Clients = clientGenerator.CreateClientsCollection(50);
-                SerializeClientsList(Clients);
+                Clients = CreateRepository();
+                Save(Clients);
             }
         }
 
         /// <summary>
-        /// Создает на основе коллекции, созданной выше xml файл для удобного хранения и обмена данными
+        /// Создает на основе коллекции xml файл для удобного хранения и обмена данными
         /// </summary>
         /// <param name="clients">Коллекция для сериализации</param>
-        public static void SerializeClientsList(ObservableCollection<Client> clients)
+        public static void Save(ObservableCollection<Client> clients)
         {
             XmlSerializer xmls = new XmlSerializer(typeof(ObservableCollection<Client>));
 
@@ -61,10 +61,10 @@ namespace Home_Work_11_1_
         }
 
         /// <summary>
-        /// Метод для парсинга файла sd как observableCollection
+        /// Парсит файл по указанному пути Path и возвращает коллекцию клиентов
         /// </summary>
-        /// <returns></returns>
-        public static ObservableCollection<Client> DeserializeObservableClient()
+        /// <returns>Коллекцию клиентов</returns>
+        public static ObservableCollection<Client> Load()
         {
             ObservableCollection<Client> tempclients = new ObservableCollection<Client>();
 
@@ -78,5 +78,16 @@ namespace Home_Work_11_1_
 
             return tempclients;
         }
+
+        /// <summary>
+        /// Создаёт коллекцию клиентов с рандомными значениями
+        /// </summary>
+        /// <returns>Новая коллекция клиентов</returns>
+        private static ObservableCollection<Client> CreateRepository()
+        {
+            clientGenerator = new ClientGenerator();
+            return clientGenerator.CreateClientsCollection(50);
+        }
+
     }
 }

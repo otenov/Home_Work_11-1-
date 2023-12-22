@@ -27,34 +27,30 @@ namespace Home_Work_11_1_.View
         public StartWindow()
         {
             InitializeComponent();
-            DataContext = new StartWindowVM(this.Close);
         }
 
-        #region Без VM
         /// <summary>
         /// Выбор Консультанта
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        //private void CheckedConsultant(object sender, RoutedEventArgs e)
-        //{
-        //    ConsultantWindow consultantWindow = new ConsultantWindow();
-        //    consultantWindow.Show();
-        //    this.Close();
+        private void CheckedConsultant(object sender, RoutedEventArgs e)
+        {
+            ConsultantWindow consultantWindow = new ConsultantWindow();
+            consultantWindow.Show();
+            Close();
+        }
 
-        //}
-
-        ///// <summary>
-        ///// Выбор Менеджера
-        ///// </summary>
-        ///// <param name="sender"></param>
-        ///// <param name="e"></param>
-        //private void CheckedManager(object sender, RoutedEventArgs e)
-        //{
-        //    ManagerWindow managerWindow = new ManagerWindow();
-        //    managerWindow.Show();
-        //    this.Close();
-        //}
-        #endregion
+        /// <summary>
+        /// Выбор Менеджера
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void CheckedManager(object sender, RoutedEventArgs e)
+        {
+            ManagerWindow managerWindow = new ManagerWindow();
+            managerWindow.Show();
+            Close();
+        }
     }
 }
