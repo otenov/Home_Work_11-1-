@@ -72,6 +72,8 @@
     <Compile Include="ClientGenerator.cs" />
     <Compile Include="CommandBase.cs" />
     <Compile Include="Client.cs" />
+    <Compile Include="IWindowCreator.cs" />
+    <Compile Include="ViewModel\HistoryRecordVM.cs" />
     <Compile Include="View\HistoryRecordWindow.xaml.cs">
       <DependentUpon>HistoryRecordWindow.xaml</DependentUpon>
     </Compile>
@@ -82,7 +84,9 @@
     <Compile Include="View\StartWindow.xaml.cs">
       <DependentUpon>StartWindow.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Windows.cs" />
     <Compile Include="Worker.cs" />
+    <Compile Include="WPFWindowCreator.cs" />
     <Compile Include="Для справки\StartWindowVM.cs" />
     <Compile Include="Для справки\WindowTestBinding.xaml.cs">
       <DependentUpon>WindowTestBinding.xaml</DependentUpon>

@@ -18,5 +18,10 @@ namespace Home_Work_11_1_
         }
 
         protected Action CloseAction { get; set; }
+
+        public BaseVM(Action CloseAction)
+        {
+            this.CloseAction = CloseAction; 
+        }
     }
 }

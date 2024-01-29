@@ -10,20 +10,28 @@
         <StackPanel Orientation="Vertical">
             <TextBlock Height="40" Margin="15 15 15 0" FontSize="20">
                 <Run Text="Автор: " />
-                <Run x:Name="Author" TextDecorations="Underline" />
+                <Run x:Name="Author"
+                     Text="{Binding TextBlockAuthor, Mode=OneWay}"
+                     TextDecorations="Underline" />
             </TextBlock>
             <TextBlock Height="40" Margin="15 15 15 0" FontSize="20">
                 <Run Text="Дата изменения: " />
-                <Run x:Name="Date" TextDecorations="Underline" />
+                <Run x:Name="Date" 
+                     Text="{Binding TextBlockDate, Mode=OneWay}"
+                     TextDecorations="Underline" />
             </TextBlock>
             <TextBlock Height="40" Margin="15 15 15 0" FontSize="20">
                 <Run Text="Тип изменения: " />
-                <Run x:Name="TypeOfHistory" TextDecorations="Underline" />
+                <Run x:Name="TypeOfHistory" 
+                     Text="{Binding TextBlockTypeOfHistory, Mode=OneWay}"
+                     TextDecorations="Underline" />
             </TextBlock>
             <TextBlock Text="Список изменений" HorizontalAlignment="Center" Height="40" Margin="15 15 15 0" FontSize="20">
             </TextBlock>
             
-            <ListView x:Name="HistoryRecordList" Height = "250" Margin="15 0">
+            <ListView x:Name="HistoryRecordList"
+                      ItemsSource="{Binding HistoryRecords}"
+                      Height = "250" Margin="15 0">
                 <ListView.View>
                     <GridView  AllowsColumnReorder="False">
                         <GridViewColumn Header="Изменённое поле" Width ="200"  DisplayMemberBinding="{Binding Field}" />

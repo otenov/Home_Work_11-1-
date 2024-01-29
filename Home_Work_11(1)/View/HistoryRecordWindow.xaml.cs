@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Home_Work_11_1_.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -20,16 +21,11 @@ namespace Home_Work_11_1_
     /// </summary>
     public partial class HistoryRecordWindow : Window
     {
-
-        public HistoryRecordWindow(HistoryRecord historyRecord)
+        public HistoryRecordWindow(HistoryRecordVM historyRecordVM)
         {
             InitializeComponent();
-
-            Author.Text = historyRecord.Author;
-            Date.Text = historyRecord.DateOfHistory.Date.ToString();
-            TypeOfHistory.Text = historyRecord.TypeOfHistoryString;
-
-            HistoryRecordList.ItemsSource = historyRecord.Records;
+            //TODO: Можно ли VM передавать из класса помощника во view ? Можно ли так описывать класс помощник
+            DataContext = historyRecordVM;
         }
 
     }

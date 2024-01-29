@@ -28,8 +28,6 @@ namespace Home_Work_11_1_.View
     /// </summary>
     public partial class ConsultantWindow : Window
     {
-        IConsultant consultant;
-
         public ConsultantWindow()  
         {
 
@@ -59,14 +57,7 @@ namespace Home_Work_11_1_.View
             #endregion
 
             InitializeComponent();
-            DataContext = new ConsultantVM(new WPFMessageBoxHelper());
-
-            //consultant = new Consultant("Сергей", App.bank.CreateCollectionForConsultant());
-            //lw.ItemsSource = ((Consultant)consultant).WorkerClients;
-            //lw.Visibility = Visibility.Hidden;
-            //btnSave.IsEnabled = false;
-            //btnChange.IsEnabled = false;
-            //TelephoneNumber.IsEnabled = false;
+            DataContext = new ConsultantVM(new WPFMessageBoxHelper(), Close);
         }
 
         /// <summary>
@@ -146,13 +137,13 @@ namespace Home_Work_11_1_.View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnBackClick(object sender, RoutedEventArgs e)
-        {
-            App.bank.Save((Consultant)consultant);
-            StartWindow startWindow = new StartWindow();
-            startWindow.Show();
-            Close();
-        }
+        //private void btnBackClick(object sender, RoutedEventArgs e)
+        //{
+        //    App.bank.Save((Consultant)consultant);
+        //    StartWindow startWindow = new StartWindow();
+        //    startWindow.Show();
+        //    Close();
+        //}
 
         //private void btnSaveClick(object sender, RoutedEventArgs e)
         //{
@@ -162,8 +153,7 @@ namespace Home_Work_11_1_.View
 
         private void MouseDoubleClickMethod(object sender, RoutedEventArgs e)
         {
-            HistoryRecordWindow historyRecordWindow = new HistoryRecordWindow((HistoryRecord)HistoryList.SelectedItem);
-            historyRecordWindow.ShowDialog();
+            ((ConsultantVM)DataContext).ShowHistoryRecord();
         }
     }
 }

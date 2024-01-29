@@ -79,8 +79,8 @@
                     Content="Назад" 
                     Canvas.Bottom="20" Canvas.Left="50"
                     Width="100" Height="30" 
-                    Click="btnBackClick" 
-                    FontSize="10"/>
+                    FontSize="10"
+                    Command="{Binding ButtonBackClickCommand}"/>
             </Canvas>
         </Border>
         

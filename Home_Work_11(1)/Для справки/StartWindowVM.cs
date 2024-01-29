@@ -29,11 +29,10 @@ namespace Home_Work_11_1_.ViewModel
             managerWindow.Show();
         }
 
-        public StartWindowVM(Action action)
+        public StartWindowVM(Action action) : base(action)
         {
             ConsultantWindowLoadCommand = new CommandBase(ConsultantWindowLoad);
             ManagerWindowLoadCommand = new CommandBase(ManagerWindowLoad);
-            base.CloseAction = action;
         }
 
     }

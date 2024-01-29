@@ -105,6 +105,10 @@ namespace Home_Work_11_1_.ViewModel
 
         public ICommand ButtonSaveClickCommand { get; set; }
 
+        public ICommand ButtonBackClickCommand { get; set; }
+
+        public IWindowCreator WindowCreator { get; set; }
+
         private void ButtonViewClick()
         {
             if (ListViewVisibility == Visibility.Visible) return;
@@ -125,35 +129,61 @@ namespace Home_Work_11_1_.ViewModel
 
         //TODO: Получается, что в любом случае нужно использовать две переменные если делаешь с ONE way?
         //TODO: Как делать проверку и где, если использовать TWO way mode?
-        //TODO: Подумать над тем, чтобы убрать MessageBox из vm
+        //TODO: Так можно убирать messageBox?
         private void ButtonEditClick()
         {
             if (Helper.CheckTelephoneNumber(TextTelephoneNumber))
             {
-                MessageBox.Show("Вы ввели неверный номер телефона\n" +
-                    "Попробуйте еще раз", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+                messageBoxHelper.Show("Вы ввели неверный номер телефона\n" +
+                    "Попробуйте еще раз",
+                    "", 
+                    MessageBoxButton.OK, 
+                    MessageBoxImage.Warning);
                 return;
             }
             //TODO: Надо ли выносить метод сравнения номеров в банк? Это же делает какая-то система.
             if (consultant.EditTNumber(selectedClient, TextTelephoneNumber))
             {
-                MessageBox.Show("Данные не обновлены\n" +
-                    "Вы не внесли никаких изменений", "Оповещение", MessageBoxButton.OK, MessageBoxImage.Warning);
+
+                messageBoxHelper.Show("Данные не обновлены\n" +
+                    "Вы не внесли никаких изменений", "Оповещение", 
+                    MessageBoxButton.OK, 
+                    MessageBoxImage.Warning);
                 return;
             }
-            MessageBox.Show("Данные клиента успешно обновлены.\n" +
-                "Сохраните изменения перед тем как закрыть приложение", "Оповещение", MessageBoxButton.OK);
+            messageBoxHelper.Show("Данные клиента успешно обновлены.\n" +
+                "Сохраните изменения перед тем как закрыть приложение", 
+                "Оповещение", 
+                MessageBoxButton.OK,
+                MessageBoxImage.Information);
             IsEnabledButtonSave = true;
         }
 
         private void ButtonSaveClick()
         {
             App.bank.Save(consultant);
-            MessageBox.Show("Данные клиента успешно сохранены", "Оповещение", MessageBoxButton.OK);
+            messageBoxHelper.Show("Данные клиента успешно сохранены",
+                "Оповещение",
+                MessageBoxButton.OK, 
+                MessageBoxImage.Information);
         }
 
+        private void ButtonBackClick()
+        {
+            App.bank.Save(consultant);
+            WindowCreator.CreateWindow(Windows.StartWindow, null);
+            CloseAction.Invoke();
+        }
 
-        public ConsultantVM(IMessageBoxHelper messageBoxHelper)
+        public void ShowHistoryRecord()
+        {
+            //TODO: Нормально ли, что я тут передаю null в action? Как сделать правильно?
+            //TODO: Можно ил вообще отсюда создавать VM?
+            HistoryRecordVM historyRecordVM = new HistoryRecordVM(SelectedHistoryRecord, null);
+        }
+
+        public ConsultantVM(IMessageBoxHelper messageBoxHelper, Action CloseAction) :
+            base(CloseAction)
         {
             consultant = new Consultant("Сергей", App.bank.CreateCollectionForConsultant());
             Clients = consultant.WorkerClients;
@@ -162,6 +192,8 @@ namespace Home_Work_11_1_.ViewModel
             ButtonHideClickCommand = new CommandBase(ButtonHideClick);
             ButtonEditClickCommand = new CommandBase(ButtonEditClick);
             ButtonSaveClickCommand = new CommandBase(ButtonSaveClick);
+            ButtonBackClickCommand = new CommandBase(ButtonBackClick);
+            WindowCreator = new WPFWindowCreator();
             IsEnabledButtonSave = false;
             IsEnabledEditPanel = false;
             ListViewVisibility = Visibility.Hidden;
