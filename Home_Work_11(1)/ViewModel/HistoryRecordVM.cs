@@ -14,7 +14,7 @@ namespace Home_Work_11_1_.ViewModel
         {
             HistoryRecords = historyRecord.Records;
             TextBlockAuthor = historyRecord.Author;
-            TextBlockDate = historyRecord.DateOfHistory.Date.ToString(); //TODO: Как сделать дату с минутами?
+            TextBlockDate = historyRecord.DateOfHistory.ToString();
             TextBlockTypeOfHistory = historyRecord.TypeOfHistoryString;
             WindowCreator = new WPFWindowCreator();
             WindowCreator.CreateWindow(Windows.HistoryRecordWindow, this);

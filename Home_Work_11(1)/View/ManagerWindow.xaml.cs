@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Home_Work_11_1_.Helpers;
+using Home_Work_11_1_.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.IO;
@@ -27,17 +29,11 @@ namespace Home_Work_11_1_.View
         public ManagerWindow()
         {
             InitializeComponent();
+            DataContext = new ManagerVM( new WPFMessageBoxHelper() ,Close);
+
             manager = new Manager("Сергей", App.bank.Сlients);
             lw.ItemsSource = ((Manager)manager).WorkerClients;
-            lw.Visibility = Visibility.Hidden;
             btnSave.IsEnabled = false;
-            btnChange.IsEnabled = false;
-            Surname.IsEnabled = false;
-            Name.IsEnabled = false;
-            LName.IsEnabled = false;
-            PassportSeries.IsEnabled = false;
-            PassportNumber.IsEnabled = false;
-            TelephoneNumber.IsEnabled = false;
         }
 
         /// <summary>
@@ -58,40 +54,40 @@ namespace Home_Work_11_1_.View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ButtonViewClick(object sender, RoutedEventArgs e)
-        {
-            if(lw.Visibility == Visibility.Visible) return;
-            lw.Visibility = Visibility.Visible;
-            if (!(lw.SelectedItem is null))
-            {
-                Surname.IsEnabled = true;
-                Name.IsEnabled = true;
-                LName.IsEnabled = true;
-                PassportSeries.IsEnabled = true;
-                PassportNumber.IsEnabled = true;
-                TelephoneNumber.IsEnabled = true;
-                btnChange.IsEnabled = true;
-            }
-        }
+        //private void ButtonViewClick(object sender, RoutedEventArgs e)
+        //{
+        //    if(lw.Visibility == Visibility.Visible) return;
+        //    lw.Visibility = Visibility.Visible;
+        //    if (!(lw.SelectedItem is null))
+        //    {
+        //        Surname.IsEnabled = true;
+        //        Name.IsEnabled = true;
+        //        LName.IsEnabled = true;
+        //        PassportSeries.IsEnabled = true;
+        //        PassportNumber.IsEnabled = true;
+        //        TelephoneNumber.IsEnabled = true;
+        //        btnChange.IsEnabled = true;
+        //    }
+        //}
 
         /// <summary>
         /// Обработчик для кнопоки Скрыть
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void ButtonHideClick(object sender, RoutedEventArgs e)
-        {
-            if (lw.Visibility == Visibility.Hidden) return;
-            lw.Visibility = Visibility.Hidden;
-            btnSave.IsEnabled = false;
-            btnChange.IsEnabled = false;
-            Surname.IsEnabled = false;
-            Name.IsEnabled = false;
-            LName.IsEnabled = false;
-            PassportSeries.IsEnabled = false;
-            PassportNumber.IsEnabled = false;
-            TelephoneNumber.IsEnabled = false;
-        }
+        //private void ButtonHideClick(object sender, RoutedEventArgs e)
+        //{
+        //    if (lw.Visibility == Visibility.Hidden) return;
+        //    lw.Visibility = Visibility.Hidden;
+        //    btnSave.IsEnabled = false;
+        //    btnChange.IsEnabled = false;
+        //    Surname.IsEnabled = false;
+        //    Name.IsEnabled = false;
+        //    LName.IsEnabled = false;
+        //    PassportSeries.IsEnabled = false;
+        //    PassportNumber.IsEnabled = false;
+        //    TelephoneNumber.IsEnabled = false;
+        //}
 
         /// <summary>
         /// Обработчик для изменения выбора элемента списка. Реализован для изменения данных
@@ -193,13 +189,13 @@ namespace Home_Work_11_1_.View
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        private void btnBackClick(object sender, RoutedEventArgs e)
-        {
-            App.bank.Save((Manager)manager);
-            StartWindow startWindow = new StartWindow();
-            startWindow.Show();
-            Close();
-        }
+        //private void btnBackClick(object sender, RoutedEventArgs e)
+        //{
+        //    App.bank.Save((Manager)manager);
+        //    StartWindow startWindow = new StartWindow();
+        //    startWindow.Show();
+        //    Close();
+        //}
 
         private void btnSaveClick(object sender, RoutedEventArgs e)
         {

@@ -5,9 +5,16 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Home_Work_11_1_.View"
         mc:Ignorable="d"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes" 
+        xmlns:viewmodel="clr-namespace:Home_Work_11_1_.ViewModel"
         Title="Consultant" Height="600" Width="1350"
         MinHeight="600" MinWidth="1000">
+
+    
+    <!--<Window.DataContext>
+        <viewmodel:ConsultantVM />
+    </Window.DataContext>-->
+    
     <Window.Resources>
         <Style x:Key="GridHeader" TargetType="{x:Type GridViewColumnHeader}">
             <Setter Property="Template">

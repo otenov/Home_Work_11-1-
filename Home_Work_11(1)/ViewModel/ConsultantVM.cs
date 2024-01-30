@@ -12,6 +12,8 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 
+//TODO:Нормально ли, что в VM использую ссылку на View ? using System.Windows.Input; using System.Windows;
+
 //ReactiveUI 
 //Prism
 namespace Home_Work_11_1_.ViewModel
@@ -58,7 +60,7 @@ namespace Home_Work_11_1_.ViewModel
 
         public ObservableCollection<Client> Clients { get; }
 
-        private IMessageBoxHelper messageBoxHelper;
+        private IMessageBoxHelper MessageBoxHelper { get; set; } //TODO: Переменная закрытая. Её лучше сделать свойством или полем?
 
         private bool isEnabledEditPanel;
         public bool IsEnabledEditPanel
@@ -71,7 +73,7 @@ namespace Home_Work_11_1_.ViewModel
             set
             {
                 isEnabledEditPanel = value;
-                OnPropertyChanged("IsEnabledEditPanel");
+                OnPropertyChanged(nameof(IsEnabledEditPanel));
             }
         }
 
@@ -134,7 +136,7 @@ namespace Home_Work_11_1_.ViewModel
         {
             if (Helper.CheckTelephoneNumber(TextTelephoneNumber))
             {
-                messageBoxHelper.Show("Вы ввели неверный номер телефона\n" +
+                MessageBoxHelper.Show("Вы ввели неверный номер телефона\n" +
                     "Попробуйте еще раз",
                     "", 
                     MessageBoxButton.OK, 
@@ -145,13 +147,13 @@ namespace Home_Work_11_1_.ViewModel
             if (consultant.EditTNumber(selectedClient, TextTelephoneNumber))
             {
 
-                messageBoxHelper.Show("Данные не обновлены\n" +
+                MessageBoxHelper.Show("Данные не обновлены\n" +
                     "Вы не внесли никаких изменений", "Оповещение", 
                     MessageBoxButton.OK, 
                     MessageBoxImage.Warning);
                 return;
             }
-            messageBoxHelper.Show("Данные клиента успешно обновлены.\n" +
+            MessageBoxHelper.Show("Данные клиента успешно обновлены.\n" +
                 "Сохраните изменения перед тем как закрыть приложение", 
                 "Оповещение", 
                 MessageBoxButton.OK,
@@ -162,7 +164,7 @@ namespace Home_Work_11_1_.ViewModel
         private void ButtonSaveClick()
         {
             App.bank.Save(consultant);
-            messageBoxHelper.Show("Данные клиента успешно сохранены",
+            MessageBoxHelper.Show("Данные клиента успешно сохранены",
                 "Оповещение",
                 MessageBoxButton.OK, 
                 MessageBoxImage.Information);
@@ -197,8 +199,19 @@ namespace Home_Work_11_1_.ViewModel
             IsEnabledButtonSave = false;
             IsEnabledEditPanel = false;
             ListViewVisibility = Visibility.Hidden;
-            this.messageBoxHelper = messageBoxHelper;
+            MessageBoxHelper = messageBoxHelper;
 
         }
+
+        //TODO: Как сделать привязку через datacontext в xaml
+        //TODO: Поговорить подроюно про реализацию ICommand
+        //TODO: Поговорить подроюно про реализацию INotifyPropertyChanged
+        //TODO: DevExpress
+        //TODO: Fody
+
+        //public ConsultantVM(Action CloseAction) : base (CloseAction)
+        //{
+
+        //}
     }
 }
