@@ -72,6 +72,7 @@
     <Compile Include="ClientGenerator.cs" />
     <Compile Include="CommandBase.cs" />
     <Compile Include="Client.cs" />
+    <Compile Include="ICloseable.cs" />
     <Compile Include="IWindowCreator.cs" />
     <Compile Include="ViewModel\HistoryRecordVM.cs" />
     <Compile Include="ViewModel\ManagerVM.cs" />
@@ -82,6 +83,9 @@
     <Compile Include="IManager.cs" />
     <Compile Include="Repository.cs" />
     <Compile Include="ViewModel\ConsultantVM.cs" />
+    <Compile Include="View\ListOfClients.xaml.cs">
+      <DependentUpon>ListOfClients.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\StartWindow.xaml.cs">
       <DependentUpon>StartWindow.xaml</DependentUpon>
     </Compile>
@@ -116,6 +120,10 @@
       <DependentUpon>ConsultantWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="View\ListOfClients.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="View\ManagerWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>

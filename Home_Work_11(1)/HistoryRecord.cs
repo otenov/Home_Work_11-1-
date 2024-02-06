@@ -31,8 +31,9 @@ namespace Home_Work_11_1_
             Delete
         }
 
-        //TODO: Почему если тут убрать set то изменения когда выходишь и занова запускаешь прогу не фиксируются
-        public string TypeOfHistoryString { get; set; }
+        //Вопрос-Ответ: Почему если тут убрать set то изменения, когда выходишь и занова запускаешь прогу не фиксируются.
+        //Set позволяет десериализатору установить значение. (Про xmmlserializator). В json сериализаторе без set работать будет
+        public string TypeOfHistoryString { get; set;}
 
         public HistoryRecord()
         {

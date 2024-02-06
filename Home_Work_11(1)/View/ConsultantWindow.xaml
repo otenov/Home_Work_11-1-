@@ -41,15 +41,20 @@
                 <DropShadowEffect BlurRadius="30"  Color="Gray" />
             </Border.Effect>
             <Canvas Margin="10 10" >
-                <TextBox x:Name="TelephoneNumber" 
+                <StackPanel Canvas.Bottom="180" Canvas.Left="30" >
+
+                    <TextBox x:Name="TelephoneNumber" 
                      Width="150" Height="36" HorizontalAlignment="Center" 
-                     Canvas.Bottom="180" Canvas.Left="30" 
+                    
                      Cursor="IBeam"
-                     Text="{Binding TextTelephoneNumber}"
+                     Text="{Binding TextTelephoneNumber, UpdateSourceTrigger=PropertyChanged}"
                      ToolTip="Введите новый номер"
                      materialDesign:HintAssist.Hint="Введите номер телефона"
                      IsEnabled="{Binding IsEnabledEditPanel}"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+
+                    <TextBox></TextBox>
+                </StackPanel>
 
                 <Button x:Name="btnEdit"
                     Content="Изменить"

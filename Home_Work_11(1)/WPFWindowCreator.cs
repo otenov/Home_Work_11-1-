@@ -10,7 +10,7 @@ namespace Home_Work_11_1_
 {
     class WPFWindowCreator : IWindowCreator
     {
-        //TODO: Можно ли здесь использовать UI компоненты? Если да, то чем это выгодно?
+        //Вопрос: Можно ли здесь использовать UI компоненты? Если да, то чем это выгодно?
         public void CreateWindow(Windows window, BaseVM vm)
         {
             if(window == Windows.StartWindow)

@@ -12,7 +12,8 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 
-//TODO:Нормально ли, что в VM использую ссылку на View ? using System.Windows.Input; using System.Windows; (Не страшно при необходимости меняется на кросс. плат. аналоги)
+//Вопрос-Ответ: Нормально ли, что в VM я использую ссылку на View ? using System.Windows.Input; using System.Windows;
+//Не страшно при необходимости меняется на кросс. плат. аналоги
 
 //ReactiveUI 
 //Prism
@@ -180,9 +181,8 @@ namespace Home_Work_11_1_.ViewModel
 
         public void ShowHistoryRecord()
         {
-            //TODO: Нормально ли, что я тут передаю null в action? Как сделать правильно?. Нет лучше сделать отдельный интерфейс 
-            //TODO: Можно ил вообще отсюда создавать VM? - да
-
+            //Вопрос-Ответ: Можно ли вообще отсюда создавать VM?
+            //Да. Это хорошо
             HistoryRecordVM historyRecordVM = new HistoryRecordVM(SelectedHistoryRecord);
             WindowCreator.CreateWindow(Windows.HistoryRecordWindow, historyRecordVM);
             
@@ -212,15 +212,12 @@ namespace Home_Work_11_1_.ViewModel
 
         }
 
-        //TODO: Как сделать привязку через datacontext в xaml. МЫ можем так сделать, только если констурктор модели не рпнимает никаких аргументов - по умолчанию. Мирон скинет ссылку
-        //TODO: Поговорить подроюно про реализацию ICommand
-        //TODO: Поговорить подроюно про реализацию INotifyPropertyChanged
-        //TODO: DevExpress
-        //TODO: Fody
+        //Вопрос: Как сделать привязку через datacontext в xaml? Мы можем так сделать, только если констурктор модели не принимает никаких аргументов - по умолчанию. Мирон скинет ссылку
+        //Вопрос: Поговорить подроюно про реализацию ICommand
+        //Вопрос: Поговорить подробно про реализацию INotifyPropertyChanged
 
-        //public ConsultantVM(Action CloseAction) : base (CloseAction)
-        //{
+        //На изучение: DevExpress
+        //На изучение: Fody
 
-        //}
     }
 }

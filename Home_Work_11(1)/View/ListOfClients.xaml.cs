@@ -1,7 +1,5 @@
-﻿using Home_Work_11_1_.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -12,20 +10,19 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Home_Work_11_1_
+namespace Home_Work_11_1_.View
 {
     /// <summary>
-    /// Логика взаимодействия для HistoryRecordWindow.xaml
+    /// Логика взаимодействия для ListOfClients.xaml
     /// </summary>
-    public partial class HistoryRecordWindow : Window
+    public partial class ListOfClients : UserControl
     {
-        public HistoryRecordWindow(HistoryRecordVM historyRecordVM)
+        public ListOfClients()
         {
             InitializeComponent();
-            DataContext = historyRecordVM;
         }
-
     }
 }

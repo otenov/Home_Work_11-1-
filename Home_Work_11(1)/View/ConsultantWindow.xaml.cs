@@ -21,7 +21,8 @@ using Home_Work_11_1_.Helpers;
 
 namespace Home_Work_11_1_.View
 {
-    //TODO: Как сделать одно окно и для консультанта и для менеджера правильно с помощью наследования?
+    //Вопрос-Ответ: Как сделать одно окно и для консультанта и для менеджера правильно с помощью наследования?
+    //Вынести общие компоненты в отдельные view и использовать их во view. И для них отдельные VM
 
     /// <summary>
     /// Логика взаимодействия для ConsultantWindow.xaml
@@ -59,97 +60,6 @@ namespace Home_Work_11_1_.View
             InitializeComponent();
             DataContext = new ConsultantVM(new WPFMessageBoxHelper(), Close);
         }
-
-        /// <summary>
-        /// Обработчик для кнопки Просмотр
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        //private void ButtonViewClick(object sender, RoutedEventArgs e)
-        //{
-        //    if (lw.Visibility == Visibility.Visible) return;
-        //    lw.Visibility = Visibility.Visible;
-        //    if (!(lw.SelectedItem is null))
-        //    {
-        //        TelephoneNumber.IsEnabled = true;
-        //        btnChange.IsEnabled = true;
-        //    }
-        //}
-
-        /// <summary>
-        /// Обработчик для кнопки Скрыть
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        //private void ButtonHideClick(object sender, RoutedEventArgs e)
-        //{
-        //    if (lw.Visibility == Visibility.Hidden) return;
-        //    lw.Visibility = Visibility.Hidden;
-        //    btnSave.IsEnabled = false;
-        //    btnChange.IsEnabled = false;
-        //    TelephoneNumber.IsEnabled = false;
-        //}
-
-        /// <summary>
-        /// Обработчик для изменения выбора элемента списка. Реализован для изменения данных
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        //private void SelectionChangedMethod(object sender, SelectionChangedEventArgs e)
-        //{
-        //    Client client = (Client)lw.SelectedItem;
-        //    TelephoneNumber.IsEnabled = true;
-        //    TelephoneNumber.Text = client.TelephoneNumber;
-        //    btnChange.IsEnabled = true;
-        //    HistoryList.ItemsSource = client.HistoryChanges;
-
-        //}
-
-        /// <summary>
-        /// Обработчик для кнопки Изменить
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        //private void btnChange_Click(object sender, RoutedEventArgs e)
-        //{
-        //    Client client = (Client)lw.SelectedItem;
-        //    if (Helper.CheckTelephoneNumber(TelephoneNumber.Text))
-        //    {
-        //        MessageBox.Show("Вы ввели неверный номер телефона\nПопробуйте еще раз", "", MessageBoxButton.OK, MessageBoxImage.Warning);
-        //        TelephoneNumber.Text = default;
-        //        TelephoneNumber.Focus();
-        //        TelephoneNumber.ToolTip = "Некорректные данные";
-        //        return;
-        //    }
-        //    if (consultant.EditTNumber(client, TelephoneNumber.Text))
-        //    {
-        //        MessageBox.Show("Данные не обновлены\n" +
-        //            "Вы не внесли никаких изменений", "Оповещение", MessageBoxButton.OK, MessageBoxImage.Warning);
-        //        return;
-        //    }
-        //    MessageBox.Show("Данные клиента успешно обновлены.\n" +
-        //        "Сохраните изменения перед тем как закрыть приложение", "Оповещение", MessageBoxButton.OK);
-        //    btnSave.IsEnabled = true;
-        //}
-
-        /// <summary>
-        /// Обработчик для кнопки Назад
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        //private void btnBackClick(object sender, RoutedEventArgs e)
-        //{
-        //    App.bank.Save((Consultant)consultant);
-        //    StartWindow startWindow = new StartWindow();
-        //    startWindow.Show();
-        //    Close();
-        //}
-
-        //private void btnSaveClick(object sender, RoutedEventArgs e)
-        //{
-        //    App.bank.Save((Consultant)consultant);
-        //    MessageBox.Show("Данные клиента успешно сохранены", "Оповещение", MessageBoxButton.OK);
-        //}
 
         private void MouseDoubleClickMethod(object sender, RoutedEventArgs e)
         {

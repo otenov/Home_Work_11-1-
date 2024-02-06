@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Home_Work_11_1_.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Configuration;
@@ -18,9 +19,12 @@ namespace Home_Work_11_1_
     {
         public static Bank bank;
 
+        public static IMessageBoxHelper messageBox;
+
         static App()
         {
             bank = new Bank();
+            
         }
     }
 }

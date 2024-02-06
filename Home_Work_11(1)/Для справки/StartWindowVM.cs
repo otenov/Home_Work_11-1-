@@ -8,12 +8,13 @@ using Home_Work_11_1_.View;
 
 namespace Home_Work_11_1_.ViewModel
 {
-    class StartWindowVM : BaseVM
+    class StartWindowVM : BaseVM, ICloseable
     {
         public ICommand ConsultantWindowLoadCommand { get; set; }
 
         public ICommand ManagerWindowLoadCommand { get; set; }
-        
+
+        public Action CloseAction { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         private void ConsultantWindowLoad()
         {
@@ -29,10 +30,11 @@ namespace Home_Work_11_1_.ViewModel
             managerWindow.Show();
         }
 
-        public StartWindowVM(Action action) : base(action)
+        public StartWindowVM(Action action)
         {
             ConsultantWindowLoadCommand = new CommandBase(ConsultantWindowLoad);
             ManagerWindowLoadCommand = new CommandBase(ManagerWindowLoad);
+            CloseAction = action;
         }
 
     }

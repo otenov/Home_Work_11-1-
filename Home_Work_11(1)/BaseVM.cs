@@ -17,11 +17,9 @@ namespace Home_Work_11_1_
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
 
-        protected Action CloseAction { get; set; }
-
-        public BaseVM(Action CloseAction)
+        public BaseVM()
         {
-            this.CloseAction = CloseAction; 
+
         }
     }
 }
