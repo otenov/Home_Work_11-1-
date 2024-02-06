@@ -17,8 +17,6 @@ namespace Home_Work_11_1_.ViewModel
             TextBlockTypeOfHistory = historyRecord.TypeOfHistoryString;
         }
 
-        public IWindowCreator WindowCreator { get; } //Не нужен
-
         public string TextBlockAuthor { get; }
 
         public string TextBlockDate { get; }
