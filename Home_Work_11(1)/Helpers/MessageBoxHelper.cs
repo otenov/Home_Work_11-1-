@@ -9,11 +9,13 @@ namespace Home_Work_11_1_.Helpers
 {
     class WPFMessageBoxHelper : IMessageBoxHelper
     {
-        public void Show(string text, string label, MessageBoxButton messageBoxButton, MessageBoxImage messageBoxImage)
+        public void Show(string text, string label, MessageBoxImage messageBoxImage)
         {
-            MessageBox.Show(text, label, messageBoxButton, messageBoxImage);
+            MessageBox.Show(text, label, MessageBoxButton.OK, messageBoxImage);
         }
 
+
+        
 
     }
 }

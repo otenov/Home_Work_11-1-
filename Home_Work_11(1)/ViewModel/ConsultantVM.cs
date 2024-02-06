@@ -139,7 +139,6 @@ namespace Home_Work_11_1_.ViewModel
                 MessageBoxHelper.Show("Вы ввели неверный номер телефона\n" +
                     "Попробуйте еще раз",
                     "", 
-                    MessageBoxButton.OK, 
                     MessageBoxImage.Warning);
                 return;
             }
@@ -149,14 +148,12 @@ namespace Home_Work_11_1_.ViewModel
 
                 MessageBoxHelper.Show("Данные не обновлены\n" +
                     "Вы не внесли никаких изменений", "Оповещение", 
-                    MessageBoxButton.OK, 
                     MessageBoxImage.Warning);
                 return;
             }
             MessageBoxHelper.Show("Данные клиента успешно обновлены.\n" +
                 "Сохраните изменения перед тем как закрыть приложение", 
                 "Оповещение", 
-                MessageBoxButton.OK,
                 MessageBoxImage.Information);
             IsEnabledButtonSave = true;
         }
@@ -166,7 +163,6 @@ namespace Home_Work_11_1_.ViewModel
             App.bank.Save(consultant);
             MessageBoxHelper.Show("Данные клиента успешно сохранены",
                 "Оповещение",
-                MessageBoxButton.OK, 
                 MessageBoxImage.Information);
         }
 
