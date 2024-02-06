@@ -11,13 +11,13 @@ namespace Home_Work_11_1_.ViewModel
 {
     public class ManagerVM : BaseVM, ICloseable
     {
-        public ManagerVM(IMessageBoxHelper messageBoxHelper, Action CloseAction)
+        public ManagerVM(IMessageBoxHelper messageBoxHelper,IWindowCreator windowCreator, Action CloseAction)
         {
             manager = new Manager("Сергей", App.bank.Сlients);
             ButtonViewClickCommand = new CommandBase(ButtonViewClick);
             ButtonHideClickCommand = new CommandBase(ButtonHideClick);
             ButtonBackClickCommand = new CommandBase(ButtonBackClick);
-            WindowCreator = new WPFWindowCreator();
+            WindowCreator = windowCreator;
             MessageBoxHelper = messageBoxHelper;
             IsEnabledEditPanel = false;
             ListViewVisibility = Visibility.Hidden;

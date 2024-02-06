@@ -189,7 +189,7 @@ namespace Home_Work_11_1_.ViewModel
 
         }
 
-        public ConsultantVM(IMessageBoxHelper messageBoxHelper, Action CloseAction)
+        public ConsultantVM(IMessageBoxHelper messageBoxHelper, IWindowCreator windowCreator, Action CloseAction)
         {
             consultant = new Consultant("Сергей", App.bank.CreateCollectionForConsultant());
             Clients = consultant.WorkerClients;
@@ -199,7 +199,7 @@ namespace Home_Work_11_1_.ViewModel
             ButtonEditClickCommand = new CommandBase(ButtonEditClick);
             ButtonSaveClickCommand = new CommandBase(ButtonSaveClick);
             ButtonBackClickCommand = new CommandBase(ButtonBackClick);
-            WindowCreator = new WPFWindowCreator(); //TODO:  WindowCreator должен быть зависимым от параметров конструктора
+            WindowCreator = windowCreator;
             IsEnabledButtonSave = false;
             IsEnabledEditPanel = false;
             ListViewVisibility = Visibility.Hidden;

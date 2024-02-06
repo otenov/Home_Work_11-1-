@@ -58,7 +58,7 @@ namespace Home_Work_11_1_.View
             #endregion
 
             InitializeComponent();
-            DataContext = new ConsultantVM(new WPFMessageBoxHelper(), Close);
+            DataContext = new ConsultantVM(new WPFMessageBoxHelper(), App.windowCreator, Close);
         }
 
         private void MouseDoubleClickMethod(object sender, RoutedEventArgs e)

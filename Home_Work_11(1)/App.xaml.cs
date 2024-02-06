@@ -19,12 +19,14 @@ namespace Home_Work_11_1_
     {
         public static Bank bank;
 
+        public static WPFWindowCreator windowCreator;
+
         public static IMessageBoxHelper messageBox;
 
         static App()
         {
             bank = new Bank();
-            
+            windowCreator = new WPFWindowCreator();
         }
     }
 }

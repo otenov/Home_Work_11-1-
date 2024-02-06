@@ -15,8 +15,6 @@ namespace Home_Work_11_1_.ViewModel
             TextBlockAuthor = historyRecord.Author;
             TextBlockDate = historyRecord.DateOfHistory.ToString();
             TextBlockTypeOfHistory = historyRecord.TypeOfHistoryString;
-            //WindowCreator.CreateWindow(Windows.HistoryRecordWindow, this); 
-            //TODO: Его надо сделать статическим в app
         }
 
         public IWindowCreator WindowCreator { get; } //Не нужен

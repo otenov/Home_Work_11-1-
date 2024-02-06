@@ -29,7 +29,7 @@ namespace Home_Work_11_1_.View
         public ManagerWindow()
         {
             InitializeComponent();
-            DataContext = new ManagerVM( new WPFMessageBoxHelper() ,Close);
+            DataContext = new ManagerVM(new WPFMessageBoxHelper(), App.windowCreator, Close);
 
             manager = new Manager("Сергей", App.bank.Сlients);
             lw.ItemsSource = ((Manager)manager).WorkerClients;
