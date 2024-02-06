@@ -12,13 +12,13 @@ using System.Windows.Controls;
 using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 
-//TODO:Нормально ли, что в VM использую ссылку на View ? using System.Windows.Input; using System.Windows;
+//TODO:Нормально ли, что в VM использую ссылку на View ? using System.Windows.Input; using System.Windows; (Не страшно при необходимости меняется на кросс. плат. аналоги)
 
 //ReactiveUI 
 //Prism
 namespace Home_Work_11_1_.ViewModel
 {
-    public class ConsultantVM : BaseVM
+    public class ConsultantVM : BaseVM, ICloseable
     {
         private Consultant consultant;
 
@@ -60,7 +60,7 @@ namespace Home_Work_11_1_.ViewModel
 
         public ObservableCollection<Client> Clients { get; }
 
-        private IMessageBoxHelper MessageBoxHelper { get; set; } //TODO: Переменная закрытая. Её лучше сделать свойством или полем?
+        private IMessageBoxHelper messageBoxHelper;
 
         private bool isEnabledEditPanel;
         public bool IsEnabledEditPanel
@@ -94,6 +94,13 @@ namespace Home_Work_11_1_.ViewModel
             get => textTelephoneNumber;
             set
             {
+                //TODO: Можем проверить равняется value textTelephoneNumber. Изменилось ли что-то
+                //TODO: Можем value проверить на наличие символов
+                if (value?.Length > 5)
+                {
+                    messageBoxHelper.Show("Error", "Error", MessageBoxImage.None);
+                    return;
+                }
                 textTelephoneNumber = value;
                 OnPropertyChanged(nameof(TextTelephoneNumber));
             }
@@ -110,6 +117,8 @@ namespace Home_Work_11_1_.ViewModel
         public ICommand ButtonBackClickCommand { get; set; }
 
         public IWindowCreator WindowCreator { get; set; }
+
+        public Action CloseAction { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         private void ButtonViewClick()
         {
@@ -129,29 +138,25 @@ namespace Home_Work_11_1_.ViewModel
             IsEnabledEditPanel = false;
         }
 
-        //TODO: Получается, что в любом случае нужно использовать две переменные если делаешь с ONE way?
-        //TODO: Как делать проверку и где, если использовать TWO way mode?
-        //TODO: Так можно убирать messageBox?
         private void ButtonEditClick()
         {
             if (Helper.CheckTelephoneNumber(TextTelephoneNumber))
             {
-                MessageBoxHelper.Show("Вы ввели неверный номер телефона\n" +
+                messageBoxHelper.Show("Вы ввели неверный номер телефона\n" +
                     "Попробуйте еще раз",
                     "", 
                     MessageBoxImage.Warning);
                 return;
             }
-            //TODO: Надо ли выносить метод сравнения номеров в банк? Это же делает какая-то система.
             if (consultant.EditTNumber(selectedClient, TextTelephoneNumber))
             {
 
-                MessageBoxHelper.Show("Данные не обновлены\n" +
+                messageBoxHelper.Show("Данные не обновлены\n" +
                     "Вы не внесли никаких изменений", "Оповещение", 
                     MessageBoxImage.Warning);
                 return;
             }
-            MessageBoxHelper.Show("Данные клиента успешно обновлены.\n" +
+            messageBoxHelper.Show("Данные клиента успешно обновлены.\n" +
                 "Сохраните изменения перед тем как закрыть приложение", 
                 "Оповещение", 
                 MessageBoxImage.Information);
@@ -161,7 +166,7 @@ namespace Home_Work_11_1_.ViewModel
         private void ButtonSaveClick()
         {
             App.bank.Save(consultant);
-            MessageBoxHelper.Show("Данные клиента успешно сохранены",
+            messageBoxHelper.Show("Данные клиента успешно сохранены",
                 "Оповещение",
                 MessageBoxImage.Information);
         }
@@ -175,13 +180,16 @@ namespace Home_Work_11_1_.ViewModel
 
         public void ShowHistoryRecord()
         {
-            //TODO: Нормально ли, что я тут передаю null в action? Как сделать правильно?
-            //TODO: Можно ил вообще отсюда создавать VM?
-            HistoryRecordVM historyRecordVM = new HistoryRecordVM(SelectedHistoryRecord, null);
+            //TODO: Нормально ли, что я тут передаю null в action? Как сделать правильно?. Нет лучше сделать отдельный интерфейс 
+            //TODO: Можно ил вообще отсюда создавать VM? - да
+
+            HistoryRecordVM historyRecordVM = new HistoryRecordVM(SelectedHistoryRecord);
+            WindowCreator.CreateWindow(Windows.HistoryRecordWindow, historyRecordVM);
+            
+
         }
 
-        public ConsultantVM(IMessageBoxHelper messageBoxHelper, Action CloseAction) :
-            base(CloseAction)
+        public ConsultantVM(IMessageBoxHelper messageBoxHelper, Action CloseAction)
         {
             consultant = new Consultant("Сергей", App.bank.CreateCollectionForConsultant());
             Clients = consultant.WorkerClients;
@@ -191,15 +199,20 @@ namespace Home_Work_11_1_.ViewModel
             ButtonEditClickCommand = new CommandBase(ButtonEditClick);
             ButtonSaveClickCommand = new CommandBase(ButtonSaveClick);
             ButtonBackClickCommand = new CommandBase(ButtonBackClick);
-            WindowCreator = new WPFWindowCreator();
+            WindowCreator = new WPFWindowCreator(); //TODO:  WindowCreator должен быть зависимым от параметров конструктора
             IsEnabledButtonSave = false;
             IsEnabledEditPanel = false;
             ListViewVisibility = Visibility.Hidden;
-            MessageBoxHelper = messageBoxHelper;
+            this.messageBoxHelper = messageBoxHelper;
+            this.CloseAction = CloseAction;
+        }
+
+        public ConsultantVM()
+        {
 
         }
 
-        //TODO: Как сделать привязку через datacontext в xaml
+        //TODO: Как сделать привязку через datacontext в xaml. МЫ можем так сделать, только если констурктор модели не рпнимает никаких аргументов - по умолчанию. Мирон скинет ссылку
         //TODO: Поговорить подроюно про реализацию ICommand
         //TODO: Поговорить подроюно про реализацию INotifyPropertyChanged
         //TODO: DevExpress

@@ -9,18 +9,17 @@ namespace Home_Work_11_1_.ViewModel
 {
     public class HistoryRecordVM :BaseVM
     {
-        public HistoryRecordVM(HistoryRecord historyRecord, Action CloseAction):
-            base(CloseAction)
+        public HistoryRecordVM(HistoryRecord historyRecord)
         {
             HistoryRecords = historyRecord.Records;
             TextBlockAuthor = historyRecord.Author;
             TextBlockDate = historyRecord.DateOfHistory.ToString();
             TextBlockTypeOfHistory = historyRecord.TypeOfHistoryString;
-            WindowCreator = new WPFWindowCreator();
-            WindowCreator.CreateWindow(Windows.HistoryRecordWindow, this);
+            //WindowCreator.CreateWindow(Windows.HistoryRecordWindow, this); 
+            //TODO: Его надо сделать статическим в app
         }
 
-        public IWindowCreator WindowCreator { get; }
+        public IWindowCreator WindowCreator { get; } //Не нужен
 
         public string TextBlockAuthor { get; }
 

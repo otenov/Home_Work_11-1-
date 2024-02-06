@@ -9,9 +9,9 @@ using System.Windows.Input;
 
 namespace Home_Work_11_1_.ViewModel
 {
-    public class ManagerVM : BaseVM
+    public class ManagerVM : BaseVM, ICloseable
     {
-        public ManagerVM(IMessageBoxHelper messageBoxHelper, Action CloseAction) : base(CloseAction)
+        public ManagerVM(IMessageBoxHelper messageBoxHelper, Action CloseAction)
         {
             manager = new Manager("Сергей", App.bank.Сlients);
             ButtonViewClickCommand = new CommandBase(ButtonViewClick);
@@ -22,6 +22,7 @@ namespace Home_Work_11_1_.ViewModel
             IsEnabledEditPanel = false;
             ListViewVisibility = Visibility.Hidden;
             SelectedClient = new Client();
+            this.CloseAction = CloseAction;
         }
 
         private Manager manager;
@@ -91,6 +92,7 @@ namespace Home_Work_11_1_.ViewModel
         public ICommand ButtonHideClickCommand { get; set; }
 
         public ICommand ButtonBackClickCommand { get; set; }
+        public Action CloseAction { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
 
         private void ButtonViewClick()
         {
