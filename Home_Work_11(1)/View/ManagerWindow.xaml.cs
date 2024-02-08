@@ -45,30 +45,6 @@ namespace Home_Work_11_1_.View
         }
 
         /// <summary>
-        /// Обработчик для изменения выбора элемента списка. Реализован для изменения данных
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void SelectionChangedMethod(object sender, SelectionChangedEventArgs e)
-        {
-            //Client client = (Client)lw.SelectedItem;
-            //Surname.IsEnabled = true;
-            //Name.IsEnabled = true;
-            //LName.IsEnabled = true;
-            //PassportSeries.IsEnabled = true;
-            //PassportNumber.IsEnabled = true;
-            //TelephoneNumber.IsEnabled = true;
-            //Surname.Text = client.Surname;
-            //Name.Text = client.FName;
-            //LName.Text = client.LName;
-            //PassportSeries.Text = client.Passport.Substring(0, 4);
-            //PassportNumber.Text = client.Passport.Substring(5, 6);
-            //TelephoneNumber.Text = client.TelephoneNumber;
-            //btnChange.IsEnabled = true;
-            //HistoryList.ItemsSource = client.HistoryChanges;
-        }
-
-        /// <summary>
         /// Обработчик для кнопки Изменить
         /// </summary>
         /// <param name="sender"></param>
@@ -83,7 +59,7 @@ namespace Home_Work_11_1_.View
             //    Surname.ToolTip = "Некорректные данные";
             //    return;
             //}
-            //if (Helper.CheckName(Name.Text))
+            //if (Helper.CheckFName(Name.Text))
             //{
             //    MessageBox.Show("Имя введено некорректно\nПопробуйте еще раз", "", MessageBoxButton.OK, MessageBoxImage.Warning);
             //    Name.Text = default;

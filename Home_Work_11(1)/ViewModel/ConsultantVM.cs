@@ -75,7 +75,7 @@ namespace Home_Work_11_1_.ViewModel
             {
                 //Вопрос-Ответ: Можем проверить равняется value textTelephoneNumber, но это логика работы программы, поэтому решено её вынести из set
                 //TODO: Можем value проверить на наличие символов
-                //TODO: Сделать красивый textbox с выводом ошибки при вводе
+                //TODO: Сделать красивый textbox с выводом ошибки при вводе для всех 
 
                 if (Helper.CheckTelephoneNumber(value))
                 {
@@ -85,7 +85,6 @@ namespace Home_Work_11_1_.ViewModel
                         MessageBoxImage.Warning);
                     return;
                 }
-
                 textTelephoneNumber = value;
                 OnPropertyChanged(nameof(TextTelephoneNumber));
             }
@@ -172,7 +171,6 @@ namespace Home_Work_11_1_.ViewModel
         {
             IsEnabledEditPanel = true;
             TextTelephoneNumber = selectedClient.TelephoneNumber;
-            OnPropertyChanged(nameof(TextTelephoneNumber));
         }
 
 

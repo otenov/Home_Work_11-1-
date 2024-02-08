@@ -15,7 +15,7 @@ namespace Home_Work_11_1_
             return false;
         }
 
-        public static bool CheckName(string name)
+        public static bool CheckFName(string name)
         {
             if (String.IsNullOrEmpty(name)) return true;
             return false;

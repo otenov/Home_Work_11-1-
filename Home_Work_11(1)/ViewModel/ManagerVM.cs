@@ -22,6 +22,7 @@ namespace Home_Work_11_1_.ViewModel
             ButtonHideClickCommand = new CommandBase(ButtonHideClick);
             ButtonBackClickCommand = new CommandBase(ButtonBackClick);
             ButtonSaveClickCommand = new CommandBase(ButtonSaveClick);
+            ListOfClientsVM.NotifySelectedClient += LoadSelectedClient;
             IsEnabledEditPanel = false;
             IsEnabledButtonSave = false;
         }
@@ -33,6 +34,126 @@ namespace Home_Work_11_1_.ViewModel
         private IWindowCreator windowCreator;
 
         private IMessageBoxHelper messageBoxHelper;
+
+
+        #region Cвойства
+
+        private string textSurname;
+        public string TextSurname
+        {
+            get => textSurname;
+            set
+            {
+                if (Helper.CheckSurname(value))
+                {
+                    messageBoxHelper.Show("Фамилия введена некорректно\n" +
+                        "Попробуйте еще раз", 
+                        "", 
+                        MessageBoxImage.Warning);
+                    return;
+                }
+                textSurname = value;
+                OnPropertyChanged(nameof(TextSurname));
+            }
+        }
+
+        private string textFName;
+        public string TextFName
+        {
+            get => textFName;
+            set
+            {
+                if (Helper.CheckFName(value))
+                {
+                    messageBoxHelper.Show("Имя введено некорректно\n" +
+                        "Попробуйте еще раз",
+                        "", 
+                        MessageBoxImage.Warning);
+                    return;
+                }
+                textFName = value;
+                OnPropertyChanged(nameof(TextFName));
+            }
+        }
+
+        private string textLName;
+        public string TextLName
+        {
+            get => textLName;
+            set
+            {
+                if (Helper.CheckLName(value))
+                {
+                    messageBoxHelper.Show("Отчество введено некорректно\n" +
+                        "Попробуйте еще раз",
+                        "",
+                        MessageBoxImage.Warning);
+                    return;
+                }
+                textLName = value;
+                OnPropertyChanged(nameof(TextLName));
+            }
+        }
+
+        private string textPassportSeries;
+        public string TextPassportSeries
+        {
+            get => textPassportSeries;
+            set
+            {
+                if (Helper.CheckPSeries(value))
+                {
+                    messageBoxHelper.Show("Серия паспорта введена некорректно\n" +
+                        "Попробуйте еще раз",
+                        "",
+                        MessageBoxImage.Warning);
+                    return;
+                }
+
+                textPassportSeries = value;
+                OnPropertyChanged(nameof(TextPassportSeries));
+            }
+        }
+
+        private string textPassportNumber;
+        public string TextPassportNumber
+        {
+            get => textPassportNumber;
+            set
+            {
+                if (Helper.CheckPNumber(value))
+                {
+                    messageBoxHelper.Show("Номер паспорта введён некорректно\n" +
+                        "Попробуйте еще раз",
+                        "",
+                        MessageBoxImage.Warning);
+                    return;
+                }
+                textPassportNumber = value;
+                OnPropertyChanged(nameof(TextPassportNumber));
+            }
+        }
+
+        private string textTelephoneNumber;
+        public string TextTelephoneNumber
+        {
+            get => textTelephoneNumber;
+            set
+            {
+                if (Helper.CheckTelephoneNumber(value))
+                {
+                    messageBoxHelper.Show("Вы ввели неверный номер телефона\n" +
+                        "Попробуйте еще раз",
+                        "",
+                        MessageBoxImage.Warning);
+                    return;
+                }
+                textTelephoneNumber = value;
+                OnPropertyChanged(nameof(TextTelephoneNumber));
+            }
+        }
+
+
 
         private bool isEnabledEditPanel;
         public bool IsEnabledEditPanel
@@ -64,6 +185,11 @@ namespace Home_Work_11_1_.ViewModel
             }
         }
 
+
+
+        #endregion
+
+
         public ICommand ButtonViewClickCommand { get; set; }
 
         public ICommand ButtonHideClickCommand { get; set; }
@@ -73,6 +199,17 @@ namespace Home_Work_11_1_.ViewModel
         public ICommand ButtonSaveClickCommand { get; set; }
 
         public Action CloseAction { get ; set; }
+
+        private void LoadSelectedClient(Client selectedClient)
+        {
+            IsEnabledEditPanel = true;
+            TextSurname = selectedClient.Surname;
+            TextFName = selectedClient.FName;
+            TextLName = selectedClient.LName;
+            TextPassportSeries = selectedClient.Passport.Substring(0, 4);
+            TextPassportNumber = selectedClient.Passport.Substring(5, 6);
+            TextTelephoneNumber = selectedClient.TelephoneNumber;
+        }
 
         private void ButtonViewClick()
         {
