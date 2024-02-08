@@ -92,7 +92,7 @@ namespace Home_Work_11_1_.ViewModel
         public ICommand ButtonHideClickCommand { get; set; }
 
         public ICommand ButtonBackClickCommand { get; set; }
-        public Action CloseAction { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Action CloseAction { get ; set; }
 
         private void ButtonViewClick()
         {

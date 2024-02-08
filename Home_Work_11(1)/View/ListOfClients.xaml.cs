@@ -20,6 +20,7 @@ namespace Home_Work_11_1_.View
     /// </summary>
     public partial class ListOfClients : UserControl
     {
+        //Вопрос: Правильно ли вложил UserControl в xaml ConsultantWindow ?
         public ListOfClients()
         {
             InitializeComponent();

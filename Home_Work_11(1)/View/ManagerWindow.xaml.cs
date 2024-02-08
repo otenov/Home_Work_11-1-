@@ -31,9 +31,9 @@ namespace Home_Work_11_1_.View
             InitializeComponent();
             DataContext = new ManagerVM(new WPFMessageBoxHelper(), App.windowCreator, Close);
 
-            manager = new Manager("Сергей", App.bank.Сlients);
-            lw.ItemsSource = ((Manager)manager).WorkerClients;
-            btnSave.IsEnabled = false;
+            //manager = new Manager("Сергей", App.bank.Сlients);
+            //lw.ItemsSource = ((Manager)manager).WorkerClients;
+            //btnSave.IsEnabled = false;
         }
 
         /// <summary>
@@ -96,21 +96,21 @@ namespace Home_Work_11_1_.View
         /// <param name="e"></param>
         private void SelectionChangedMethod(object sender, SelectionChangedEventArgs e)
         {
-            Client client = (Client)lw.SelectedItem;
-            Surname.IsEnabled = true;
-            Name.IsEnabled = true;
-            LName.IsEnabled = true;
-            PassportSeries.IsEnabled = true;
-            PassportNumber.IsEnabled = true;
-            TelephoneNumber.IsEnabled = true;
-            Surname.Text = client.Surname;
-            Name.Text = client.FName;
-            LName.Text = client.LName;
-            PassportSeries.Text = client.Passport.Substring(0, 4);
-            PassportNumber.Text = client.Passport.Substring(5, 6);
-            TelephoneNumber.Text = client.TelephoneNumber;
-            btnChange.IsEnabled = true;
-            HistoryList.ItemsSource = client.HistoryChanges;
+            //Client client = (Client)lw.SelectedItem;
+            //Surname.IsEnabled = true;
+            //Name.IsEnabled = true;
+            //LName.IsEnabled = true;
+            //PassportSeries.IsEnabled = true;
+            //PassportNumber.IsEnabled = true;
+            //TelephoneNumber.IsEnabled = true;
+            //Surname.Text = client.Surname;
+            //Name.Text = client.FName;
+            //LName.Text = client.LName;
+            //PassportSeries.Text = client.Passport.Substring(0, 4);
+            //PassportNumber.Text = client.Passport.Substring(5, 6);
+            //TelephoneNumber.Text = client.TelephoneNumber;
+            //btnChange.IsEnabled = true;
+            //HistoryList.ItemsSource = client.HistoryChanges;
         }
 
         /// <summary>
@@ -120,68 +120,68 @@ namespace Home_Work_11_1_.View
         /// <param name="e"></param>
         private void btnChange_Click(object sender, RoutedEventArgs e)
         {
-            if (Helper.CheckSurname(Surname.Text))
-            {
-                MessageBox.Show("Фамилия введена некорректно\nПопробуйте еще раз", "", MessageBoxButton.OK, MessageBoxImage.Warning);
-                Surname.Text = default;
-                Surname.Focus();
-                Surname.ToolTip = "Некорректные данные";
-                return;
-            }
-            if (Helper.CheckName(Name.Text))
-            {
-                MessageBox.Show("Имя введено некорректно\nПопробуйте еще раз", "", MessageBoxButton.OK, MessageBoxImage.Warning);
-                Name.Text = default;
-                Name.Focus();
-                Name.ToolTip = "Некорректные данные";
-                return;
-            }
-            if (Helper.CheckLName(LName.Text))
-            {
-                MessageBox.Show("Отчество введено некорректно\nПопробуйте еще раз", "", MessageBoxButton.OK, MessageBoxImage.Warning);
-                LName.Text = default;
-                Name.Focus();
-                Name.ToolTip = "Некорректные данные";
-                return;
-            }
-            if (Helper.CheckPSeries(PassportSeries.Text))
-            {
-                MessageBox.Show("Серия паспорта введена некорректно\nПопробуйте еще раз", "", MessageBoxButton.OK, MessageBoxImage.Warning);
-                PassportSeries.Text = default;
-                PassportSeries.Focus();
-                PassportSeries.ToolTip = "Некорректные данные";
-                return;
-            }
-            if (Helper.CheckPNumber(PassportNumber.Text))
-            {
-                MessageBox.Show("Номер паспорта введён некорректно\nПопробуйте еще раз", "", MessageBoxButton.OK, MessageBoxImage.Warning);
-                PassportNumber.Text = default;
-                PassportNumber.Focus();
-                PassportNumber.ToolTip = "Некорректные данные";
-                return;
-            }
-            if (Helper.CheckTelephoneNumber(TelephoneNumber.Text))
-            {
-                MessageBox.Show("Вы ввели неверный номер телефона\nПопробуйте еще раз", "", MessageBoxButton.OK, MessageBoxImage.Warning);
-                TelephoneNumber.Text = default;
-                TelephoneNumber.Focus();
-                TelephoneNumber.ToolTip = "Некорректные данные";
-                return;
-            }
-            if (manager.EditClient((Client)lw.SelectedItem,
-                Surname.Text,
-                Name.Text,
-                LName.Text,
-                PassportSeries.Text + " " + PassportNumber.Text,
-                TelephoneNumber.Text))
-            {
-                MessageBox.Show("Данные не обновлены\n" +
-                    "Вы не внесли никаких изменений", "Оповещение", MessageBoxButton.OK, MessageBoxImage.Warning);
-                return;
-            }
-            MessageBox.Show("Данные клиента успешно обновлены.\n" +
-                "Сохраните изменения перед тем как закрыть приложение", "Оповещение", MessageBoxButton.OK);
-            btnSave.IsEnabled = true;
+            //if (Helper.CheckSurname(Surname.Text))
+            //{
+            //    MessageBox.Show("Фамилия введена некорректно\nПопробуйте еще раз", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+            //    Surname.Text = default;
+            //    Surname.Focus();
+            //    Surname.ToolTip = "Некорректные данные";
+            //    return;
+            //}
+            //if (Helper.CheckName(Name.Text))
+            //{
+            //    MessageBox.Show("Имя введено некорректно\nПопробуйте еще раз", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+            //    Name.Text = default;
+            //    Name.Focus();
+            //    Name.ToolTip = "Некорректные данные";
+            //    return;
+            //}
+            //if (Helper.CheckLName(LName.Text))
+            //{
+            //    MessageBox.Show("Отчество введено некорректно\nПопробуйте еще раз", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+            //    LName.Text = default;
+            //    Name.Focus();
+            //    Name.ToolTip = "Некорректные данные";
+            //    return;
+            //}
+            //if (Helper.CheckPSeries(PassportSeries.Text))
+            //{
+            //    MessageBox.Show("Серия паспорта введена некорректно\nПопробуйте еще раз", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+            //    PassportSeries.Text = default;
+            //    PassportSeries.Focus();
+            //    PassportSeries.ToolTip = "Некорректные данные";
+            //    return;
+            //}
+            //if (Helper.CheckPNumber(PassportNumber.Text))
+            //{
+            //    MessageBox.Show("Номер паспорта введён некорректно\nПопробуйте еще раз", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+            //    PassportNumber.Text = default;
+            //    PassportNumber.Focus();
+            //    PassportNumber.ToolTip = "Некорректные данные";
+            //    return;
+            //}
+            //if (Helper.CheckTelephoneNumber(TelephoneNumber.Text))
+            //{
+            //    MessageBox.Show("Вы ввели неверный номер телефона\nПопробуйте еще раз", "", MessageBoxButton.OK, MessageBoxImage.Warning);
+            //    TelephoneNumber.Text = default;
+            //    TelephoneNumber.Focus();
+            //    TelephoneNumber.ToolTip = "Некорректные данные";
+            //    return;
+            //}
+            //if (manager.EditClient((Client)lw.SelectedItem,
+            //    Surname.Text,
+            //    Name.Text,
+            //    LName.Text,
+            //    PassportSeries.Text + " " + PassportNumber.Text,
+            //    TelephoneNumber.Text))
+            //{
+            //    MessageBox.Show("Данные не обновлены\n" +
+            //        "Вы не внесли никаких изменений", "Оповещение", MessageBoxButton.OK, MessageBoxImage.Warning);
+            //    return;
+            //}
+            //MessageBox.Show("Данные клиента успешно обновлены.\n" +
+            //    "Сохраните изменения перед тем как закрыть приложение", "Оповещение", MessageBoxButton.OK);
+            //btnSave.IsEnabled = true;
         }
 
         /// <summary>
