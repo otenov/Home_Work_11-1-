@@ -97,12 +97,10 @@
         </Border>
         
         <GridSplitter VerticalAlignment="Stretch" Grid.Column="1" Width="2"/>
-        
+
         <Grid Grid.Column="2">
-            <UserControl>
-                <listofclients:ListOfClients/>
-            </UserControl>
-            <!--<ListView x:Name="lw"  
+            <listofclients:ListOfClients DataContext="{Binding ListOfClientsVM}"/>
+                <!--<ListView x:Name="lw"  
                       Grid.Column="2" 
                       Margin="10" 
                       Grid.Row="1" 
@@ -128,7 +126,7 @@
                  Grid.Column= "3"
                  Margin="20" 
                  MouseDoubleClick="MouseDoubleClickMethod"
-                 ItemsSource="{Binding SelectedClient.HistoryChanges}"
+                 ItemsSource="{Binding ListOfClientsVM.SelectedClient.HistoryChanges}"
                  Visibility="{Binding Path=ListViewVisibility}" 
                  SelectedItem="{Binding Path=SelectedHistoryRecord}">
             <ListBox.ItemTemplate>

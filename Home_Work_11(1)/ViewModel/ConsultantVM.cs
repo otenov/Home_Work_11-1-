@@ -23,30 +23,12 @@ namespace Home_Work_11_1_.ViewModel
     {
         private Consultant consultant;
 
-        private Visibility listViewVisibility;
-        public Visibility ListViewVisibility
-        {
-            get { return listViewVisibility; }
-            set
-            {
-                listViewVisibility = value;
-                OnPropertyChanged(nameof (ListViewVisibility));
-            }
-        }
+        public ListOfClientsVM ListOfClientsVM { get; set; }
 
-        private Client selectedClient;
-        public Client SelectedClient
-        {
-            get => selectedClient;
-            set
-            {
-                selectedClient = value;
-                OnPropertyChanged(nameof(SelectedClient));
-                IsEnabledEditPanel = true;
-                TextTelephoneNumber = selectedClient.TelephoneNumber;
-                OnPropertyChanged(nameof(TextTelephoneNumber));
-            }
-        }
+        private IMessageBoxHelper messageBoxHelper;
+
+        private IWindowCreator windowCreator;
+
 
         private HistoryRecord selectedHistoryRecord;
         public HistoryRecord SelectedHistoryRecord
@@ -58,10 +40,6 @@ namespace Home_Work_11_1_.ViewModel
                 OnPropertyChanged(nameof(SelectedHistoryRecord));
             }
         }
-
-        public ObservableCollection<Client> Clients { get; }
-
-        private IMessageBoxHelper messageBoxHelper;
 
         private bool isEnabledEditPanel;
         public bool IsEnabledEditPanel
@@ -123,15 +101,13 @@ namespace Home_Work_11_1_.ViewModel
 
         public ICommand ButtonBackClickCommand { get; set; }
 
-        public IWindowCreator WindowCreator { get; set; }
-
         public Action CloseAction { get; set ; }
 
         private void ButtonViewClick()
         {
-            if (ListViewVisibility == Visibility.Visible) return;
-            ListViewVisibility = Visibility.Visible;
-            if (!(SelectedClient is null))
+            if (ListOfClientsVM.ListViewVisibility == Visibility.Visible) return;
+            ListOfClientsVM.ListViewVisibility = Visibility.Visible;
+            if (!(ListOfClientsVM.SelectedClient is null))
             {
                 IsEnabledEditPanel = true;
             }
@@ -139,15 +115,15 @@ namespace Home_Work_11_1_.ViewModel
 
         private void ButtonHideClick()
         {
-            if (ListViewVisibility == Visibility.Hidden) return;
-            ListViewVisibility = Visibility.Hidden;
+            if (ListOfClientsVM.ListViewVisibility == Visibility.Hidden) return;
+            ListOfClientsVM.ListViewVisibility = Visibility.Hidden;
             IsEnabledButtonSave = false;
             IsEnabledEditPanel = false;
         }
 
         private void ButtonEditClick()
         {
-            if (consultant.EditTNumber(selectedClient, TextTelephoneNumber))
+            if (consultant.EditTNumber(ListOfClientsVM.SelectedClient, TextTelephoneNumber))
             {
 
                 messageBoxHelper.Show("Данные не обновлены\n" +
@@ -173,7 +149,7 @@ namespace Home_Work_11_1_.ViewModel
         private void ButtonBackClick()
         {
             App.bank.Save(consultant);
-            WindowCreator.CreateWindow(Windows.StartWindow, null);
+            windowCreator.CreateWindow(Windows.StartWindow, null);
             CloseAction.Invoke();
         }
 
@@ -182,26 +158,39 @@ namespace Home_Work_11_1_.ViewModel
             //Вопрос-Ответ: Можно ли вообще отсюда создавать VM?
             //Да. Это хорошо
             HistoryRecordVM historyRecordVM = new HistoryRecordVM(SelectedHistoryRecord);
-            WindowCreator.CreateWindow(Windows.HistoryRecordWindow, historyRecordVM);
+            windowCreator.CreateWindow(Windows.HistoryRecordWindow, historyRecordVM);
             
 
         }
 
+
+        /// <summary>
+        /// Метод загрузки выделенного клиента. Обработчик события ListOfClientsVM.NotifySelectedClient
+        /// </summary>
+        /// <param name="selectedClient">Выделенный клиент</param>
+        private void LoadSelectedClient(Client selectedClient)
+        {
+            IsEnabledEditPanel = true;
+            TextTelephoneNumber = selectedClient.TelephoneNumber;
+            OnPropertyChanged(nameof(TextTelephoneNumber));
+        }
+
+
         public ConsultantVM(IMessageBoxHelper messageBoxHelper, IWindowCreator windowCreator, Action CloseAction)
         {
             this.messageBoxHelper = messageBoxHelper;
+            this.windowCreator = windowCreator;
             this.CloseAction = CloseAction;
             consultant = new Consultant("Сергей", App.bank.CreateCollectionForConsultant());
-            Clients = consultant.WorkerClients;
+            ListOfClientsVM = new ListOfClientsVM(consultant.WorkerClients);
             ButtonViewClickCommand = new CommandBase(ButtonViewClick);
             ButtonHideClickCommand = new CommandBase(ButtonHideClick);
             ButtonEditClickCommand = new CommandBase(ButtonEditClick);
             ButtonSaveClickCommand = new CommandBase(ButtonSaveClick);
             ButtonBackClickCommand = new CommandBase(ButtonBackClick);
-            WindowCreator = windowCreator;
             IsEnabledButtonSave = false;
             IsEnabledEditPanel = false;
-            ListViewVisibility = Visibility.Hidden;
+            ListOfClientsVM.NotifySelectedClient += LoadSelectedClient;
         }
 
         public ConsultantVM()
