@@ -13,50 +13,28 @@ namespace Home_Work_11_1_.ViewModel
     {
         public ManagerVM(IMessageBoxHelper messageBoxHelper,IWindowCreator windowCreator, Action CloseAction)
         {
+            this.messageBoxHelper = messageBoxHelper;
+            this.windowCreator = windowCreator;
+            this.CloseAction = CloseAction;
             manager = new Manager("Сергей", App.bank.Сlients);
+            ListOfClientsVM = new ListOfClientsVM(manager.WorkerClients);
             ButtonViewClickCommand = new CommandBase(ButtonViewClick);
             ButtonHideClickCommand = new CommandBase(ButtonHideClick);
             ButtonBackClickCommand = new CommandBase(ButtonBackClick);
-            WindowCreator = windowCreator;
-            MessageBoxHelper = messageBoxHelper;
+            ButtonSaveClickCommand = new CommandBase(ButtonSaveClick);
             IsEnabledEditPanel = false;
-            ListViewVisibility = Visibility.Hidden;
-            SelectedClient = new Client();
-            this.CloseAction = CloseAction;
+            IsEnabledButtonSave = false;
         }
+
+        public ListOfClientsVM ListOfClientsVM { get; set; }
 
         private Manager manager;
 
-        private IWindowCreator WindowCreator { get; set; }
+        private IWindowCreator windowCreator;
 
-        private IMessageBoxHelper MessageBoxHelper { get; set; }
-
-        private Visibility listViewVisibility;
-
-        public Visibility ListViewVisibility
-        {
-            get => listViewVisibility;
-            set
-            {
-                listViewVisibility = value;
-                OnPropertyChanged(nameof(ListViewVisibility));
-            }
-        }
-
-        private Client selectedClient;
-
-        public Client SelectedClient
-        {
-            get => selectedClient;
-            set
-            {
-                selectedClient = value;
-                OnPropertyChanged(nameof(SelectedClient));
-            }
-        }
+        private IMessageBoxHelper messageBoxHelper;
 
         private bool isEnabledEditPanel;
-
         public bool IsEnabledEditPanel
         {
             get
@@ -72,7 +50,6 @@ namespace Home_Work_11_1_.ViewModel
         }
 
         private bool isEnabledButtonSave;
-
         public bool IsEnabledButtonSave
         {
             get
@@ -92,13 +69,16 @@ namespace Home_Work_11_1_.ViewModel
         public ICommand ButtonHideClickCommand { get; set; }
 
         public ICommand ButtonBackClickCommand { get; set; }
+
+        public ICommand ButtonSaveClickCommand { get; set; }
+
         public Action CloseAction { get ; set; }
 
         private void ButtonViewClick()
         {
-            if (ListViewVisibility == Visibility.Visible) return;
-            ListViewVisibility = Visibility.Visible;
-            if (!(SelectedClient is null))
+            if (ListOfClientsVM.ListViewVisibility == Visibility.Visible) return;
+            ListOfClientsVM.ListViewVisibility = Visibility.Visible;
+            if (!(ListOfClientsVM.SelectedClient is null))
             {
                 IsEnabledEditPanel = true;
             }
@@ -106,8 +86,8 @@ namespace Home_Work_11_1_.ViewModel
 
         private void ButtonHideClick()
         {
-            if (ListViewVisibility == Visibility.Hidden) return;
-            ListViewVisibility = Visibility.Hidden;
+            if (ListOfClientsVM.ListViewVisibility == Visibility.Hidden) return;
+            ListOfClientsVM.ListViewVisibility = Visibility.Hidden;
             IsEnabledButtonSave = false;
             IsEnabledEditPanel = false;
         }
@@ -115,9 +95,19 @@ namespace Home_Work_11_1_.ViewModel
         private void ButtonBackClick()
         {
             App.bank.Save(manager);
-            WindowCreator.CreateWindow(Windows.StartWindow, null);
+            windowCreator.CreateWindow(Windows.StartWindow, null);
             CloseAction.Invoke();
         }
 
+        private void ButtonSaveClick()
+        {
+            App.bank.Save(manager);
+            messageBoxHelper.Show("Данные клиента успешно сохранены",
+                "Оповещение",
+                MessageBoxImage.Information);
+        }
+
+
+        //Вопрос: Как поступить с одинаковым функционалом? Его тоже в отдельную vm?
     }
 }

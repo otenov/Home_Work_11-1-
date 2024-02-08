@@ -32,10 +32,8 @@
         <GridSplitter VerticalAlignment="Stretch" Grid.Column="1" Width="2"/>
 
         <Grid Grid.Column="2">
-            <UserControl>
-                <listofclients:ListOfClients/>
-            </UserControl>
-            
+            <listofclients:ListOfClients/>
+
             <!--#region Отработка ListView.ItemTemplate -->
                 <!--<ListView.ItemTemplate>
                     <DataTemplate>
@@ -141,8 +139,8 @@
                     Canvas.Bottom="180" Canvas.Left="110" 
                     Width="85" Height="30"
                     FontSize="10"
-                    Click="btnSaveClick"
-                    IsEnabled="{Binding IsEnabledSaveButton}"
+                    Command="{Binding ButtonSaveClickCommand}"
+                    IsEnabled="{Binding IsEnabledButtonSave}"
                     />
 
                 <Button x:Name="btnAdd"

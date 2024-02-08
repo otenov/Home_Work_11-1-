@@ -75,6 +75,7 @@
     <Compile Include="ICloseable.cs" />
     <Compile Include="IWindowCreator.cs" />
     <Compile Include="ViewModel\HistoryRecordVM.cs" />
+    <Compile Include="ViewModel\ListOfClientsVM.cs" />
     <Compile Include="ViewModel\ManagerVM.cs" />
     <Compile Include="View\HistoryRecordWindow.xaml.cs">
       <DependentUpon>HistoryRecordWindow.xaml</DependentUpon>
