@@ -22,6 +22,7 @@ namespace Home_Work_11_1_.ViewModel
             ButtonHideClickCommand = new CommandBase(ButtonHideClick);
             ButtonBackClickCommand = new CommandBase(ButtonBackClick);
             ButtonSaveClickCommand = new CommandBase(ButtonSaveClick);
+            ButtonEditClickCommand = new CommandBase(ButtonEditClick);
             ListOfClientsVM.NotifySelectedClient += LoadSelectedClient;
             IsEnabledEditPanel = false;
             IsEnabledButtonSave = false;
@@ -198,6 +199,8 @@ namespace Home_Work_11_1_.ViewModel
 
         public ICommand ButtonSaveClickCommand { get; set; }
 
+        public ICommand ButtonEditClickCommand { get; set; }
+
         public Action CloseAction { get ; set; }
 
         private void LoadSelectedClient(Client selectedClient)
@@ -209,6 +212,28 @@ namespace Home_Work_11_1_.ViewModel
             TextPassportSeries = selectedClient.Passport.Substring(0, 4);
             TextPassportNumber = selectedClient.Passport.Substring(5, 6);
             TextTelephoneNumber = selectedClient.TelephoneNumber;
+        }
+
+        private void ButtonEditClick()
+        {
+            if (manager.EditClient(ListOfClientsVM.SelectedClient,
+                TextSurname,
+                TextFName,
+                TextLName,
+                TextPassportSeries + " " + TextPassportNumber,
+                TextTelephoneNumber))
+            {
+                messageBoxHelper.Show("Данные не обновлены\n" +
+                    "Вы не внесли никаких изменений", 
+                    "Оповещение",
+                    MessageBoxImage.Warning);
+                return;
+            }
+            messageBoxHelper.Show("Данные клиента успешно обновлены.\n" +
+                "Сохраните изменения перед тем как закрыть приложение", 
+                "Оповещение",
+                MessageBoxImage.Information);
+            IsEnabledButtonSave = true;
         }
 
         private void ButtonViewClick()

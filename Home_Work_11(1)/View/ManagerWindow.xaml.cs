@@ -51,54 +51,6 @@ namespace Home_Work_11_1_.View
         /// <param name="e"></param>
         private void btnChange_Click(object sender, RoutedEventArgs e)
         {
-            //if (Helper.CheckSurname(Surname.Text))
-            //{
-            //    MessageBox.Show("Фамилия введена некорректно\nПопробуйте еще раз", "", MessageBoxButton.OK, MessageBoxImage.Warning);
-            //    Surname.Text = default;
-            //    Surname.Focus();
-            //    Surname.ToolTip = "Некорректные данные";
-            //    return;
-            //}
-            //if (Helper.CheckFName(Name.Text))
-            //{
-            //    MessageBox.Show("Имя введено некорректно\nПопробуйте еще раз", "", MessageBoxButton.OK, MessageBoxImage.Warning);
-            //    Name.Text = default;
-            //    Name.Focus();
-            //    Name.ToolTip = "Некорректные данные";
-            //    return;
-            //}
-            //if (Helper.CheckLName(LName.Text))
-            //{
-            //    MessageBox.Show("Отчество введено некорректно\nПопробуйте еще раз", "", MessageBoxButton.OK, MessageBoxImage.Warning);
-            //    LName.Text = default;
-            //    Name.Focus();
-            //    Name.ToolTip = "Некорректные данные";
-            //    return;
-            //}
-            //if (Helper.CheckPSeries(PassportSeries.Text))
-            //{
-            //    MessageBox.Show("Серия паспорта введена некорректно\nПопробуйте еще раз", "", MessageBoxButton.OK, MessageBoxImage.Warning);
-            //    PassportSeries.Text = default;
-            //    PassportSeries.Focus();
-            //    PassportSeries.ToolTip = "Некорректные данные";
-            //    return;
-            //}
-            //if (Helper.CheckPNumber(PassportNumber.Text))
-            //{
-            //    MessageBox.Show("Номер паспорта введён некорректно\nПопробуйте еще раз", "", MessageBoxButton.OK, MessageBoxImage.Warning);
-            //    PassportNumber.Text = default;
-            //    PassportNumber.Focus();
-            //    PassportNumber.ToolTip = "Некорректные данные";
-            //    return;
-            //}
-            //if (Helper.CheckTelephoneNumber(TelephoneNumber.Text))
-            //{
-            //    MessageBox.Show("Вы ввели неверный номер телефона\nПопробуйте еще раз", "", MessageBoxButton.OK, MessageBoxImage.Warning);
-            //    TelephoneNumber.Text = default;
-            //    TelephoneNumber.Focus();
-            //    TelephoneNumber.ToolTip = "Некорректные данные";
-            //    return;
-            //}
             //if (manager.EditClient((Client)lw.SelectedItem,
             //    Surname.Text,
             //    Name.Text,

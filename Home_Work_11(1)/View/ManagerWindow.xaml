@@ -100,8 +100,9 @@
                     Canvas.Bottom="180" Canvas.Left="20" 
                     Width="85" Height="30"
                     FontSize="10"
-                    ToolTip="Подвердить изменение клиентских данных"
-                    Click="btnChange_Click"/>
+                    IsEnabled="{Binding IsEnabledEditPanel}"
+                    Command="{Binding ButtonEditClickCommand}"
+                    ToolTip="Подвердить изменение клиентских данных"/>
 
                 <Button x:Name="btnSave"
                     Content="Сохранить" 
@@ -117,7 +118,6 @@
                     Canvas.Bottom="140" Canvas.Left="60" 
                     Width="100" Height="30"
                     FontSize="10"
-                    Click="btnAddClick"
                     
                     />
 
