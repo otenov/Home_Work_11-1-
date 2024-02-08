@@ -47,7 +47,7 @@
                      Width="150" Height="36" HorizontalAlignment="Center" 
                     
                      Cursor="IBeam"
-                     Text="{Binding TextTelephoneNumber, UpdateSourceTrigger=PropertyChanged}"
+                     Text="{Binding TextTelephoneNumber, UpdateSourceTrigger=LostFocus}"
                      ToolTip="Введите новый номер"
                      materialDesign:HintAssist.Hint="Введите номер телефона"
                      IsEnabled="{Binding IsEnabledEditPanel}"

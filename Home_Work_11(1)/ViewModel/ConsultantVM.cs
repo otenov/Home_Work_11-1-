@@ -95,13 +95,19 @@ namespace Home_Work_11_1_.ViewModel
             get => textTelephoneNumber;
             set
             {
-                //TODO: Можем проверить равняется value textTelephoneNumber. Изменилось ли что-то
+                //Вопрос-Ответ: Можем проверить равняется value textTelephoneNumber, но это логика работы программы, поэтому решено её вынести из set
                 //TODO: Можем value проверить на наличие символов
-                if (value?.Length > 5)
+                //TODO: Сделать красивый textbox с выводом ошибки при вводе
+
+                if (Helper.CheckTelephoneNumber(value))
                 {
-                    messageBoxHelper.Show("Error", "Error", MessageBoxImage.None);
+                    messageBoxHelper.Show("Вы ввели неверный номер телефона\n" +
+                        "Попробуйте еще раз",
+                        "",
+                        MessageBoxImage.Warning);
                     return;
                 }
+
                 textTelephoneNumber = value;
                 OnPropertyChanged(nameof(TextTelephoneNumber));
             }
@@ -119,7 +125,7 @@ namespace Home_Work_11_1_.ViewModel
 
         public IWindowCreator WindowCreator { get; set; }
 
-        public Action CloseAction { get => throw new NotImplementedException(); set => throw new NotImplementedException(); }
+        public Action CloseAction { get; set ; }
 
         private void ButtonViewClick()
         {
@@ -141,14 +147,6 @@ namespace Home_Work_11_1_.ViewModel
 
         private void ButtonEditClick()
         {
-            if (Helper.CheckTelephoneNumber(TextTelephoneNumber))
-            {
-                messageBoxHelper.Show("Вы ввели неверный номер телефона\n" +
-                    "Попробуйте еще раз",
-                    "", 
-                    MessageBoxImage.Warning);
-                return;
-            }
             if (consultant.EditTNumber(selectedClient, TextTelephoneNumber))
             {
 
@@ -191,9 +189,10 @@ namespace Home_Work_11_1_.ViewModel
 
         public ConsultantVM(IMessageBoxHelper messageBoxHelper, IWindowCreator windowCreator, Action CloseAction)
         {
+            this.messageBoxHelper = messageBoxHelper;
+            this.CloseAction = CloseAction;
             consultant = new Consultant("Сергей", App.bank.CreateCollectionForConsultant());
             Clients = consultant.WorkerClients;
-            SelectedClient = new Client();
             ButtonViewClickCommand = new CommandBase(ButtonViewClick);
             ButtonHideClickCommand = new CommandBase(ButtonHideClick);
             ButtonEditClickCommand = new CommandBase(ButtonEditClick);
@@ -203,8 +202,6 @@ namespace Home_Work_11_1_.ViewModel
             IsEnabledButtonSave = false;
             IsEnabledEditPanel = false;
             ListViewVisibility = Visibility.Hidden;
-            this.messageBoxHelper = messageBoxHelper;
-            this.CloseAction = CloseAction;
         }
 
         public ConsultantVM()
