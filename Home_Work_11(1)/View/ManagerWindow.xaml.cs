@@ -44,35 +44,11 @@ namespace Home_Work_11_1_.View
             //Show();
         }
 
-        /// <summary>
-        /// Обработчик для кнопки Изменить
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnChange_Click(object sender, RoutedEventArgs e)
-        {
-            //if (manager.EditClient((Client)lw.SelectedItem,
-            //    Surname.Text,
-            //    Name.Text,
-            //    LName.Text,
-            //    PassportSeries.Text + " " + PassportNumber.Text,
-            //    TelephoneNumber.Text))
-            //{
-            //    MessageBox.Show("Данные не обновлены\n" +
-            //        "Вы не внесли никаких изменений", "Оповещение", MessageBoxButton.OK, MessageBoxImage.Warning);
-            //    return;
-            //}
-            //MessageBox.Show("Данные клиента успешно обновлены.\n" +
-            //    "Сохраните изменения перед тем как закрыть приложение", "Оповещение", MessageBoxButton.OK);
-            //btnSave.IsEnabled = true;
-        }
-
 
 
         private void MouseDoubleClickMethod(object sender, MouseButtonEventArgs e)
         {
-            //HistoryRecordWindow historyRecordWindow = new HistoryRecordWindow((HistoryRecord)HistoryList.SelectedItem, Close());
-            //historyRecordWindow.ShowDialog();
+            ((ManagerVM)DataContext).ShowHistoryRecord();
         }
     }
 }

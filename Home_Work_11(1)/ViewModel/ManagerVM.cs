@@ -39,6 +39,17 @@ namespace Home_Work_11_1_.ViewModel
 
         #region Cвойства
 
+        private HistoryRecord selectedHistoryRecord;
+        public HistoryRecord SelectedHistoryRecord
+        {
+            get => selectedHistoryRecord;
+            set
+            {
+                selectedHistoryRecord = value;
+                OnPropertyChanged(nameof(SelectedHistoryRecord));
+            }
+        }
+
         private string textSurname;
         public string TextSurname
         {
@@ -212,6 +223,9 @@ namespace Home_Work_11_1_.ViewModel
             TextPassportSeries = selectedClient.Passport.Substring(0, 4);
             TextPassportNumber = selectedClient.Passport.Substring(5, 6);
             TextTelephoneNumber = selectedClient.TelephoneNumber;
+
+            //Вопрос: мне вообще нужно ли использовать события? или я могу ссылку дать?
+            //TextSurname = ListOfClientsVM.SelectedClient.Surname;
         }
 
         private void ButtonEditClick()
@@ -267,6 +281,12 @@ namespace Home_Work_11_1_.ViewModel
             messageBoxHelper.Show("Данные клиента успешно сохранены",
                 "Оповещение",
                 MessageBoxImage.Information);
+        }
+
+        public void ShowHistoryRecord()
+        {
+            HistoryRecordVM historyRecordVM = new HistoryRecordVM(SelectedHistoryRecord);
+            windowCreator.CreateWindow(Windows.HistoryRecordWindow, historyRecordVM);
         }
 
 
