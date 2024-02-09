@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Home_Work_11_1_.ViewModel;
+using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
@@ -12,20 +13,19 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-
-namespace Home_Work_11_1_
+//Вопрос: Еще раз пройтись по зависимостям
+namespace Home_Work_11_1_.View
 {
     /// <summary>
     /// Логика взаимодействия для AddNewClientWindow.xaml
     /// </summary>
     public partial class AddNewClientWindow : Window
     {
-        IManager manager;
 
-        public AddNewClientWindow(Manager manager)
+        public AddNewClientWindow(AddNewClientVM addNewClientVM)
         {
             InitializeComponent();
-            this.manager = manager;
+            DataContext = addNewClientVM;
         }
 
         /// <summary>
@@ -33,20 +33,10 @@ namespace Home_Work_11_1_
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
-        public void btnOkClick(object sender, RoutedEventArgs e)
-        {
-            manager.AddClient(surnameBox.Text, fnameBox.Text, lnameBox.Text, passportBox.Text, numberBox.Text);
-            this.Close();
-        }
-
-        /// <summary>
-        /// Обработчик для кнопки Назад
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnBackClick(object sender, RoutedEventArgs e)
-        {
-            this.Close();
-        }
+        //public void btnOkClick(object sender, RoutedEventArgs e)
+        //{
+        //    //manager.AddClient(surnameBox.Text, fnameBox.Text, lnameBox.Text, passportBox.Text, numberBox.Text);
+        //    //this.Close();
+        //}
     }
 }

@@ -95,7 +95,7 @@
                      IsEnabled="{Binding IsEnabledEditPanel}"
                      Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
 
-                <Button x:Name="btnChange"
+                <Button
                     Content="Изменить"
                     Canvas.Bottom="180" Canvas.Left="20" 
                     Width="85" Height="30"
@@ -104,7 +104,7 @@
                     Command="{Binding ButtonEditClickCommand}"
                     ToolTip="Подвердить изменение клиентских данных"/>
 
-                <Button x:Name="btnSave"
+                <Button
                     Content="Сохранить" 
                     Canvas.Bottom="180" Canvas.Left="110" 
                     Width="85" Height="30"
@@ -113,15 +113,15 @@
                     IsEnabled="{Binding IsEnabledButtonSave}"
                     />
 
-                <Button x:Name="btnAdd"
+                <Button
                     Content="Добавить" 
                     Canvas.Bottom="140" Canvas.Left="60" 
                     Width="100" Height="30"
                     FontSize="10"
-                    
+                    Command="{Binding ButtonAddClickCommand}"
                     />
 
-                <Button x:Name="btnLook"
+                <Button
                     Content="Просмотр" 
                     Canvas.Bottom="100" Canvas.Left="60" 
                     Width="100" Height="30" 
@@ -129,14 +129,14 @@
                     Command="{Binding ButtonViewClickCommand}"
                     />
 
-                <Button x:Name="btnHide"
+                <Button
                     Content="Скрыть" 
                     Canvas.Bottom="60" Canvas.Left="60"
                     Width="100" Height="30" 
                     FontSize="10"
                     Command="{Binding ButtonHideClickCommand}"/>
 
-                <Button x:Name="btnBack"
+                <Button
                     Content="Назад" 
                     Canvas.Bottom="20" Canvas.Left="60"
                     Width="100" Height="30" 
@@ -147,7 +147,7 @@
             </Canvas>
         </Border>
 
-        <ListBox x:Name="HistoryList"
+        <ListBox
                  Grid.Column= "3" 
                  Margin="20" 
                  MouseDoubleClick="MouseDoubleClickMethod"

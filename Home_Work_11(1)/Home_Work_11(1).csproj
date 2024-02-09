@@ -74,6 +74,7 @@
     <Compile Include="Client.cs" />
     <Compile Include="ICloseable.cs" />
     <Compile Include="IWindowCreator.cs" />
+    <Compile Include="ViewModel\AddNewClientVM.cs" />
     <Compile Include="ViewModel\HistoryRecordVM.cs" />
     <Compile Include="ViewModel\ListOfClientsVM.cs" />
     <Compile Include="ViewModel\ManagerVM.cs" />

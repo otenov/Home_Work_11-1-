@@ -23,6 +23,7 @@ namespace Home_Work_11_1_.ViewModel
             ButtonBackClickCommand = new CommandBase(ButtonBackClick);
             ButtonSaveClickCommand = new CommandBase(ButtonSaveClick);
             ButtonEditClickCommand = new CommandBase(ButtonEditClick);
+            ButtonAddClickCommand = new CommandBase(ButtonAddClick);
             ListOfClientsVM.NotifySelectedClient += LoadSelectedClient;
             IsEnabledEditPanel = false;
             IsEnabledButtonSave = false;
@@ -212,6 +213,8 @@ namespace Home_Work_11_1_.ViewModel
 
         public ICommand ButtonEditClickCommand { get; set; }
 
+        public ICommand ButtonAddClickCommand { get; set; }
+
         public Action CloseAction { get ; set; }
 
         private void LoadSelectedClient(Client selectedClient)
@@ -281,6 +284,18 @@ namespace Home_Work_11_1_.ViewModel
             messageBoxHelper.Show("Данные клиента успешно сохранены",
                 "Оповещение",
                 MessageBoxImage.Information);
+        }
+
+        private void ButtonAddClick()
+        {
+            //Hide();
+            //AddNewClientWindow addWindow = new AddNewClientWindow((Manager)manager);
+            //addWindow.ShowDialog();
+            //Show();
+
+            //Вопрос: Как сделать нормально и правильно? Где я должен создавать Vm в windowcreator? или в этой vm? Или лучше написать отдельный класс
+            AddNewClientVM addNewClientVM = new AddNewClientVM(messageBoxHelper, CloseAction, manager);
+            windowCreator.CreateWindow(Windows.AddNewClientWindow, addNewClientVM);
         }
 
         public void ShowHistoryRecord()

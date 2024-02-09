@@ -37,12 +37,12 @@ namespace Home_Work_11_1_
                 historyRecordWindow.Show();
                 return;
             }
-            //if (window == Windows.AddNewClientWindow)
-            //{
-            //    var addNewClientWindow = new AddNewClientWindow();
-            //    addNewClientWindow.Show();
-            //    return;
-            //}
+            if (window == Windows.AddNewClientWindow)
+            {
+                var addNewClientWindow = new AddNewClientWindow((AddNewClientVM)vm);
+                addNewClientWindow.ShowDialog();
+                return;
+            }
         }
     }
 }
