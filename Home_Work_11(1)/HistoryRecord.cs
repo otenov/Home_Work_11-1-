@@ -9,6 +9,8 @@ namespace Home_Work_11_1_
 {
     public class HistoryRecord
     {
+        //TODO: Сделать присвоение порядкового номера истории в отдельном классе
+
         public DateTime DateOfHistory { get;  set; } //Как работать с датой и временем
 
         private string author;
@@ -46,7 +48,7 @@ namespace Home_Work_11_1_
         {
             NumberOfRecord = numberOfRecord;
             Author = WhoIsAuthor(worker);
-            DateOfHistory = DateTime.Now; //Как вывести минуты и часы
+            DateOfHistory = DateTime.Now;
             if (typeOfHistory == TypeOfHistory.Add) TypeOfHistoryString = "Добавление";
             if (typeOfHistory == TypeOfHistory.Edit) TypeOfHistoryString = "Изменение";
             Records = new ObservableCollection<Record>();

@@ -11,6 +11,9 @@ namespace Home_Work_11_1_
 {
     public class Client : INotifyPropertyChanged
     {
+
+        //Вопрос: Создание ID и поле staticID должен же по логике находится в классе Repository ?
+        //TODO: Сделать обновление между коллекциями консультанта и менеджера по id
         private static int staticId;
 
         private static int NextId()
@@ -63,8 +66,7 @@ namespace Home_Work_11_1_
             }
         }
         private string passport;
-        public string Passport
-            
+        public string Passport  
         {
             get
             {
@@ -75,6 +77,8 @@ namespace Home_Work_11_1_
 
         public ObservableCollection<HistoryRecord> HistoryChanges { get; set; }
 
+
+        //Вопрос: Что мне делать здесь с реализацией INotifyPropertyChanged ? Наследоваться от BaseVM, но класс Client же не VM, а Модель
         public event PropertyChangedEventHandler PropertyChanged;
         public void OnPropertyChanged([CallerMemberName] string prop = "")
         {
@@ -82,7 +86,6 @@ namespace Home_Work_11_1_
                 PropertyChanged(this, new PropertyChangedEventArgs(prop));
         }
 
-        // Конструктор без параметров
         public Client()
         {
 
@@ -92,7 +95,7 @@ namespace Home_Work_11_1_
         /// Конструктор для копирования
         /// </summary>
         /// <param name="item">Оригинал</param>
-        public Client(Client item)    //Этот код окей?
+        public Client(Client item)
         {
             this.Id = item.Id;
             this.Surname = item.Surname;
@@ -102,7 +105,6 @@ namespace Home_Work_11_1_
             this.Passport = item.Passport;
             this.HistoryChanges = item.HistoryChanges;
         }
-
 
         public Client(string surname, string fName, string lName, string tNumber, string passport)
         {
@@ -115,7 +117,6 @@ namespace Home_Work_11_1_
             HistoryChanges = new ObservableCollection<HistoryRecord>();
         }
 
-        //Переопределённый метод ToString() для удобства, закрепления
         public override string ToString()
         {
             string s = $"{Surname,20} {LName,20} {FName,20} {TelephoneNumber,13} {Passport,13}";
