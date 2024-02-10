@@ -120,8 +120,34 @@ namespace Home_Work_11_1_.ViewModel
             CloseAction?.Invoke();
         }
 
+        //Вопрос: Где мне делать проверку на null, чтобы окно не закрывалось и имеет ли смысл проверки в set-ере?
         private void ButtonOkClick()
         {
+            if (TextSurname == null)
+            {
+                messageBoxHelper.Show("Фамилия не введена.\nПоле обязательно для заполнения" +"Попробуйте еще раз","",MessageBoxImage.Warning);
+                return;
+            }
+            if (TextFName == null)
+            {
+                messageBoxHelper.Show("Имя не введено.\nПоле обязательно для заполнения" + "Попробуйте еще раз", "", MessageBoxImage.Warning);
+                return;
+            }
+            if (TextLName == null)
+            {
+                messageBoxHelper.Show("Отчество не введено.\nПоле обязательно для заполнения" + "Попробуйте еще раз", "", MessageBoxImage.Warning);
+                return;
+            }
+            if (TextTelephoneNumber == null)
+            {
+                messageBoxHelper.Show("Телефон не введен.\nПоле обязательно для заполнения" + "Попробуйте еще раз", "", MessageBoxImage.Warning);
+                return;
+            }
+            if (TextPassport == null)
+            {
+                messageBoxHelper.Show("Паспорт не указан.\nПоле обязательно для заполнения" + "Попробуйте еще раз", "", MessageBoxImage.Warning);
+                return;
+            }
             manager.AddClient(TextSurname, TextFName, TextLName, TextPassport, TextTelephoneNumber);
             CloseAction?.Invoke();
         }
