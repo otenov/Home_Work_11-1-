@@ -227,8 +227,8 @@ namespace Home_Work_11_1_.ViewModel
             TextPassportNumber = selectedClient.Passport.Substring(5, 6);
             TextTelephoneNumber = selectedClient.TelephoneNumber;
 
-            //Вопрос: мне вообще нужно ли использовать события? или я могу ссылку дать?
-            //TextSurname = ListOfClientsVM.SelectedClient.Surname;
+            //Вопрос: Мне нужно ли использовать события для обновления TextBox-ов? Или я могу ссылку дать в биндинге? 
+            //В XAML TextSurname = ListOfClientsVM.SelectedClient.Surname;
         }
 
         private void ButtonEditClick()
@@ -288,13 +288,7 @@ namespace Home_Work_11_1_.ViewModel
 
         private void ButtonAddClick()
         {
-            //Hide();
-            //AddNewClientWindow addWindow = new AddNewClientWindow((Manager)manager);
-            //addWindow.ShowDialog();
-            //Show();
-
-            //Вопрос: Как сделать нормально и правильно? Где я должен создавать Vm в windowcreator? или в этой vm? Или лучше написать отдельный класс
-            AddNewClientVM addNewClientVM = new AddNewClientVM(messageBoxHelper, CloseAction, manager);
+            AddNewClientVM addNewClientVM = new AddNewClientVM(messageBoxHelper, manager);
             windowCreator.CreateWindow(Windows.AddNewClientWindow, addNewClientVM);
         }
 
@@ -305,6 +299,6 @@ namespace Home_Work_11_1_.ViewModel
         }
 
 
-        //Вопрос: Как поступить с одинаковым функционалом? Его тоже в отдельную vm?
+        //TODO: Вынести общий функционал в отдельную какую-то абстрактную VM?
     }
 }

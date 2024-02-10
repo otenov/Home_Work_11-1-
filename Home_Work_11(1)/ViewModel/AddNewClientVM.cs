@@ -12,11 +12,10 @@ namespace Home_Work_11_1_.ViewModel
     public class AddNewClientVM : BaseVM, ICloseable
     {
         //TODO Сделать нормальный паспорт box
-        public AddNewClientVM(IMessageBoxHelper messageBoxHelper, Action closeAction, Manager manager)
+        public AddNewClientVM(IMessageBoxHelper messageBoxHelper, Manager manager)
         {
             this.manager = manager;
             this.messageBoxHelper = messageBoxHelper;
-            CloseAction = closeAction;
             ButtonBackClickCommand = new CommandBase(ButtonBackClick);
             ButtonOkClickCommand = new CommandBase(ButtonOkClick);
         }

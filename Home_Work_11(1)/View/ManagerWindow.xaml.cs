@@ -31,21 +31,6 @@ namespace Home_Work_11_1_.View
             DataContext = new ManagerVM(new WPFMessageBoxHelper(), App.windowCreator, Close);
         }
 
-        /// <summary>
-        /// Обработчик для кнопки Добавить
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void btnAddClick(object sender, RoutedEventArgs e)
-        {
-            //Hide();
-            //AddNewClientWindow addWindow = new AddNewClientWindow((Manager)manager);
-            //addWindow.ShowDialog();
-            //Show();
-        }
-
-
-
         private void MouseDoubleClickMethod(object sender, MouseButtonEventArgs e)
         {
             ((ManagerVM)DataContext).ShowHistoryRecord();

@@ -10,7 +10,6 @@ namespace Home_Work_11_1_
 {
     public class WPFWindowCreator : IWindowCreator
     {
-        //Вопрос: Можно ли здесь использовать UI компоненты? Если да, то чем это выгодно?
         public void CreateWindow(Windows window, BaseVM vm)
         {
             if(window == Windows.StartWindow)
@@ -40,6 +39,8 @@ namespace Home_Work_11_1_
             if (window == Windows.AddNewClientWindow)
             {
                 var addNewClientWindow = new AddNewClientWindow((AddNewClientVM)vm);
+                //Вопрос: Могу ли я так передавать метод делегату в другой класс?
+                ((AddNewClientVM)vm).CloseAction += addNewClientWindow.Close;
                 addNewClientWindow.ShowDialog();
                 return;
             }

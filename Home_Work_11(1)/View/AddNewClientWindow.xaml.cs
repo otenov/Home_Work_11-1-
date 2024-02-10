@@ -21,22 +21,10 @@ namespace Home_Work_11_1_.View
     /// </summary>
     public partial class AddNewClientWindow : Window
     {
-
         public AddNewClientWindow(AddNewClientVM addNewClientVM)
         {
             InitializeComponent();
             DataContext = addNewClientVM;
         }
-
-        /// <summary>
-        /// Обработчик для кнопки ОК
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        //public void btnOkClick(object sender, RoutedEventArgs e)
-        //{
-        //    //manager.AddClient(surnameBox.Text, fnameBox.Text, lnameBox.Text, passportBox.Text, numberBox.Text);
-        //    //this.Close();
-        //}
     }
 }
