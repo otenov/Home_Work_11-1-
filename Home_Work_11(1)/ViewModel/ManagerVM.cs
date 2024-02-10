@@ -38,7 +38,7 @@ namespace Home_Work_11_1_.ViewModel
         private IMessageBoxHelper messageBoxHelper;
 
 
-        #region Cвойства
+        #region Свойства
 
         private HistoryRecord selectedHistoryRecord;
         public HistoryRecord SelectedHistoryRecord
