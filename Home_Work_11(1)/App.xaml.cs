@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Home_Work_11_1_.Helpers;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Configuration;
@@ -16,49 +17,16 @@ namespace Home_Work_11_1_
     /// </summary>
     public partial class App : Application
     {
-        /// <summary>
-        /// Репозиторий
-        /// </summary>
-        static public Repository repositoryClients;
+        public static Bank bank;
 
-        /// <summary>
-        /// Исходная коллекция клиентов
-        /// </summary>
-        static public ObservableCollection<Client> clients;
+        public static WPFWindowCreator windowCreator;
 
-        /// <summary>
-        /// Метод для парсинга файла sd как observableCollection
-        /// </summary>
-        /// <param name="path"></param>
-        /// <returns></returns>
-        static ObservableCollection<Client> DeserializeObservableClient(string path)
-        {
-            ObservableCollection<Client> tempclients = new ObservableCollection<Client>();
-
-            XmlSerializer xmlSerializer = new XmlSerializer(typeof(ObservableCollection<Client>));
-
-            FileStream fstream = new FileStream(path, FileMode.Open, FileAccess.Read);
-
-            tempclients = xmlSerializer.Deserialize(fstream) as ObservableCollection<Client>;
-
-            fstream.Close();
-
-            return tempclients;
-        }
+        public static IMessageBoxHelper messageBox;
 
         static App()
         {
-
-            if (File.Exists("CollectionClients"))
-            {
-                repositoryClients = new Repository("CollectionClients");
-                clients = DeserializeObservableClient(repositoryClients.path);
-            }
-            else
-            {
-                repositoryClients = new Repository();
-                clients = DeserializeObservableClient(repositoryClients.path);
-            }
+            bank = new Bank();
+            windowCreator = new WPFWindowCreator();
         }
     }
 }

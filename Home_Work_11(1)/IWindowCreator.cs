@@ -7,8 +7,8 @@ using System.Windows;
 
 namespace Home_Work_11_1_
 {
-    interface IConsultant
+    public interface IWindowCreator
     {
-        bool EditTNumber(Client client, string newTNumber);
+        void CreateWindow(Windows window, BaseVM baseVM);
     }
 }

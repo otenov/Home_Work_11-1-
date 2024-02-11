@@ -63,48 +63,85 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Classes\Helper.cs" />
-    <Compile Include="CreateFile\Client.cs" />
+    <Compile Include="Bank.cs" />
+    <Compile Include="BaseVM.cs" />
+    <Compile Include="Helper.cs" />
+    <Compile Include="Helpers\IMessageBoxHelper.cs" />
+    <Compile Include="Helpers\MessageBoxHelper.cs" />
+    <Compile Include="HistoryRecord.cs" />
+    <Compile Include="ClientGenerator.cs" />
+    <Compile Include="CommandBase.cs" />
+    <Compile Include="Client.cs" />
+    <Compile Include="ICloseable.cs" />
+    <Compile Include="IWindowCreator.cs" />
+    <Compile Include="ViewModel\AddNewClientVM.cs" />
+    <Compile Include="ViewModel\HistoryRecordVM.cs" />
+    <Compile Include="ViewModel\ListOfClientsVM.cs" />
+    <Compile Include="ViewModel\ManagerVM.cs" />
+    <Compile Include="View\HistoryRecordWindow.xaml.cs">
+      <DependentUpon>HistoryRecordWindow.xaml</DependentUpon>
+    </Compile>
     <Compile Include="IConsultant.cs" />
     <Compile Include="IManager.cs" />
-    <Compile Include="CreateFile\Repository.cs" />
-    <Compile Include="IViewer.cs" />
-    <Compile Include="StartWindow.xaml.cs">
+    <Compile Include="Repository.cs" />
+    <Compile Include="ViewModel\ConsultantVM.cs" />
+    <Compile Include="View\ListOfClients.xaml.cs">
+      <DependentUpon>ListOfClients.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\StartWindow.xaml.cs">
       <DependentUpon>StartWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Classes\Worker.cs" />
-    <Page Include="AddNewClientWindow.xaml">
+    <Compile Include="Windows.cs" />
+    <Compile Include="Worker.cs" />
+    <Compile Include="WPFWindowCreator.cs" />
+    <Compile Include="Для справки\StartWindowVM.cs" />
+    <Compile Include="Для справки\WindowTestBinding.xaml.cs">
+      <DependentUpon>WindowTestBinding.xaml</DependentUpon>
+    </Compile>
+    <Page Include="View\AddNewClientWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="MainWindow.xaml">
+    <Page Include="View\HistoryRecordWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\ConsultantWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Compile Include="AddNewClientWindow.xaml.cs">
+    <Compile Include="View\AddNewClientWindow.xaml.cs">
       <DependentUpon>AddNewClientWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Classes\Consultant.cs" />
-    <Compile Include="MainWindow.xaml.cs">
-      <DependentUpon>MainWindow.xaml</DependentUpon>
+    <Compile Include="Consultant.cs" />
+    <Compile Include="View\ConsultantWindow.xaml.cs">
+      <DependentUpon>ConsultantWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Page Include="ManagerWindow.xaml">
+    <Page Include="View\ListOfClients.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="StartWindow.xaml">
+    <Page Include="View\ManagerWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\StartWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Для справки\WindowTestBinding.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Classes\Manager.cs" />
-    <Compile Include="ManagerWindow.xaml.cs">
+    <Compile Include="Manager.cs" />
+    <Compile Include="View\ManagerWindow.xaml.cs">
       <DependentUpon>ManagerWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">

@@ -1,0 +1,177 @@
+﻿<Window x:Class="Home_Work_11_1_.View.ManagerWindow" 
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Home_Work_11_1_"
+        xmlns:listofclients="clr-namespace:Home_Work_11_1_.View"
+        mc:Ignorable="d"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        Title="Manager" Height="600" Width="1350"
+        MinHeight="600" MinWidth="1000">
+    <Window.Resources>
+        <Style x:Key="GridHeader" TargetType="{x:Type GridViewColumnHeader}">
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type GridViewColumnHeader}">
+                        <TextBlock Text="{TemplateBinding Content}" Padding="5" Width="{TemplateBinding Width}" TextAlignment="Left" />
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition MinWidth="200" Width="1.8*" />
+            <ColumnDefinition Width="3" />
+            <ColumnDefinition Width="5*" />
+            <ColumnDefinition Width="350"/>
+        </Grid.ColumnDefinitions>
+
+        <GridSplitter VerticalAlignment="Stretch" Grid.Column="1" Width="2"/>
+
+        <Grid Grid.Column="2">
+            <listofclients:ListOfClients DataContext="{Binding ListOfClientsVM}"/>
+        </Grid>
+
+        <Border x:Name="bord" Grid.Column="0" Margin="10 10" Background="Beige" CornerRadius="30">
+            <Border.Effect>
+                <DropShadowEffect BlurRadius="30"  Color="Gray" />
+            </Border.Effect>
+            <Canvas Margin="10 10" >
+
+                <TextBox
+                     Width="150" Height="36" HorizontalAlignment="Center" 
+                     Canvas.Bottom="460" Canvas.Left="30" 
+                     Cursor="IBeam"
+                     Text="{Binding TextSurname}"
+                     materialDesign:HintAssist.Hint="Введите фамилию"                    
+                     IsEnabled="{Binding IsEnabledEditPanel}"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+
+                <TextBox 
+                     Width="150" Height="36" HorizontalAlignment="Center" 
+                     Canvas.Bottom="420" Canvas.Left="30" 
+                     Cursor="IBeam"
+                     Text="{Binding TextFName}"
+                     materialDesign:HintAssist.Hint="Введите имя"
+                     IsEnabled="{Binding IsEnabledEditPanel}"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+
+                <TextBox
+                     Width="150" Height="36" HorizontalAlignment="Center" 
+                     Canvas.Bottom="380" Canvas.Left="30" 
+                     Cursor="IBeam"
+                     Text="{Binding TextLName}"
+                     materialDesign:HintAssist.Hint="Введите отчество"
+                     IsEnabled="{Binding IsEnabledEditPanel}"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+
+                <TextBox 
+                     Width="150" Height="36" HorizontalAlignment="Center" 
+                     Canvas.Bottom="340" Canvas.Left="30" 
+                     Cursor="IBeam"
+                     Text="{Binding TextPassportSeries}"
+                     materialDesign:HintAssist.Hint="Введите серию паспорта"
+                     IsEnabled="{Binding IsEnabledEditPanel}"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+
+                <TextBox 
+                     Width="150" Height="36" HorizontalAlignment="Center" 
+                     Canvas.Bottom="300" Canvas.Left="30" 
+                     Cursor="IBeam"
+                     Text="{Binding TextPassportNumber}"
+                     materialDesign:HintAssist.Hint="Введите номер паспорта"
+                     IsEnabled="{Binding IsEnabledEditPanel}"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+                
+                <TextBox
+                     Width="150" Height="36" HorizontalAlignment="Center" 
+                     Canvas.Bottom="260" Canvas.Left="30" 
+                     Cursor="IBeam"
+                     Text="{Binding TextTelephoneNumber}"
+                     materialDesign:HintAssist.Hint="Введите номер телефона"
+                     IsEnabled="{Binding IsEnabledEditPanel}"
+                     Style="{StaticResource MaterialDesignFloatingHintTextBox}"/>
+
+                <Button
+                    Content="Изменить"
+                    Canvas.Bottom="220" Canvas.Left="20" 
+                    Width="85" Height="30"
+                    FontSize="10"
+                    IsEnabled="{Binding IsEnabledEditPanel}"
+                    Command="{Binding ButtonEditClickCommand}"
+                    ToolTip="Подвердить изменение клиентских данных"/>
+
+                <Button
+                    Content="Сортировать"
+                    Canvas.Bottom="180" Canvas.Left="60" 
+                    Width="100" Height="30"
+                    FontSize="10"
+                    Command="{Binding ButtonSortClickCommand}"
+                    ToolTip="Подвердить изменение клиентских данных"/>
+
+                <Button
+                    Content="Сохранить" 
+                    Canvas.Bottom="220" Canvas.Left="110" 
+                    Width="85" Height="30"
+                    FontSize="10"
+                    Command="{Binding ButtonSaveClickCommand}"
+                    IsEnabled="{Binding IsEnabledButtonSave}"
+                    />
+
+                <Button
+                    Content="Добавить" 
+                    Canvas.Bottom="140" Canvas.Left="60" 
+                    Width="100" Height="30"
+                    FontSize="10"
+                    Command="{Binding ButtonAddClickCommand}"
+                    />
+
+                <Button
+                    Content="Просмотр" 
+                    Canvas.Bottom="100" Canvas.Left="60" 
+                    Width="100" Height="30" 
+                    FontSize="10"
+                    Command="{Binding ButtonViewClickCommand}"
+                    />
+
+                <Button
+                    Content="Скрыть" 
+                    Canvas.Bottom="60" Canvas.Left="60"
+                    Width="100" Height="30" 
+                    FontSize="10"
+                    Command="{Binding ButtonHideClickCommand}"/>
+
+                <Button
+                    Content="Назад" 
+                    Canvas.Bottom="20" Canvas.Left="60"
+                    Width="100" Height="30" 
+                    FontSize="10"
+                    Command="{Binding ButtonBackClickCommand}"/>
+
+
+            </Canvas>
+        </Border>
+
+        <ListBox
+                 Grid.Column= "3" 
+                 Margin="20" 
+                 MouseDoubleClick="MouseDoubleClickMethod"
+                 ItemsSource="{Binding ListOfClientsVM.SelectedClient.HistoryChanges}"
+                 SelectedItem="{Binding SelectedHistoryRecord}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock>
+                        <Run Text="Изменение "/>
+                        <Run Text="{Binding NumberOfRecord}" />
+                    </TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+
+    </Grid>
+    
+</Window>
+
