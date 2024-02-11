@@ -12,7 +12,9 @@ namespace Home_Work_11_1_
 {
     public static class Repository
     {
-        //TODO Сделать реализацию интерфейсов (IEquatable, IComparable, ICloneable, I)
+        //TODO Сделать реализацию интерфейсов (IEquatable, IComparable, ICloneable, IEnumerable)
+        //TODO Сделать реализацию интерфеса ICompaper и сортировку с вложенными классами
+        //TODO Сделать правильное присвоение Id
 
         /// <summary>
         /// Генератор рандомных клиентов
