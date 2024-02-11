@@ -21,6 +21,25 @@ namespace Home_Work_11_1_.ViewModel
 {
     public class ConsultantVM : BaseVM, ICloseable
     {
+
+        public ConsultantVM(IMessageBoxHelper messageBoxHelper, IWindowCreator windowCreator, Action CloseAction)
+        {
+            this.messageBoxHelper = messageBoxHelper;
+            this.windowCreator = windowCreator;
+            this.CloseAction = CloseAction;
+            consultant = new Consultant("Сергей", App.bank.CreateCollectionForConsultant());
+            ListOfClientsVM = new ListOfClientsVM(consultant.WorkerClients);
+            ButtonViewClickCommand = new CommandBase(ButtonViewClick);
+            ButtonHideClickCommand = new CommandBase(ButtonHideClick);
+            ButtonEditClickCommand = new CommandBase(ButtonEditClick);
+            ButtonSaveClickCommand = new CommandBase(ButtonSaveClick);
+            ButtonBackClickCommand = new CommandBase(ButtonBackClick);
+            ButtonSortClickCommand = new CommandBase(ButtonSortClick);
+            IsEnabledButtonSave = false;
+            IsEnabledEditPanel = false;
+            ListOfClientsVM.NotifySelectedClient += LoadSelectedClient;
+        }
+
         private Consultant consultant;
 
         public ListOfClientsVM ListOfClientsVM { get; set; }
@@ -100,6 +119,8 @@ namespace Home_Work_11_1_.ViewModel
 
         public ICommand ButtonBackClickCommand { get; set; }
 
+        public ICommand ButtonSortClickCommand { get; set; }
+
         public Action CloseAction { get; set ; }
 
         private void ButtonViewClick()
@@ -152,6 +173,11 @@ namespace Home_Work_11_1_.ViewModel
             CloseAction.Invoke();
         }
 
+        private void ButtonSortClick()
+        {
+            ListOfClientsVM.Clients = new ObservableCollection<Client>(consultant.SortClient());
+        }
+
         public void ShowHistoryRecord()
         {
             //Вопрос-Ответ: Можно ли вообще отсюда создавать VM?
@@ -173,23 +199,6 @@ namespace Home_Work_11_1_.ViewModel
             TextTelephoneNumber = selectedClient.TelephoneNumber;
         }
 
-
-        public ConsultantVM(IMessageBoxHelper messageBoxHelper, IWindowCreator windowCreator, Action CloseAction)
-        {
-            this.messageBoxHelper = messageBoxHelper;
-            this.windowCreator = windowCreator;
-            this.CloseAction = CloseAction;
-            consultant = new Consultant("Сергей", App.bank.CreateCollectionForConsultant());
-            ListOfClientsVM = new ListOfClientsVM(consultant.WorkerClients);
-            ButtonViewClickCommand = new CommandBase(ButtonViewClick);
-            ButtonHideClickCommand = new CommandBase(ButtonHideClick);
-            ButtonEditClickCommand = new CommandBase(ButtonEditClick);
-            ButtonSaveClickCommand = new CommandBase(ButtonSaveClick);
-            ButtonBackClickCommand = new CommandBase(ButtonBackClick);
-            IsEnabledButtonSave = false;
-            IsEnabledEditPanel = false;
-            ListOfClientsVM.NotifySelectedClient += LoadSelectedClient;
-        }
 
         public ConsultantVM()
         {

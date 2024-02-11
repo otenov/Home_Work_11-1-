@@ -9,7 +9,7 @@ using System.Collections.ObjectModel;
 
 namespace Home_Work_11_1_
 {
-    public class Client : INotifyPropertyChanged
+    public class Client : INotifyPropertyChanged, IComparable<Client>
     {
 
         //Вопрос: Создание ID и поле staticID должен же по логике находится в классе Repository ?
@@ -123,5 +123,9 @@ namespace Home_Work_11_1_
             return s;
         }
 
+        public int CompareTo(Client other)
+        {
+            return string.Compare(this.Surname + this.FName + this.LName, other.Surname + other.FName + other.LName);
+        }
     }
 }

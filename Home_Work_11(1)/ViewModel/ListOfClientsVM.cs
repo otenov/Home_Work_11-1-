@@ -41,6 +41,16 @@ namespace Home_Work_11_1_.ViewModel
             }
         }
 
-        public ObservableCollection<Client> Clients { get; }
+        private ObservableCollection<Client> clients;
+
+        public ObservableCollection<Client> Clients
+        {
+            get => clients;
+            set
+            {
+                clients = value;
+                OnPropertyChanged(nameof(Clients));
+            }
+        }
     }
 }

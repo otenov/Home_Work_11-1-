@@ -42,7 +42,7 @@
                 <DropShadowEffect BlurRadius="30"  Color="Gray" />
             </Border.Effect>
             <Canvas Margin="10 10" >
-                <StackPanel Canvas.Bottom="180" Canvas.Left="30" >
+                <StackPanel Canvas.Bottom="260" Canvas.Left="30" >
 
                     <TextBox
                      Width="150" Height="36" HorizontalAlignment="Center" 
@@ -57,9 +57,16 @@
                 </StackPanel>
 
                 <Button
+                    Content="Сортировать" 
+                    Canvas.Bottom="140" Canvas.Left="50"
+                    Width="100" Height="30" 
+                    FontSize="10"
+                    Command="{Binding ButtonSortClickCommand}"/>
+
+                <Button
                     Content="Изменить"
-                    Canvas.Bottom="140" Canvas.Left="20" 
-                    Width="85" Height="30"
+                    Canvas.Bottom="220" Canvas.Left="50" 
+                    Width="100" Height="30"
                     FontSize="10"
                     ToolTip="Изменить номер телефона"
                     IsEnabled="{Binding IsEnabledEditPanel}"
@@ -67,8 +74,8 @@
 
                 <Button
                     Content="Сохранить" 
-                    Canvas.Bottom="140" Canvas.Left="110" 
-                    Width="85" Height="30"
+                    Canvas.Bottom="180" Canvas.Left="50" 
+                    Width="100" Height="30"
                     FontSize="10"
                     IsEnabled="{Binding IsEnabledButtonSave}"
                     Command="{Binding ButtonSaveClickCommand}"/>

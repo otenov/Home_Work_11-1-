@@ -43,7 +43,7 @@
 
                 <TextBox
                      Width="150" Height="36" HorizontalAlignment="Center" 
-                     Canvas.Bottom="420" Canvas.Left="30" 
+                     Canvas.Bottom="460" Canvas.Left="30" 
                      Cursor="IBeam"
                      Text="{Binding TextSurname}"
                      materialDesign:HintAssist.Hint="Введите фамилию"                    
@@ -52,7 +52,7 @@
 
                 <TextBox 
                      Width="150" Height="36" HorizontalAlignment="Center" 
-                     Canvas.Bottom="380" Canvas.Left="30" 
+                     Canvas.Bottom="420" Canvas.Left="30" 
                      Cursor="IBeam"
                      Text="{Binding TextFName}"
                      materialDesign:HintAssist.Hint="Введите имя"
@@ -61,7 +61,7 @@
 
                 <TextBox
                      Width="150" Height="36" HorizontalAlignment="Center" 
-                     Canvas.Bottom="340" Canvas.Left="30" 
+                     Canvas.Bottom="380" Canvas.Left="30" 
                      Cursor="IBeam"
                      Text="{Binding TextLName}"
                      materialDesign:HintAssist.Hint="Введите отчество"
@@ -70,7 +70,7 @@
 
                 <TextBox 
                      Width="150" Height="36" HorizontalAlignment="Center" 
-                     Canvas.Bottom="300" Canvas.Left="30" 
+                     Canvas.Bottom="340" Canvas.Left="30" 
                      Cursor="IBeam"
                      Text="{Binding TextPassportSeries}"
                      materialDesign:HintAssist.Hint="Введите серию паспорта"
@@ -79,7 +79,7 @@
 
                 <TextBox 
                      Width="150" Height="36" HorizontalAlignment="Center" 
-                     Canvas.Bottom="260" Canvas.Left="30" 
+                     Canvas.Bottom="300" Canvas.Left="30" 
                      Cursor="IBeam"
                      Text="{Binding TextPassportNumber}"
                      materialDesign:HintAssist.Hint="Введите номер паспорта"
@@ -88,7 +88,7 @@
                 
                 <TextBox
                      Width="150" Height="36" HorizontalAlignment="Center" 
-                     Canvas.Bottom="220" Canvas.Left="30" 
+                     Canvas.Bottom="260" Canvas.Left="30" 
                      Cursor="IBeam"
                      Text="{Binding TextTelephoneNumber}"
                      materialDesign:HintAssist.Hint="Введите номер телефона"
@@ -97,7 +97,7 @@
 
                 <Button
                     Content="Изменить"
-                    Canvas.Bottom="180" Canvas.Left="20" 
+                    Canvas.Bottom="220" Canvas.Left="20" 
                     Width="85" Height="30"
                     FontSize="10"
                     IsEnabled="{Binding IsEnabledEditPanel}"
@@ -105,8 +105,16 @@
                     ToolTip="Подвердить изменение клиентских данных"/>
 
                 <Button
+                    Content="Сортировать"
+                    Canvas.Bottom="180" Canvas.Left="60" 
+                    Width="100" Height="30"
+                    FontSize="10"
+                    Command="{Binding ButtonSortClickCommand}"
+                    ToolTip="Подвердить изменение клиентских данных"/>
+
+                <Button
                     Content="Сохранить" 
-                    Canvas.Bottom="180" Canvas.Left="110" 
+                    Canvas.Bottom="220" Canvas.Left="110" 
                     Width="85" Height="30"
                     FontSize="10"
                     Command="{Binding ButtonSaveClickCommand}"

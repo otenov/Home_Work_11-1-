@@ -1,6 +1,7 @@
 ﻿using Home_Work_11_1_.Helpers;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -24,6 +25,7 @@ namespace Home_Work_11_1_.ViewModel
             ButtonSaveClickCommand = new CommandBase(ButtonSaveClick);
             ButtonEditClickCommand = new CommandBase(ButtonEditClick);
             ButtonAddClickCommand = new CommandBase(ButtonAddClick);
+            ButtonSortClickCommand = new CommandBase(ButtonSortClick);
             ListOfClientsVM.NotifySelectedClient += LoadSelectedClient;
             IsEnabledEditPanel = false;
             IsEnabledButtonSave = false;
@@ -215,6 +217,8 @@ namespace Home_Work_11_1_.ViewModel
 
         public ICommand ButtonAddClickCommand { get; set; }
 
+        public ICommand ButtonSortClickCommand { get; set; }
+
         public Action CloseAction { get ; set; }
 
         private void LoadSelectedClient(Client selectedClient)
@@ -290,6 +294,11 @@ namespace Home_Work_11_1_.ViewModel
         {
             AddNewClientVM addNewClientVM = new AddNewClientVM(messageBoxHelper, manager);
             windowCreator.CreateWindow(Windows.AddNewClientWindow, addNewClientVM);
+        }
+
+        private void ButtonSortClick()
+        {
+            ListOfClientsVM.Clients = new ObservableCollection<Client>(manager.SortClient());
         }
 
         public void ShowHistoryRecord()

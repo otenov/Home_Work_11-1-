@@ -12,6 +12,8 @@ namespace Home_Work_11_1_
 {
     public static class Repository
     {
+        //TODO Сделать реализацию интерфейсов (IEquatable, IComparable, ICloneable, I)
+
         /// <summary>
         /// Генератор рандомных клиентов
         /// </summary>
